@@ -44,6 +44,8 @@ class bookBaseCSV extends CSV {
    */
   public function initializeIterator() {
     $file = parent::initializeIterator();
+    // Exclude CSVFileObject::DROP_NEW_LINE flag to retain the first newline in
+    // a multi-line value.
     $file->setFlags(CSVFileObject::READ_CSV | CSVFileObject::READ_AHEAD | CSVFileObject::SKIP_EMPTY);
     return $file;
   }
