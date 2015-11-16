@@ -1,0 +1,16 @@
+id: book_migration_category
+label: Categories
+migration_group: books
+source:
+  plugin: book_base_csv
+  path: category.csv
+  header_row_count: 1
+  keys:
+    - 'id'
+destination:
+  plugin: entity:taxonomy_term
+process:
+  vid:
+    plugin: default_value
+    default_value: category
+  name: name

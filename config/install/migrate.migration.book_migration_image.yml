@@ -1,0 +1,24 @@
+id: book_migration_image
+label: Image
+migration_group: books
+source:
+  plugin: book_image_csv
+  source_base_path: 'source/images'
+  path: image.csv
+  header_row_count: 1
+  keys:
+    - 'id'
+  constants:
+    file_scheme: 'public://'
+destination:
+  plugin: entity:file
+  destination_path_property: uri
+  source_path_property: full_path
+process:
+  filename: filename
+  uri:
+    plugin: concat
+    delimiter: ''
+    source:
+      - constants/file_scheme
+      - filename

@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Author
+vid: author
+description: 'Book authors'
+hierarchy: 0
+weight: 0

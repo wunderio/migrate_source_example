@@ -1,0 +1,28 @@
+id: book_migration_user
+label: Users
+migration_group: books
+source:
+  plugin: book_base_csv
+  path: user.csv
+  header_row_count: 1
+  keys:
+    - 'id'
+destination:
+  plugin: entity:user
+process:
+  name:
+    plugin: dedupe_entity
+    entity_type: user
+    field: name
+    postfix: _
+    source: name
+  mail: email
+  init: email
+  status:
+    plugin: default_value
+    default_value: 1
+  roles:
+    -
+      plugin: explode
+      delimiter: ","
+      source: roles

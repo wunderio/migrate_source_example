@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Contains book_migration_setup.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function book_migration_setup_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the book_migration_setup module.
+    case 'help.page.book_migration_setup':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Book migration setup') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function book_migration_setup_theme() {
+  $theme = [];
+
+  return $theme;
+}

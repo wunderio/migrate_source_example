@@ -1,0 +1,16 @@
+id: book_migration_author
+label: Authors
+migration_group: books
+source:
+  plugin: book_base_csv
+  path: author.csv
+  header_row_count: 1
+  keys:
+    - 'id'
+destination:
+  plugin: entity:taxonomy_term
+process:
+  vid:
+    plugin: default_value
+    default_value: author
+  name: name

@@ -1,0 +1,48 @@
+id: book_migration_book
+label: Books
+migration_group: books
+source:
+  plugin: book_base_csv
+  path: book.csv
+  header_row_count: 1
+  keys:
+    - 'id'
+destination:
+  plugin: entity:node
+process:
+  type:
+    plugin: default_value
+    default_value: book
+  uid:
+    plugin: migration
+    migration: book_migration_user
+    source: uid
+  title: title
+  'body/value': body
+  'body/format': body_format
+  field_author:
+    plugin: migration
+    migration: book_migration_author
+    source: author
+  field_category:
+    plugin: migration
+    migration: book_migration_category
+    source: category
+  field_cover:
+    plugin: migration
+    migration: book_migration_image
+    source: image
+  created:
+    plugin: extract_date
+    format: "U"
+    source: added
+  changed:
+    plugin: extract_date
+    format: "U"
+    source: added
+migration_dependencies:
+  required:
+    - book_migration_user
+    - book_migration_author
+    - book_migration_category
+    - book_migration_image
