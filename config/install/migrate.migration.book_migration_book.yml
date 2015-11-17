@@ -35,11 +35,11 @@ process:
   created:
     plugin: format_date
     format: "U"
-    source: added
+    source: created
   changed:
     plugin: format_date
     format: "U"
-    source: added
+    source: created
 migration_dependencies:
   required:
     - book_migration_user
