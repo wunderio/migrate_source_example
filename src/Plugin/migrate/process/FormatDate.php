@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\book_migration\Plugin\migrate\callback\ExtractDate.
+ * Contains \Drupal\book_migration\Plugin\migrate\callback\FormatDate.
  */
 
 namespace Drupal\book_migration\Plugin\migrate\process;
@@ -14,10 +14,10 @@ use Drupal\migrate\Row;
 
 /**
  * @MigrateProcessPlugin(
- *   id = "extract_date",
+ *   id = "format_date",
  * )
  */
-class ExtractDate extends ProcessPluginBase {
+class FormatDate extends ProcessPluginBase {
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     if (empty($this->configuration['format'])) {
       throw new MigrateException('Expected date format is not defined.');
