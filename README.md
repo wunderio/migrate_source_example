@@ -16,3 +16,7 @@ checkout the `split` branch to avoid conflicts with standalone modules (see [ins
 
 1. Run `drush ms` to see all migrations.
 2. Run `drush mi --all` to import all content.
+
+## Data source
+
+User, book, author and category data sources are stored in a [Google Spreadsheet](https://goo.gl/oG0jz0).
