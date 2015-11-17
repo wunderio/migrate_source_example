@@ -21,17 +21,29 @@ process:
   'body/value': body
   'body/format': body_format
   field_author:
-    plugin: migration
-    migration: book_migration_author
-    source: author
+    -
+      plugin: skip_on_empty
+      method: process
+    -
+      plugin: migration
+      migration: book_migration_author
+      source: author
   field_category:
-    plugin: migration
-    migration: book_migration_category
-    source: category
+    -
+      plugin: skip_on_empty
+      method: process
+    -
+      plugin: migration
+      migration: book_migration_category
+      source: category
   field_cover:
-    plugin: migration
-    migration: book_migration_image
-    source: image
+    -
+      plugin: skip_on_empty
+      method: process
+    -
+      plugin: migration
+      migration: book_migration_image
+      source: image
   created:
     plugin: format_date
     format: "U"
