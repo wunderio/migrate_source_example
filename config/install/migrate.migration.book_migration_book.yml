@@ -36,10 +36,7 @@ process:
     plugin: format_date
     format: "U"
     source: created
-  changed:
-    plugin: format_date
-    format: "U"
-    source: created
+  changed: '@created'
 migration_dependencies:
   required:
     - book_migration_user
