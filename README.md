@@ -18,4 +18,4 @@
 
 ## Data source
 
-CSV file content is synced from a [Google Spreadsheet](https://goo.gl/oG0jz0).
+CSV file content is synced from a [Google Spreadsheet](https://goo.gl/Iq2Tk6).
