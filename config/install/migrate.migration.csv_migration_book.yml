@@ -1,8 +1,8 @@
-id: book_migration_book
+id: csv_migration_book
 label: Books
 migration_group: books
 source:
-  plugin: book_base_csv
+  plugin: csv_migration_example_csv
   path: book.csv
   header_row_count: 1
   keys:
@@ -15,22 +15,22 @@ process:
     default_value: book
   uid:
     plugin: migration
-    migration: book_migration_user
+    migration: csv_migration_user
     source: uid
   title: title
   'body/value': body
   'body/format': body_format
   field_author:
     plugin: migration
-    migration: book_migration_author
+    migration: csv_migration_author
     source: author
   field_category:
     plugin: migration
-    migration: book_migration_category
+    migration: csv_migration_category
     source: category
   field_cover:
     plugin: migration
-    migration: book_migration_image
+    migration: csv_migration_image
     source: image
   created:
     plugin: format_date
@@ -39,7 +39,7 @@ process:
   changed: '@created'
 migration_dependencies:
   required:
-    - book_migration_user
-    - book_migration_author
-    - book_migration_category
-    - book_migration_image
+    - csv_migration_user
+    - csv_migration_author
+    - csv_migration_category
+    - csv_migration_image

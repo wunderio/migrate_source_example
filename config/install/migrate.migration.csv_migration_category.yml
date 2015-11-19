@@ -1,8 +1,8 @@
-id: book_migration_category
+id: csv_migration_category
 label: Categories
 migration_group: books
 source:
-  plugin: book_base_csv
+  plugin: csv_migration_example_csv
   path: category.csv
   header_row_count: 1
   keys:

@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains \Drupal\book_migration\Plugin\migrate\source\bookBaseCSV.
+ * Contains \Drupal\csv_migration_example\Plugin\migrate\source\bookBaseCSV.
  */
 
-namespace Drupal\book_migration\Plugin\migrate\source;
+namespace Drupal\csv_migration_example\Plugin\migrate\source;
 
 use Drupal\migrate\Entity\MigrationInterface;
 use Drupal\migrate_source_csv\CSVFileObject;
@@ -15,10 +15,10 @@ use Drupal\migrate_source_csv\Plugin\migrate\source\CSV;
  * Book base migration.
  *
  * @MigrateSource(
- *   id = "book_base_csv"
+ *   id = "csv_migration_example_csv"
  * )
  */
-class bookBaseCSV extends CSV {
+class CSVMigrationExampleCSV extends CSV {
 
   /**
    * Migration source file.
@@ -29,7 +29,7 @@ class bookBaseCSV extends CSV {
    * {@inheritdoc}
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration) {
-    $module_path = drupal_get_path('module', 'book_migration');
+    $module_path = drupal_get_path('module', 'csv_migration_example');
 
     $configuration['path'] = $module_path . '/source/' . $configuration['path'];
     $configuration['constants']['source_base_path'] = $module_path . '/source/images/';

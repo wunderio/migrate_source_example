@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains \Drupal\book_migration\Plugin\migrate\source\bookImageCSV.
+ * Contains \Drupal\csv_migration_example\Plugin\migrate\source\bookImageCSV.
  */
 
-namespace Drupal\book_migration\Plugin\migrate\source;
+namespace Drupal\csv_migration_example\Plugin\migrate\source;
 
 use Drupal\migrate\Entity\MigrationInterface;
 use Drupal\migrate\MigrateException;
@@ -15,10 +15,10 @@ use Drupal\migrate\Row;
  * Book image migration.
  *
  * @MigrateSource(
- *   id = "book_image_csv"
+ *   id = "csv_migration_example_image_csv"
  * )
  */
-class bookImageCSV extends bookBaseCSV {
+class CSVMigrationExampleImageCSV extends CSVMigrationExampleCSV {
 
   /**
    * {@inheritdoc}
@@ -43,7 +43,7 @@ class bookImageCSV extends bookBaseCSV {
     // Prepare base path.
     $base_path = trim($this->configuration['source_base_path'], '/');
     // Set "full_path" property to point to the full path of the image.
-    $row->setSourceProperty('full_path', drupal_get_path('module', 'book_migration') . '/' . $base_path . '/' . $filename);
+    $row->setSourceProperty('full_path', drupal_get_path('module', 'csv_migration_example') . '/' . $base_path . '/' . $filename);
   }
 
 }

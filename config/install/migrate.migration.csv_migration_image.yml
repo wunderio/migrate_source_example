@@ -1,8 +1,8 @@
-id: book_migration_image
+id: csv_migration_image
 label: Image
 migration_group: books
 source:
-  plugin: book_image_csv
+  plugin: csv_migration_example_image_csv
   source_base_path: 'source/images'
   path: image.csv
   header_row_count: 1

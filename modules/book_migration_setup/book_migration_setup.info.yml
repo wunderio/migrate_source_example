@@ -1,5 +1,0 @@
-name: Book migration setup
-type: module
-description: Provies default configuration for book migration setup
-core: 8.x
-package: Migration

@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains \Drupal\book_migration\Plugin\migrate\callback\FormatDate.
+ * Contains \Drupal\csv_migration_example\Plugin\migrate\callback\FormatDate.
  */
 
-namespace Drupal\book_migration\Plugin\migrate\process;
+namespace Drupal\csv_migration_example\Plugin\migrate\process;
 
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateException;

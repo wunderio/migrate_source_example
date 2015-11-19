@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains \Drupal\book_migration\Plugin\migrate\callback\Explode.
+ * Contains \Drupal\csv_migration_example\Plugin\migrate\callback\Explode.
  */
 
-namespace Drupal\book_migration\Plugin\migrate\process;
+namespace Drupal\csv_migration_example\Plugin\migrate\process;
 
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateExecutableInterface;
