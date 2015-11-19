@@ -5,10 +5,10 @@
 ## Installation
 
 1. Install Drupal 8 compatible `drush`.
-2. Install Drupal 8 (RC4 or later) using `Standard` profile.
-3. Download the latest codebase of `migrate_source_csv` contrib module (commit `4efbb9b`) into `modules/contrib/migrate_source_csv` (see [instructions](https://www.drupal.org/project/migrate_source_csv/git-instructions)).
-4. Download the latest codebase of `migrate_tools` contrib module (commit `fa10b36`) into `modules/contrib/migrate_tools` (see [instructions](https://www.drupal.org/project/migrate_tools/git-instructions)).
-5. Download the latest codebase of `migrate_plus` contrib module (commit `1039bfc`) into `modules/contrib/migrate_plus` (see [instructions](https://www.drupal.org/project/migrate_plus/git-instructions)).
+2. Install Drupal 8 using `Standard` profile.
+3. Download `migrate_source_csv` contrib module into `modules/contrib/migrate_source_csv` (see [instructions](https://www.drupal.org/project/migrate_source_csv/git-instructions)).
+4. Download `migrate_tools` contrib module into `modules/contrib/migrate_tools` (see [instructions](https://www.drupal.org/project/migrate_tools/git-instructions)).
+5. Download `migrate_plus` contrib module into `modules/contrib/migrate_plus` (see [instructions](https://www.drupal.org/project/migrate_plus/git-instructions)).
 6. Enable `csv_migration_example` module (`drush en csv_migration_example`).
   
 ## Usage
