@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\csv_migration_example\Plugin\migrate\callback\FormatDate.
+ * Contains \Drupal\csv_migration_example\Plugin\migrate\process\FormatDate.
  */
 
 namespace Drupal\csv_migration_example\Plugin\migrate\process;

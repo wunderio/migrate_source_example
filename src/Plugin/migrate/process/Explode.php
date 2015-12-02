@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\csv_migration_example\Plugin\migrate\callback\Explode.
+ * Contains \Drupal\csv_migration_example\Plugin\migrate\process\Explode.
  */
 
 namespace Drupal\csv_migration_example\Plugin\migrate\process;
