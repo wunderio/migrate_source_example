@@ -1,14 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - csv_migration_example
+    - user
 id: csv_migration_user
+migration_tags: null
 label: Users
-migration_group: books
 source:
   plugin: csv_migration_example_csv
   path: user.csv
   header_row_count: 1
   keys:
-    - 'id'
-destination:
-  plugin: entity:user
+    - id
 process:
   name:
     plugin: dedupe_entity
@@ -24,5 +28,10 @@ process:
   roles:
     -
       plugin: explode
-      delimiter: ","
+      delimiter: ','
       source: roles
+destination:
+  plugin: 'entity:user'
+template: null
+migration_dependencies: {  }
+migration_group: books

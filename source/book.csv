@@ -1,16 +1,16 @@
-id,title,body,body_format,image,author,category,uid,created
+id,title,body,body_format,image,author,category,uid,created,alias
 1,Casino Royale,"M,
 the Head of the British Secret Service,
 assigns James Bond, 007,
 to play against and bankrupt Le Chiffre,
 the paymaster for a SMERSH-controlled trade union,
-in a high-stakes baccarat game at the Royale-les-Eaux casino in northern France.",plain_text,1,1,1,3,2015-04-02T21:00:00
-2,Live and Let Die,"<p>The British Secret Service agent James Bond is sent by his superior, M, to New York City to investigate ""Mr Big"", real name Buonaparte Ignace Gallia.</p>",basic_html,2,1,1,3,2015-05-24T16:30:00
-3,Moonraker,"<p>The British Secret Service agent James Bond is asked by his superior, M, to join him at M's club, Blades.</p>",basic_html,3,1,1,3,2015-06-01T17:25:00
-4,Diamonds Are Forever,"<p>The British Secret Service agent James Bond is sent on an assignment by his superior, M.</p>",basic_html,4,1,1,3,2015-06-14T09:45:00
-5,The Bourne Identity,"<p>The preface of the novel consists of two real-life newspaper articles from 1975 about terrorist Ilich Ramírez Sánchez, known as ""Carlos the Jackal.""</p>",basic_html,5,2,1,1,2015-06-15T12:00:00
-6,The Bourne Supremacy,<p>The story of The Bourne Supremacy is set during the British negotiated handover of Hong Kong to the People's Republic of China on the expiration of its ninety-nine-year lease on the New Territories.</p>,basic_html,6,2,1,1,2015-06-25T14:45:00
-7,The Bourne Ultimatum,"<p>The novel follows David Webb, alias Jason Bourne, as he works to find his old enemy, Carlos the Jackal, who is trying to kill him.</p>",basic_html,7,2,1,1,2015-07-07T16:15:00
-8,The Fellowship of the Ring,"<p>Thousands of years before the events of the novel, the Dark Lord Sauron had forged the One Ring to rule the other Rings of Power and corrupt those who wear them: the leaders of Men, Elves and Dwarves.</p>",basic_html,8,3,2,2,2015-07-14T18:30:00
-9,The Two Towers,"<p>Orcs sent by Saruman and Sauron kill Boromir and kidnap Merry and Pippin. After agonizing over which pair of hobbits to follow, Aragorn, Gimli and Legolas pursue the orcs bearing Merry and Pippin to Saruman.</p>",basic_html,9,3,2,2,2015-07-18T20:45:00
-10,The Return of the King,<p>Sauron unleashes a heavy assault upon Gondor. Gandalf arrives at Minas Tirith to alert Denethor of the impending attack.</p>,basic_html,10,3,2,2,2015-07-28T09:15:00
+in a high-stakes baccarat game at the Royale-les-Eaux casino in northern France.",plain_text,1,1,1,3,2015-04-02T21:00:00,casino-royale
+2,Live and Let Die,"<p>The British Secret Service agent James Bond is sent by his superior, M, to New York City to investigate ""Mr Big"", real name Buonaparte Ignace Gallia.</p>",basic_html,2,1,1,3,2015-05-24T16:30:00,live-and-let-die
+3,Moonraker,"<p>The British Secret Service agent James Bond is asked by his superior, M, to join him at M's club, Blades.</p>",basic_html,3,1,1,3,2015-06-01T17:25:00,moonraker
+4,Diamonds Are Forever,"<p>The British Secret Service agent James Bond is sent on an assignment by his superior, M.</p>",basic_html,4,1,1,3,2015-06-14T09:45:00,diamonds-are-forever
+5,The Bourne Identity,"<p>The preface of the novel consists of two real-life newspaper articles from 1975 about terrorist Ilich Ramírez Sánchez, known as ""Carlos the Jackal.""</p>",basic_html,5,2,1,1,2015-06-15T12:00:00,the-bourne-identity
+6,The Bourne Supremacy,<p>The story of The Bourne Supremacy is set during the British negotiated handover of Hong Kong to the People's Republic of China on the expiration of its ninety-nine-year lease on the New Territories.</p>,basic_html,6,2,1,1,2015-06-25T14:45:00,the-bourne-supremacy
+7,The Bourne Ultimatum,"<p>The novel follows David Webb, alias Jason Bourne, as he works to find his old enemy, Carlos the Jackal, who is trying to kill him.</p>",basic_html,7,2,1,1,2015-07-07T16:15:00,the-bourne-ultimatum
+8,The Fellowship of the Ring,"<p>Thousands of years before the events of the novel, the Dark Lord Sauron had forged the One Ring to rule the other Rings of Power and corrupt those who wear them: the leaders of Men, Elves and Dwarves.</p>",basic_html,8,3,2,2,2015-07-14T18:30:00,
+9,The Two Towers,"<p>Orcs sent by Saruman and Sauron kill Boromir and kidnap Merry and Pippin. After agonizing over which pair of hobbits to follow, Aragorn, Gimli and Legolas pursue the orcs bearing Merry and Pippin to Saruman.</p>",basic_html,9,3,2,2,2015-07-18T20:45:00,
+10,The Return of the King,<p>Sauron unleashes a heavy assault upon Gondor. Gandalf arrives at Minas Tirith to alert Denethor of the impending attack.</p>,basic_html,10,3,2,2,2015-07-28T09:15:00,
