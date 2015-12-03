@@ -36,9 +36,15 @@ process:
     migration: csv_migration_author
     source: author
   field_category:
-    plugin: migration
-    migration: csv_migration_category
-    source: category
+    -
+      plugin: explode
+      delimiter: ','
+      source: category
+    -
+      plugin: walk
+      process:
+        plugin: migration
+        migration: csv_migration_category
   field_cover:
     plugin: migration
     migration: csv_migration_image
