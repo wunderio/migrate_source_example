@@ -16,13 +16,13 @@ Currently features migrations from following sources:
 5. Enable `migrate_source_example` module (`drush en migrate_source_example`).
 
 ### Installation of CSV migration example module
-* Download `migrate_source_csv` contrib module into `modules/contrib/migrate_source_csv` (see [instructions](https://www.drupal.org/project/migrate_source_csv/git-instructions)).
-* Enable `migrate_source_example_csv` module (`drush en migrate_source_example_csv`).
+1. Download `migrate_source_csv` contrib module into `modules/contrib/migrate_source_csv` (see [instructions](https://www.drupal.org/project/migrate_source_csv/git-instructions)).
+1. Enable `migrate_source_example_csv` module (`drush en migrate_source_example_csv`).
   
 ## Usage
 
 1. Run `drush ms` to see all migrations.
-2. Run `drush mi --all` to import all content.
+2. Run `drush mi --group=[GROUP]` to import content from specific example group.
 
 ## Data source
 
