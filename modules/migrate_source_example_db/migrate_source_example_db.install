@@ -6,57 +6,58 @@
 
 function migrate_source_example_db_schema() {
   $schema['migrate_source_example_db_users'] = migrate_source_example_db_schema_users();
-
+  
   return $schema;
 }
 
 function migrate_source_example_db_install(){
-	migrate_source_example_db_data_users();
+  migrate_source_example_db_data_users();
 }
 
 function migrate_source_example_db_schema_users(){
-	return array(
-		'fields' => array(
-			'uid' => array(
-				'type' => 'int',
-				'not null' => TRUE,
-				'description' => 'User ID',
-				),
-			'name' => array(
-				'type' => 'varchar',
-				'length' => 15,
-				'not null' => TRUE,
-				'description' => 'User name',
-				),
-			'roles' => array(
-				'type' => 'varchar',
-				'length' => 30,
-				'not null' => TRUE,
-				'description' => 'User roles',
-				),
-			'email' => array(
-				'type' => 'varchar',
-				'length' => 30,
-				'not null' => TRUE,
-				'description' => 'User roles',
-				),
-			),
-		'unique keys' => array(
-    		'uid' => array('uid'),
-		),
-	);
+  return array(
+    'fields' => array(
+  	  'uid' => array(
+	  'type' => 'int',
+	  'not null' => TRUE,
+	  'description' => 'User ID',
+	  ),
+    'name' => array(
+	  'type' => 'varchar',
+	  'length' => 15,
+	  'not null' => TRUE,
+	  'description' => 'User name',
+	  ),
+    'roles' => array(
+	  'type' => 'varchar',
+	  'length' => 30,
+	  'not null' => TRUE,
+	  'description' => 'User roles',
+	  ),
+    'email' => array(
+	  'type' => 'varchar',
+	  'length' => 30,
+	  'not null' => TRUE,
+	  'description' => 'User roles',
+	  ),
+    ),
+    'unique keys' => array(
+      'uid' => array('uid'),
+      ),
+    );
 }
+
 function migrate_source_example_db_data_users(){
-	 $fields = array('uid', 'name', 'roles', 'email');
-  	 $query = db_insert('migrate_source_example_db_users')
-           ->fields($fields);
+  $fields = array('uid', 'name', 'roles', 'email');
+  $query = db_insert('migrate_source_example_db_users')
+    ->fields($fields);
 
   $data = array(
     array(1, 'Nifs', 'administrator, editor', 'nifs@nifs.com'),
     array(2, 'Nufs', 'editor', 'nufs@nufs.com'),
     array(3, 'Nafs', 'editor', 'nafs@nafs.com'),
-
   );
+
   foreach ($data as $row) {
     $query->values(array_combine($fields, $row));
   }
