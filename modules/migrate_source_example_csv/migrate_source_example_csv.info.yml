@@ -4,7 +4,8 @@ description: Example module that provides content migration from CSV files.
 core: 8.x
 package: Migration
 dependencies:
-  - csv_migration_example_setup
+  - migrate_source_example
+  - migrate_source_example_setup
   - migrate_plus
   - migrate_tools
   - migrate_source_csv

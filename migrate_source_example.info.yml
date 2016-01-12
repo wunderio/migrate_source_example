@@ -1,0 +1,5 @@
+name: Migrate source example
+type: module
+description: A set of migrate example modules that provide content migration from different sources.
+core: 8.x
+package: Migration
