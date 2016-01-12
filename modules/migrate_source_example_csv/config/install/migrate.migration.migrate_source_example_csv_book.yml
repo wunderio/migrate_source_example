@@ -2,18 +2,18 @@ langcode: en
 status: true
 dependencies:
   config:
-    - migrate.migration.csv_migration_author
-    - migrate.migration.csv_migration_category
-    - migrate.migration.csv_migration_image
-    - migrate.migration.csv_migration_user
+    - migrate.migration.migrate_source_example_csv_author
+    - migrate.migration.migrate_source_example_csv_category
+    - migrate.migration.migrate_source_example_csv_image
+    - migrate.migration.migrate_source_example_csv_user
   module:
-    - csv_migration_example
+    - migrate_source_example_csv
     - node
-id: csv_migration_book
+id: migrate_source_example_csv_book
 migration_tags: null
 label: Books
 source:
-  plugin: csv_migration_example_csv
+  plugin: migrate_source_example_csv
   path: book.csv
   header_row_count: 1
   keys:
@@ -26,14 +26,14 @@ process:
     default_value: book
   uid:
     plugin: migration
-    migration: csv_migration_user
+    migration: migrate_source_example_csv_user
     source: uid
   title: title
   body/value: body
   body/format: body_format
   field_author:
     plugin: migration
-    migration: csv_migration_author
+    migration: migrate_source_example_csv_author
     source: author
   field_category:
     -
@@ -44,10 +44,10 @@ process:
       plugin: walk
       process:
         plugin: migration
-        migration: csv_migration_category
+        migration: migrate_source_example_csv_category
   field_cover:
     plugin: migration
-    migration: csv_migration_image
+    migration: migrate_source_example_csv_image
     source: image
   created:
     plugin: format_date
@@ -70,8 +70,8 @@ destination:
 template: null
 migration_dependencies:
   required:
-    - csv_migration_user
-    - csv_migration_author
-    - csv_migration_category
-    - csv_migration_image
-migration_group: books
+    - migrate_source_example_csv_user
+    - migrate_source_example_csv_author
+    - migrate_source_example_csv_category
+    - migrate_source_example_csv_image
+migration_group: migrate_source_example_csv

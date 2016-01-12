@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   module:
-    - csv_migration_example
+    - migrate_source_example
     - user
-id: csv_migration_user
+id: migrate_source_example_csv_user
 migration_tags: null
 label: Users
 source:
-  plugin: csv_migration_example_csv
+  plugin: migrate_source_example_csv
   path: user.csv
   header_row_count: 1
   keys:
@@ -34,4 +34,4 @@ destination:
   plugin: 'entity:user'
 template: null
 migration_dependencies: {  }
-migration_group: books
+migration_group: migrate_source_example_csv

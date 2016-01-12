@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   module:
-    - csv_migration_example
+    - migrate_source_example_csv
     - taxonomy
-id: csv_migration_author
+id: migrate_source_example_csv_author
 migration_tags: null
 label: Authors
 source:
-  plugin: csv_migration_example_csv
+  plugin: migrate_source_example_csv
   path: author.csv
   header_row_count: 1
   keys:
@@ -35,4 +35,4 @@ destination:
   plugin: 'entity:taxonomy_term'
 template: null
 migration_dependencies: {  }
-migration_group: books
+migration_group: migrate_source_example_csv

@@ -1,5 +1,0 @@
-services:
-  csv_migration_example.url_alias_event_subscriber:
-    class: Drupal\csv_migration_example\EventSubscriber\CSVMigrationExampleUrlAliasSubscriber
-    tags:
-      - { name: event_subscriber }

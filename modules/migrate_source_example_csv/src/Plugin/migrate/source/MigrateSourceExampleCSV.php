@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains \Drupal\csv_migration_example\Plugin\migrate\source\bookBaseCSV.
+ * Contains \Drupal\migrate_source_example_csv\Plugin\migrate\source\MigrateSourceExampleCSV.
  */
 
-namespace Drupal\csv_migration_example\Plugin\migrate\source;
+namespace Drupal\migrate_source_example_csv\Plugin\migrate\source;
 
 use Drupal\migrate\Entity\MigrationInterface;
 use Drupal\migrate_source_csv\CSVFileObject;
@@ -15,10 +15,10 @@ use Drupal\migrate_source_csv\Plugin\migrate\source\CSV;
  * Book base migration.
  *
  * @MigrateSource(
- *   id = "csv_migration_example_csv"
+ *   id = "migrate_source_example_csv"
  * )
  */
-class CSVMigrationExampleCSV extends CSV {
+class MigrateSourceExampleCSV extends CSV {
 
   /**
    * Migration source file.
@@ -29,10 +29,11 @@ class CSVMigrationExampleCSV extends CSV {
    * {@inheritdoc}
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration) {
-    $module_path = drupal_get_path('module', 'csv_migration_example');
+    $base_module_path = drupal_get_path('module', 'migrate_source_example');
+    $csv_module_path = drupal_get_path('module', 'migrate_source_example_csv');
 
-    $configuration['path'] = $module_path . '/source/' . $configuration['path'];
-    $configuration['constants']['source_base_path'] = $module_path . '/source/images/';
+    $configuration['path'] = $csv_module_path . '/source/' . $configuration['path'];
+    $configuration['constants']['source_base_path'] = $base_module_path . '/source/images/';
 
     parent::__construct($configuration, $plugin_id, $plugin_definition, $migration);
   }

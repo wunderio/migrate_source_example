@@ -1,5 +1,0 @@
-name: CSV migration example setup
-type: module
-description: Provides default configuration for CSV migration example module.
-core: 8.x
-package: Migration

@@ -1,9 +1,9 @@
 <?php
 /**
  * @file
- * Contains \Drupal\csv_migration_example\EventSubscriber\CSVMigrationExampleUrlAliasSubscriber.
+ * Contains \Drupal\migrate_source_example\EventSubscriber\MigrateSourceExampleUrlAliasSubscriber.
  */
-namespace Drupal\csv_migration_example\EventSubscriber;
+namespace Drupal\migrate_source_example\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\migrate\Event\MigrateEvents;
@@ -13,7 +13,7 @@ use Drupal\Core\Url;
 /**
  * Removes URL alias.
  */
-class CSVMigrationExampleUrlAliasSubscriber implements EventSubscriberInterface {
+class MigrateSourceExampleUrlAliasSubscriber implements EventSubscriberInterface {
 
   /**
    * {@inheritdoc}
