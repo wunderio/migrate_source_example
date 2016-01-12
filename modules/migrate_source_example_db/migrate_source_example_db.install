@@ -4,16 +4,25 @@
  * @file
  */
 
+/**
+ * Implements hook_schema().
+ */
 function migrate_source_example_db_schema() {
   $schema['migrate_source_example_db_users'] = migrate_source_example_db_schema_users();
-  
+
   return $schema;
 }
 
+/**
+ * Implements hook_install().
+ */
 function migrate_source_example_db_install(){
   migrate_source_example_db_data_users();
 }
 
+/**
+ * Define migrate_source_example_db_users table schema.
+ */
 function migrate_source_example_db_schema_users(){
   return array(
     'fields' => array(
@@ -47,6 +56,9 @@ function migrate_source_example_db_schema_users(){
     );
 }
 
+/**
+ * Create content for migrate_source_example_db_users table.
+ */
 function migrate_source_example_db_data_users(){
   $fields = array('uid', 'name', 'roles', 'email');
   $query = db_insert('migrate_source_example_db_users')
