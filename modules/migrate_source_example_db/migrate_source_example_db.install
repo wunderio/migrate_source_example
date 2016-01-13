@@ -10,6 +10,7 @@
 function migrate_source_example_db_schema() {
   $schema['migrate_source_example_db_users'] = migrate_source_example_db_schema_users();
   $schema['migrate_source_example_db_atributes'] = migrate_source_example_db_schema_atributes();
+  $schema['migrate_source_example_db_files'] = migrate_source_example_db_schema_files();
 
 
   return $schema;
@@ -21,6 +22,7 @@ function migrate_source_example_db_schema() {
 function migrate_source_example_db_install() {
   migrate_source_example_db_data_users();
   migrate_source_example_db_data_atributes();
+  migrate_source_example_db_data_files();
 }
 
 /**
@@ -96,6 +98,30 @@ function migrate_source_example_db_schema_atributes() {
 }
 
 /**
+ * @return array
+ */
+function migrate_source_example_db_schema_files() {
+  return array(
+    'fields' => array(
+  	  'fid' => array(
+	    'type' => 'int',
+	    'not null' => TRUE,
+	    'description' => 'File ID',
+	  ),
+	  'filename' => array(
+	    'type' => 'varchar',
+	    'length' => 30,
+	    'not null' => TRUE,
+	    'description' => 'File name',
+	  ),
+    ),
+    'unique keys' => array(
+      'fid' => array('fid'),
+    ),
+  );
+}
+
+/**
  * Create content for migrate_source_example_db_users table.
  */
 function migrate_source_example_db_data_users() {
@@ -130,6 +156,33 @@ function migrate_source_example_db_data_atributes() {
     array(4, 'atribute_category', 'Spy Stories', 'category/spy-stories'),
     array(5, 'atribute_category', 'Fantasy', 'category/fantasy'),
     array(6, 'atribute_category', 'Fiction', 'category/fiction'),
+  );
+
+  foreach ($data as $row) {
+    $query->values(array_combine($fields, $row));
+  }
+  $query->execute();
+}
+
+/**
+ * Create content for migrate_source_example_db_files table.
+ */
+function migrate_source_example_db_data_files() {
+  $fields = array('fid', 'filename');
+  $query = db_insert('migrate_source_example_db_files')
+    ->fields($fields);
+
+  $data = array(
+    array(1, 'casino-royale.png'),
+    array(2, 'live-and-let-die.png'),
+    array(3, 'moonraker.png'),
+    array(4, 'diamonds-are-forever.png'),
+    array(5, 'bourne-identity.png'),
+    array(6, 'bourne-supremacy.png'),
+    array(7, 'bourne-ultimatum.png'),
+    array(8, 'fellowship-of-the-ring.png'),
+    array(9, 'two-towers.png'),
+    array(10, 'return-of-the-king.png'),
   );
 
   foreach ($data as $row) {
