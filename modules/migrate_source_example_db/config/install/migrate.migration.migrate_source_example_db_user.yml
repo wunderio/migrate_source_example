@@ -27,6 +27,9 @@ process:
         2: editor
   mail: email
   init: email
+  status:
+    plugin: default_value
+    default_value: 1
 destination:
   plugin: 'entity:user'
 migration_group: migrate_source_example_db
