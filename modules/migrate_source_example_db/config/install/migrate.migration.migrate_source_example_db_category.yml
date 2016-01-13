@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_source_example_db
+    - taxonomy
+id: migrate_source_example_db_category
+migration_tags: null
+label: Categories
+source:
+  plugin: migrate_source_example_db_attribute
+  attribute_type: atribute_category
+  constants:
+    path_prefix: category
+    slash: /
+process:
+  vid:
+    plugin: default_value
+    default_value: category
+  name: name
+  path:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: alias
+    -
+      plugin: concat
+      delimiter: null
+      source:
+        # Uncomment when path prefix is removed from alias in source.
+        # - constants/slash
+        # - constants/path_prefix
+        - constants/slash
+        - alias
+destination:
+  plugin: 'entity:taxonomy_term'
+template: null
+migration_dependencies: {  }
+migration_group: migrate_source_example_db
