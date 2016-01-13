@@ -90,7 +90,7 @@ function migrate_source_example_db_schema_atributes() {
 	  ),
     ),
     'unique keys' => array(
-      'uid' => array('uid'),f
+      'aid' => array('aid'),
     ),
   );
 }
@@ -119,7 +119,7 @@ function migrate_source_example_db_data_users() {
  * Create content for migrate_source_example_db_atributes table.
  */
 function migrate_source_example_db_data_atributes() {
-  $fields = array('uid', 'type', 'name', 'alias');
+  $fields = array('aid', 'type', 'name', 'alias');
   $query = db_insert('migrate_source_example_db_atributes')
     ->fields($fields);
 
