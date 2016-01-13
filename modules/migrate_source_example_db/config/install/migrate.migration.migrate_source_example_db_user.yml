@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_source_example
+    - user
+id: migrate_source_example_db_user
+migration_tags: null
+label: DB Users
+source:
+  plugin: migrate_source_example_db
+  target: db_migration
+process:
+  name:
+    plugin: dedupe_entity
+    entity_type: user
+    field: name
+    source: name
+  mail: email
+  init: email
+  status:
+    plugin: default_value
+    default_value: 1
+  roles:
+      source: roles
+destination:
+  plugin: 'entity:user'
+template: null
+migration_dependencies: {  }
+migration_group: migrate_source_example_db
