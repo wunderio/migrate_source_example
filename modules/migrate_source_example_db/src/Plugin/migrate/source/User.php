@@ -25,16 +25,14 @@ class User extends SqlBase {
    * {@inheritdoc}
    */
   public function query() {
-    return $this->select('migrate_source_example_db_users', 'm')
-      ->fields('m');
+    return $this->select('migrate_source_example_db_users', 'u')
+      ->fields('u', array('name','roles','email'));
   }
 
   /**
    * {@inheritdoc}
    */
   public function fields() {
-    $fields = $this->baseFields();
-    $fields['uid'] = $this->t('Uid');
     $fields['name'] = $this->t('Name');
     $fields['roles'] = $this->t('Roles');
     $fields['email'] = $this->t('Email');

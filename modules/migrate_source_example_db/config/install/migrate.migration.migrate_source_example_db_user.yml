@@ -6,21 +6,17 @@ dependencies:
     - user
 id: migrate_source_example_db_user
 migration_tags: null
-label: DB Users
+label: Users
 source:
   plugin: migrate_source_example_db_user
-destination:
-  plugin: 'entity:user'
 process:
-  uid: uid
-  name:
-    entity_type: user
-    field: name
+   name:
+    plugin: dedupe_entity
+    entity_type: user
+    field: name
+    source: name
   mail: email
   init: email
-  status:
-    plugin: default_value
-    default_value: 1
-template: null
-migration_dependencies: {  }
+destination:
+  plugin: 'entity:user'
 migration_group: migrate_source_example_db
