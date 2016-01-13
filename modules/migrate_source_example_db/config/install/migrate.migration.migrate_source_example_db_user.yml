@@ -8,7 +8,7 @@ id: migrate_source_example_db_user
 migration_tags: null
 label: DB Users
 source:
-  plugin: migrate_source_example_db
+  plugin: migrate_source_example_db_user
 process:
   name:
     plugin: dedupe_entity
