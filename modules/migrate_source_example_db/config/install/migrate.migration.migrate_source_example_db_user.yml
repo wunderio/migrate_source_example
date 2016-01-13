@@ -10,11 +10,21 @@ label: Users
 source:
   plugin: migrate_source_example_db_user
 process:
-   name:
-    plugin: dedupe_entity
-    entity_type: user
-    field: name
-    source: name
+  name:
+    plugin: dedupe_entity
+    entity_type: user
+    field: name
+    source: name
+  roles:
+    plugin: explode
+    delimiter: ','
+    source: roles
+    plugin: walk
+    process:
+      plugin: static_map
+      map:
+        1: administrator
+        2: editor
   mail: email
   init: email
 destination:
