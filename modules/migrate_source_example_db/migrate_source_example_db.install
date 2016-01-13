@@ -9,6 +9,8 @@
  */
 function migrate_source_example_db_schema() {
   $schema['migrate_source_example_db_users'] = migrate_source_example_db_schema_users();
+  $schema['migrate_source_example_db_atributes'] = migrate_source_example_db_schema_atributes();
+
 
   return $schema;
 }
@@ -16,58 +18,118 @@ function migrate_source_example_db_schema() {
 /**
  * Implements hook_install().
  */
-function migrate_source_example_db_install(){
+function migrate_source_example_db_install() {
   migrate_source_example_db_data_users();
+  migrate_source_example_db_data_atributes();
 }
 
 /**
- * Define migrate_source_example_db_users table schema.
+ * @return array
  */
-function migrate_source_example_db_schema_users(){
+function migrate_source_example_db_schema_users() {
   return array(
     'fields' => array(
   	  'uid' => array(
-	  'type' => 'int',
-	  'not null' => TRUE,
-	  'description' => 'User ID',
+	    'type' => 'int',
+	    'not null' => TRUE,
+	    'description' => 'User ID',
 	  ),
-    'name' => array(
-	  'type' => 'varchar',
-	  'length' => 15,
-	  'not null' => TRUE,
-	  'description' => 'User name',
+      'name' => array(
+	    'type' => 'varchar',
+	    'length' => 15,
+	    'not null' => TRUE,
+	    'description' => 'User name',
 	  ),
-    'roles' => array(
-	  'type' => 'varchar',
-	  'length' => 30,
-	  'not null' => TRUE,
-	  'description' => 'User roles',
+      'roles' => array(
+	    'type' => 'varchar',
+	    'length' => 30,
+	    'not null' => TRUE,
+	    'description' => 'User roles',
 	  ),
-    'email' => array(
-	  'type' => 'varchar',
-	  'length' => 30,
-	  'not null' => TRUE,
-	  'description' => 'User roles',
+      'email' => array(
+	    'type' => 'varchar',
+	    'length' => 30,
+	    'not null' => TRUE,
+	    'description' => 'User roles. "1"is administrator, "2" is edotor',
 	  ),
     ),
     'unique keys' => array(
       'uid' => array('uid'),
-      ),
-    );
+    ),
+  );
+}
+
+/**
+ * @return array
+ */
+function migrate_source_example_db_schema_atributes() {
+  return array(
+    'fields' => array(
+  	  'aid' => array(
+	    'type' => 'int',
+	    'not null' => TRUE,
+	    'description' => 'Atribute ID',
+	  ),
+	  'type' => array(
+	    'type' => 'varchar',
+	    'length' => 30,
+	    'not null' => TRUE,
+	    'description' => 'Atribute type',
+	  ),
+      'name' => array(
+	    'type' => 'varchar',
+	    'length' => 30,
+	    'not null' => TRUE,
+	    'description' => 'Atribute name',
+	  ),
+      'alias' => array(
+	    'type' => 'varchar',
+	    'length' => 30,
+	    'not null' => TRUE,
+	    'description' => 'Attribute alias',
+	  ),
+    ),
+    'unique keys' => array(
+      'uid' => array('uid'),f
+    ),
+  );
 }
 
 /**
  * Create content for migrate_source_example_db_users table.
  */
-function migrate_source_example_db_data_users(){
+function migrate_source_example_db_data_users() {
   $fields = array('uid', 'name', 'roles', 'email');
   $query = db_insert('migrate_source_example_db_users')
     ->fields($fields);
 
   $data = array(
-    array(1, 'Nifs', 'administrator, editor', 'nifs@nifs.com'),
-    array(2, 'Nufs', 'editor', 'nufs@nufs.com'),
-    array(3, 'Nafs', 'editor', 'nafs@nafs.com'),
+    array(1, 'Nifs', '1, 2', 'nifs@nifs.com'),
+    array(2, 'Nufs', '2', 'nufs@nufs.com'),
+    array(3, 'Nafs', '2', 'nafs@nafs.com'),
+  );
+
+  foreach ($data as $row) {
+    $query->values(array_combine($fields, $row));
+  }
+  $query->execute();
+}
+
+/**
+ * Create content for migrate_source_example_db_atributes table.
+ */
+function migrate_source_example_db_data_atributes() {
+  $fields = array('uid', 'type', 'name', 'alias');
+  $query = db_insert('migrate_source_example_db_atributes')
+    ->fields($fields);
+
+  $data = array(
+    array(1, 'atribute_authors', 'Ian Fleming', 'author/ian-fleming'),
+    array(2, 'atribute_authors', 'Robert Ludlum', 'author/robert-ludlum'),
+    array(3, 'atribute_authors', 'John Ronald Reuel Tolkien', 'author/jrr-tolkien'),
+    array(4, 'atribute_category', 'Spy Stories', 'category/spy-stories'),
+    array(5, 'atribute_category', 'Fantasy', 'category/fantasy'),
+    array(6, 'atribute_category', 'Fiction', 'category/fiction'),
   );
 
   foreach ($data as $row) {
