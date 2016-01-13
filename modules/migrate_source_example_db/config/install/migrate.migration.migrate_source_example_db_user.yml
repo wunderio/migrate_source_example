@@ -9,7 +9,6 @@ migration_tags: null
 label: DB Users
 source:
   plugin: migrate_source_example_db
-  target: db_migration
 process:
   name:
     plugin: dedupe_entity

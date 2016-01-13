@@ -9,25 +9,24 @@ namespace Drupal\migrate_source_example_db\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\SourceEntityInterface;
 use Drupal\migrate\Row;
-use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
+use Drupal\migrate\Plugin\migrate\source\SqlBase;
 
 /**
  * Extract users from database.
  *
  * @MigrateSource(
- *   id = "migrate_source_example_db"
+ *   id = "migrate_source_example_db_user"
  * )
  */
 
-class User extends DrupalSqlBase implements SourceEntityInterface {
+class User extends SqlBase {
 
   /**
    * {@inheritdoc}
    */
   public function query() {
     return $this->select('migrate_source_example_db_users', 'm')
-      ->fields('m', array_keys($this->baseFields()))
-      ->condition('uid', 0, '>');
+      ->fields('m');
   }
 
   /**
@@ -37,62 +36,11 @@ class User extends DrupalSqlBase implements SourceEntityInterface {
     $fields = $this->baseFields();
     $fields['uid'] = $this->t('Uid');
     $fields['name'] = $this->t('Name');
-    // $fields['roles'] = $this->t('Roles');
+    $fields['roles'] = $this->t('Roles');
     $fields['email'] = $this->t('Email');
     return $fields;
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function prepareRow(Row $row) {
-
-    // uid
-    $result = $this->getDatabase()->query('
-      SELECT
-        uid
-      FROM
-        migrate_source_example_db_schema_users
-      ');
-    foreach ($result as $record) {
-      $row->setSourceProperty('uid', $record->uid );
-    }
-
-    // name
-    $result = $this->getDatabase()->query('
-      SELECT 
-        name
-      FROM
-        migrate_source_example_db_schema_users
-      ');
-    foreach ($result as $record) {
-      $row->setSourceProperty('name', $record->name );
-    }
-
-    // roles
-    // $result = $this->getDatabase()->query('
-    //   SELECT 
-    //     roles
-    //   FROM
-    //     migrate_source_example_db_schema_users
-    //   ');
-    // foreach ($result as $record) {
-    //   $row->setSourceProperty('roles', $record->roles );
-    // }
-
-    // email
-    $result = $this->getDatabase()->query('
-      SELECT 
-        email
-      FROM
-        migrate_source_example_db_schema_users
-      ');
-    foreach ($result as $record) {
-      $row->setSourceProperty('email', $record->email );
-    }
-
-    return parent::prepareRow($row);
-  }
 
   /**
    * {@inheritdoc}
@@ -104,36 +52,6 @@ class User extends DrupalSqlBase implements SourceEntityInterface {
         'alias' => 'u',
       ),
     );
-  }
-
-/**
-   * Returns the user base fields to be migrated.
-   *
-   * @return array
-   *   Associative array having field name as key and description as value.
-   */
-  protected function baseFields() {
-     $fields = array(
-      'uid' => $this->t('User ID'),
-      'name' => $this->t('Name'),
-      // 'roles' => $this->t('Roles'),
-      'email' => $this->t('Email'),
-      );
-    return $fields;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function bundleMigrationRequired() {
-    return FALSE;
-  }
- 
-  /**
-   * {@inheritdoc}
-   */
-  public function entityTypeId() {
-    return 'user';
   }
 
 }
