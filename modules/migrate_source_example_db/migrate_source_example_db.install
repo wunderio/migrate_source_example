@@ -190,3 +190,12 @@ function migrate_source_example_db_data_files() {
   }
   $query->execute();
 }
+
+/**
+ * Implements hook_uninstall().
+ */
+function migrate_source_example_db_uninstall() {
+  // Remove the migration group manually.
+  // @todo: Add dependency to the module in migration group configuration file.
+  Drupal::configFactory()->getEditable('migrate_plus.migration_group.migrate_source_example_db')->delete();
+}
