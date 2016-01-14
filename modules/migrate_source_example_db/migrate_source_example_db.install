@@ -2,13 +2,19 @@
 
 /**
  * @file
+ * Installs four database schemas for this module and adds content for them.
  */
+
+use Drupal\Core\Database\Database;
 
 /**
  * Implements hook_schema().
  */
 function migrate_source_example_db_schema() {
   $schema['migrate_source_example_db_users'] = migrate_source_example_db_schema_users();
+  $schema['migrate_source_example_db_attributes'] = migrate_source_example_db_schema_attributes();
+  $schema['migrate_source_example_db_files'] = migrate_source_example_db_schema_files();
+  $schema['migrate_source_example_db_books'] = migrate_source_example_db_schema_books();
 
   return $schema;
 }
@@ -16,58 +22,286 @@ function migrate_source_example_db_schema() {
 /**
  * Implements hook_install().
  */
-function migrate_source_example_db_install(){
+function migrate_source_example_db_install() {
   migrate_source_example_db_data_users();
+  migrate_source_example_db_data_attributes();
+  migrate_source_example_db_data_files();
+  migrate_source_example_db_data_books();
 }
 
 /**
- * Define migrate_source_example_db_users table schema.
+ * Defines schema for migrate_source_example_db_users table.
+ *
+ * Defines migrate_source_example_db_users table schema with uid (unique),
+ * name, roles and email fields.
+ *
+ * @return array
  */
-function migrate_source_example_db_schema_users(){
+function migrate_source_example_db_schema_users() {
   return array(
     'fields' => array(
-  	  'uid' => array(
-	  'type' => 'int',
-	  'not null' => TRUE,
-	  'description' => 'User ID',
-	  ),
-    'name' => array(
-	  'type' => 'varchar',
-	  'length' => 15,
-	  'not null' => TRUE,
-	  'description' => 'User name',
-	  ),
-    'roles' => array(
-	  'type' => 'varchar',
-	  'length' => 30,
-	  'not null' => TRUE,
-	  'description' => 'User roles',
-	  ),
-    'email' => array(
-	  'type' => 'varchar',
-	  'length' => 30,
-	  'not null' => TRUE,
-	  'description' => 'User roles',
-	  ),
+      'uid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'User ID',
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 15,
+        'not null' => TRUE,
+        'description' => 'User name',
+      ),
+      'roles' => array(
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'User roles',
+      ),
+      'email' => array(
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'User roles. "1" is administrator, "2" is editor',
+      ),
     ),
     'unique keys' => array(
       'uid' => array('uid'),
+    ),
+  );
+}
+
+/**
+ * Defines schema for migrate_source_example_db_attributes table.
+ *
+ * Defines migrate_source_example_db_attributes table schema with aid (unique),
+ * type, name and machine_name fields.
+ *
+ * @return array
+ */
+function migrate_source_example_db_schema_attributes() {
+  return array(
+    'fields' => array(
+      'aid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Attribute ID',
       ),
-    );
+      'type' => array(
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'Attribute type',
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'Attribute name',
+      ),
+      'machine_name' => array(
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'Attribute alias',
+      ),
+    ),
+    'unique keys' => array(
+      'aid' => array('aid'),
+    ),
+  );
+}
+
+/**
+ * Defines schema for migrate_source_example_db_files table.
+ *
+ * Defines migrate_source_example_db_files table schema with
+ * fid (unique) and filename fields.
+ *
+ * @return array
+ */
+function migrate_source_example_db_schema_files() {
+  return array(
+    'fields' => array(
+      'fid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'File ID',
+      ),
+      'filename' => array(
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'File name',
+      ),
+    ),
+    'unique keys' => array(
+      'fid' => array('fid'),
+    ),
+  );
+}
+
+/**
+ * Defines schema for migrate_source_example_db_books table.
+ *
+ * Defines migrate_source_example_db_books table schema with bid (unique),
+ * title, body, body_format, image, attributes, user, created and alias fields.
+ *
+ * @return array
+ */
+function migrate_source_example_db_schema_books() {
+  return array(
+    'fields' => array(
+      'bid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Book ID',
+      ),
+      'title' => array(
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'description' => 'Title of book',
+       ),
+      'body' => array(
+        'type' => 'varchar',
+        'length' => 1000,
+        'not null' => TRUE,
+        'description' => 'File name',
+       ),
+      'body_format' => array(
+        'type' => 'varchar',
+        'length' => 20,
+        'not null' => TRUE,
+        'description' => 'Body format. "1" is plain text, "2" is basic html',
+      ),
+      'image' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'File id',
+      ),
+      'attributes' => array(
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'Attribute id',
+      ),
+      'user' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'User id',
+      ),
+      'created' => array(
+        'type' => 'varchar',
+        'length' => 25,
+        'not null' => TRUE,
+        'description' => 'Create time',
+      ),
+      'alias' => array(
+       'type' => 'varchar',
+       'length' => 30,
+       'description' => 'Book alias',
+      ),
+    ),
+    'unique keys' => array(
+      'fid' => array('bid'),
+    ),
+  );
 }
 
 /**
  * Create content for migrate_source_example_db_users table.
  */
-function migrate_source_example_db_data_users(){
+function migrate_source_example_db_data_users() {
   $fields = array('uid', 'name', 'roles', 'email');
-  $query = db_insert('migrate_source_example_db_users')
+  $query = Database::getConnection()->insert('migrate_source_example_db_users')
     ->fields($fields);
 
   $data = array(
-    array(1, 'Nifs', 'administrator, editor', 'nifs@nifs.com'),
-    array(2, 'Nufs', 'editor', 'nufs@nufs.com'),
-    array(3, 'Nafs', 'editor', 'nafs@nafs.com'),
+    array(1, 'Nifs', '1, 2', 'nifs@nifs.com'),
+    array(2, 'Nufs', '2', 'nufs@nufs.com'),
+    array(3, 'Nafs', '2', 'nafs@nafs.com'),
+  );
+
+  foreach ($data as $row) {
+    $query->values(array_combine($fields, $row));
+  }
+  $query->execute();
+}
+
+/**
+ * Create content for migrate_source_example_db_attributes table.
+ */
+function migrate_source_example_db_data_attributes() {
+  $fields = array('aid', 'type', 'name', 'machine_name');
+  $query = Database::getConnection()->insert('migrate_source_example_db_attributes')
+    ->fields($fields);
+
+  $data = array(
+    array(1, 'attribute_authors', 'Ian Fleming', 'ian-fleming'),
+    array(2, 'attribute_authors', 'Robert Ludlum', 'robert-ludlum'),
+    array(3, 'attribute_authors', 'John Ronald Reuel Tolkien', 'jrr-tolkien'),
+    array(4, 'attribute_category', 'Spy Stories', 'spy-stories'),
+    array(5, 'attribute_category', 'Fantasy', 'fantasy'),
+    array(6, 'attribute_category', 'Fiction', 'fiction'),
+  );
+
+  foreach ($data as $row) {
+    $query->values(array_combine($fields, $row));
+  }
+  $query->execute();
+}
+
+/**
+ * Create content for migrate_source_example_db_files table.
+ */
+function migrate_source_example_db_data_files() {
+  $fields = array('fid', 'filename');
+  $query = Database::getConnection()->insert('migrate_source_example_db_files')
+    ->fields($fields);
+
+  $data = array(
+    array(1, 'casino-royale.png'),
+    array(2, 'live-and-let-die.png'),
+    array(3, 'moonraker.png'),
+    array(4, 'diamonds-are-forever.png'),
+    array(5, 'bourne-identity.png'),
+    array(6, 'bourne-supremacy.png'),
+    array(7, 'bourne-ultimatum.png'),
+    array(8, 'fellowship-of-the-ring.png'),
+    array(9, 'two-towers.png'),
+    array(10, 'return-of-the-king.png'),
+  );
+
+  foreach ($data as $row) {
+    $query->values(array_combine($fields, $row));
+  }
+  $query->execute();
+}
+
+/**
+ * Create content for migrate_source_example_db_books table.
+ */
+function migrate_source_example_db_data_books() {
+  $fields = array('bid', 'title', 'body', 'body_format', 'image', 'attributes', 'user', 'created', 'alias');
+  $query = Database::getConnection()->insert('migrate_source_example_db_books')
+    ->fields($fields);
+
+  $data = array(
+    array(1, 'Casino Royale', 'M,
+      the Head of the British Secret Service,
+      assigns James Bond, 007,
+      to play against and bankrupt Le Chiffre,
+      the paymaster for a SMERSH-controlled trade union,
+      in a high-stakes baccarat game at the Royale-les-Eaux casino in northern France.', '1', 1, '1, 4', 3, '2015-04-02 21:00:00', 'casino-royale'),
+    array(2, 'Live and Let Die', '<p>The British Secret Service agent James Bond is sent by his superior, M, to New York City to investigate "Mr Big", real name Buonaparte Ignace Gallia.</p>', '2', 2, '1, 4', 3, '2015-05-24 16:30:00', 'live-and-let-die'),
+    array(3, 'Moonraker', "<p>The British Secret Service agent James Bond is asked by his superior, M, to join him at M's club, Blades.</p>", '2', 2, '1, 4', 3, '2015-06-01 17:25:00', 'moonraker'),
+    array(4, 'Diamonds Are Forever', "<p>The British Secret Service agent James Bond is sent on an assignment by his superior, M.</p>", '2', 4, '1, 4', 3, '2015-06-14 09:45:00', 'diamonds-are-forever'),
+    array(5, 'The Bourne Identity', '<p>The preface of the novel consists of two real-life newspaper articles from 1975 about terrorist Ilich Ramírez Sánchez, known as "Carlos the Jackal."</p>', '2', 5, '2, 4', 1, '2015-06-15 12:00:00', 'the-bourne-identity'),
+    array(6, 'The Bourne Supremacy', "<p>The story of The Bourne Supremacy is set during the British negotiated handover of Hong Kong to the People's Republic of China on the expiration of its ninety-nine-year lease on the New Territories.</p>", '2', 6, '2, 4', 1, '2015-06-25 14:45:00', 'the-bourne-supremacy'),
+    array(7, 'The Bourne Ultimatum', "<p>The novel follows David Webb, alias Jason Bourne, as he works to find his old enemy, Carlos the Jackal, who is trying to kill him.</p>", '2', 7, '2, 4', 1, '2015-07-07 16:15:00', 'the-bourne-ultimatum'),
+    array(8, 'The Fellowship of the Ring', "<p>Thousands of years before the events of the novel, the Dark Lord Sauron had forged the One Ring to rule the other Rings of Power and corrupt those who wear them: the leaders of Men, Elves and Dwarves.</p>", '2', 8, '3, 5, 6', 2, '2015-07-14 18:30:00', ''),
+    array(9, 'The Two Towers', "<p>Orcs sent by Saruman and Sauron kill Boromir and kidnap Merry and Pippin. After agonizing over which pair of hobbits to follow, Aragorn, Gimli and Legolas pursue the orcs bearing Merry and Pippin to Saruman.</p>", '2', 9, '3, 5 ,6', 2, '2015-07-18 20:45:00', ''),
+    array(10, 'The Return of the King', "<p>Sauron unleashes a heavy assault upon Gondor. Gandalf arrives at Minas Tirith to alert Denethor of the impending attack.</p>", '2', 10, '3, 5, 6', 2, '2015-07-28 09:15:00', ''),
   );
 
   foreach ($data as $row) {
