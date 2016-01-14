@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Installs four database schemas for this module and adds contet for them.
+ * Installs four database schemas for this module and adds content for them.
  */
 
 use Drupal\Core\Database\Database;
@@ -97,12 +97,12 @@ function migrate_source_example_db_schema_attributes() {
         'length' => 30,
         'not null' => TRUE,
         'description' => 'Attribute name',
-       ),
-       'machine_name' => array(
-         'type' => 'varchar',
-         'length' => 30,
-         'not null' => TRUE,
-         'description' => 'Attribute alias',
+      ),
+      'machine_name' => array(
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'Attribute alias',
       ),
     ),
     'unique keys' => array(
