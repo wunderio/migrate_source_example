@@ -61,7 +61,7 @@ function migrate_source_example_db_schema_users() {
         'type' => 'varchar',
         'length' => 30,
         'not null' => TRUE,
-        'description' => 'User roles. "1" is administrator, "2" is edotor',
+        'description' => 'User roles. "1" is administrator, "2" is editor',
       ),
     ),
     'unique keys' => array(
