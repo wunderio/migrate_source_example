@@ -15,7 +15,6 @@ function migrate_source_example_db_schema() {
   $schema['migrate_source_example_db_files'] = migrate_source_example_db_schema_files();
   $schema['migrate_source_example_db_books'] = migrate_source_example_db_schema_books();
 
-
   return $schema;
 }
 
@@ -36,27 +35,27 @@ function migrate_source_example_db_schema_users() {
   return array(
     'fields' => array(
       'uid' => array(
-  	    'type' => 'int',
-  	    'not null' => TRUE,
-  	    'description' => 'User ID',
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'User ID',
       ),
       'name' => array(
-  	    'type' => 'varchar',
-  	    'length' => 15,
-  	    'not null' => TRUE,
-  	    'description' => 'User name',
+        'type' => 'varchar',
+        'length' => 15,
+        'not null' => TRUE,
+        'description' => 'User name',
       ),
       'roles' => array(
-  	    'type' => 'varchar',
-  	    'length' => 30,
-  	    'not null' => TRUE,
-  	    'description' => 'User roles',
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'User roles',
       ),
       'email' => array(
-  	    'type' => 'varchar',
-  	    'length' => 30,
-  	    'not null' => TRUE,
-  	    'description' => 'User roles. "1"is administrator, "2" is edotor',
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'User roles. "1" is administrator, "2" is edotor',
       ),
     ),
     'unique keys' => array(
