@@ -1,0 +1,21 @@
+# The machine name of the group, by which it is referenced in individual
+# migrations.
+id: migrate_source_example_db
+
+# A human-friendly label for the group.
+label: Example migration from a dababase.
+
+# More information about the group.
+description: A few example migrations from custom (e.g., external) database tables.
+
+# Short description of the type of source, e.g. "Drupal 6" or "WordPress".
+source_type: Custom tables
+
+shared_configuration:
+  # Specifying 'source' here means that this configuration will be merged into
+  # the 'source' configuration of each migration.
+  source:
+    # A better practice for real-world migrations would be to add a database
+    # connection to your external database in settings.php and reference its
+    # key here.
+    key: default
