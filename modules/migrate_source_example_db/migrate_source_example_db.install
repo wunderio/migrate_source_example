@@ -2,6 +2,7 @@
 
 /**
  * @file
+ * Installs four database schemas for this module and adds contet for them.
  */
 
 use Drupal\Core\Database\Database;
@@ -29,8 +30,12 @@ function migrate_source_example_db_install() {
 }
 
 /**
+ * Defines schema for migrate_source_example_db_users table.
+ *
+ * Defines migrate_source_example_db_users table schema with uid (unique),
+ * name, roles and email fields.
+ *
  * @return array
- * Defines schema for migrate_source_example_db_users table
  */
 function migrate_source_example_db_schema_users() {
   return array(
@@ -66,8 +71,12 @@ function migrate_source_example_db_schema_users() {
 }
 
 /**
+ * Defines schema for migrate_source_example_db_attributes table.
+ *
+ * Defines migrate_source_example_db_attributes table schema with aid (unique),
+ * type, name and machine_name fields.
+ *
  * @return array
- * Defines schema for migrate_source_example_db_attributes table
  */
 function migrate_source_example_db_schema_attributes() {
   return array(
@@ -103,8 +112,12 @@ function migrate_source_example_db_schema_attributes() {
 }
 
 /**
+ * Defines schema for migrate_source_example_db_files table.
+ *
+ * Defines migrate_source_example_db_files table schema with
+ * fid (unique) and filename fields.
+ *
  * @return array
- * Defines schema for migrate_source_example_db_files table
  */
 function migrate_source_example_db_schema_files() {
   return array(
@@ -128,8 +141,12 @@ function migrate_source_example_db_schema_files() {
 }
 
 /**
+ * Defines schema for migrate_source_example_db_books table.
+ *
+ * Defines migrate_source_example_db_books table schema with bid (unique),
+ * title, body, body_format, image, attributes, user, created and alias fields.
+ *
  * @return array
- * Defines schema for migrate_source_example_db_books table
  */
 function migrate_source_example_db_schema_books() {
   return array(
