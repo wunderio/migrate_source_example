@@ -1,0 +1,64 @@
+langcode: en
+status: true
+dependencies:
+#  config:
+#    - migrate.migration.migrate_source_example_db_author
+#    - migrate.migration.migrate_source_example_db_category
+#    - migrate.migration.migrate_source_example_db_image
+#    - migrate.migration.migrate_source_example_db_user
+  module:
+    - migrate_source_example_db
+    - node
+id: migrate_source_example_db_book
+migration_tags: null
+label: Books
+source:
+  plugin: migrate_source_example_db_book
+process:
+  type:
+    plugin: default_value
+    default_value: book
+  #uid:
+  #  plugin: migration
+  #  migration: migrate_source_example_db_user
+  #  source: user
+  title: title
+  body/value: body
+  body/format: body_format
+ # field_author:
+   # plugin: migration
+   # migration: migrate_source_example_db_author
+   # source: author
+  #field_category:
+   # -
+     # plugin: explode
+     # delimiter: ','
+     # source: category
+    #-
+     # plugin: walk
+     # process:
+       # plugin: migration
+        #migration: migrate_source_example_db_category
+  #field_cover:
+   # plugin: migration
+    #migration: migrate_source_example_db_image
+    #source: image
+  created:
+    plugin: format_date
+    format: U
+    source: created
+  changed: '@created'
+  path:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: alias
+    -
+      plugin: concat
+      delimiter: null
+      source:
+        - constants/slash
+        - alias
+destination:
+  plugin: 'entity:node'
+migration_group: migrate_source_example_db
