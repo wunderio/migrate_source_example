@@ -81,29 +81,29 @@ function migrate_source_example_db_schema_users() {
 function migrate_source_example_db_schema_attributes() {
   return array(
     'fields' => array(
-  	  'aid' => array(
-  	    'type' => 'int',
-  	    'not null' => TRUE,
-  	    'description' => 'Attribute ID',
-  	  ),
-  	  'type' => array(
-  	    'type' => 'varchar',
-  	    'length' => 30,
-  	    'not null' => TRUE,
-  	    'description' => 'Attribute type',
+      'aid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Attribute ID',
+      ),
+      'type' => array(
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'Attribute type',
       ),
       'name' => array(
-  	    'type' => 'varchar',
-  	    'length' => 30,
-  	    'not null' => TRUE,
-  	    'description' => 'Attribute name',
-  	   ),
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'Attribute name',
+       ),
        'machine_name' => array(
-    	   'type' => 'varchar',
-    	   'length' => 30,
-    	   'not null' => TRUE,
-    	   'description' => 'Attribute alias',
-  	  ),
+         'type' => 'varchar',
+         'length' => 30,
+         'not null' => TRUE,
+         'description' => 'Attribute alias',
+      ),
     ),
     'unique keys' => array(
       'aid' => array('aid'),
@@ -122,10 +122,10 @@ function migrate_source_example_db_schema_attributes() {
 function migrate_source_example_db_schema_files() {
   return array(
     'fields' => array(
-    	'fid' => array(
-  	    'type' => 'int',
-  	    'not null' => TRUE,
-  	    'description' => 'File ID',
+      'fid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'File ID',
       ),
       'filename' => array(
         'type' => 'varchar',
@@ -151,23 +151,23 @@ function migrate_source_example_db_schema_files() {
 function migrate_source_example_db_schema_books() {
   return array(
     'fields' => array(
-  	  'bid' => array(
-  	    'type' => 'int',
-  	    'not null' => TRUE,
-  	    'description' => 'Book ID',
+      'bid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Book ID',
       ),
-  	  'title' => array(
-  	    'type' => 'varchar',
-  	    'length' => 50,
-  	    'not null' => TRUE,
-  	    'description' => 'Title of book',
-  	   ),
-  	  'body' => array(
-  	    'type' => 'varchar',
-  	    'length' => 1000,
-  	    'not null' => TRUE,
-  	    'description' => 'File name',
-  	   ),
+      'title' => array(
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'description' => 'Title of book',
+       ),
+      'body' => array(
+        'type' => 'varchar',
+        'length' => 1000,
+        'not null' => TRUE,
+        'description' => 'File name',
+       ),
       'body_format' => array(
         'type' => 'varchar',
         'length' => 20,
