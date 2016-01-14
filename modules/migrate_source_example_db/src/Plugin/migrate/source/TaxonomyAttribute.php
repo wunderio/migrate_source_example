@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\migrate_source_example_db\Plugin\migrate\source\MigrateSourceExampleDBAttribute.
+ * Contains \Drupal\migrate_source_example_db\Plugin\migrate\source\TaxonomyAttribute.
  */
 
 namespace Drupal\migrate_source_example_db\Plugin\migrate\source;
@@ -11,18 +11,18 @@ use Drupal\migrate\Plugin\migrate\source\SqlBase;
 use Drupal\migrate\MigrateException;
 
 /**
- * Attribute migration.
+ * Taxonomy attribute migration.
  *
  * @MigrateSource(
- *   id = "migrate_source_example_db_attribute"
+ *   id = "migrate_source_example_db_taxonomy_attribute"
  * )
  */
-class MigrateSourceExampleDBAttribute extends SqlBase {
+class TaxonomyAttribute extends SqlBase {
 
   /**
    * @var string $table The name of the database table.
    */
-  protected $table = 'migrate_source_example_db_atributes';
+  protected $table = 'migrate_source_example_db_attributes';
 
   /**
    * {@inheritdoc}
