@@ -7,8 +7,6 @@
 
 namespace Drupal\migrate_source_example_db\Plugin\migrate\source;
 
-use Drupal\migrate\Plugin\SourceEntityInterface;
-use Drupal\migrate\Row;
 use Drupal\migrate\Plugin\migrate\source\SqlBase;
 
 /**
