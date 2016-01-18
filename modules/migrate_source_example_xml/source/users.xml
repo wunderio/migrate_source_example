@@ -6,7 +6,7 @@
     </roles>
     <users>
         <user id="1" email="nifs@nifs.com" roles="1:2">Nifs</user>
-        <user id="2" email="nufs@nufs.com" roles="">Nufs</user>
-        <user id="3" email="nafs@nafs.com" roles="">Nafs</user>
+        <user id="2" email="nufs@nufs.com" roles="2">Nufs</user>
+        <user id="3" email="nafs@nafs.com" roles="2">Nafs</user>
     </users>
 </users>
