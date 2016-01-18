@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+    <media_resources>
+        <media mid="1" filename="casino-royale.png"></media>
+        <media mid="2" filename="live-and-let-die.png"></media>
+        <media mid="3" filename="moonraker.png"></media>
+        <media mid="4" filename="diamonds-are-forever.png"></media>
+        <media mid="5" filename="bourne-identity.png"></media>
+        <media mid="6" filename="bourne-supremacy.png"></media>
+        <media mid="7" filename="bourne-ultimatum.png"></media>
+        <media mid="8" filename="fellowship-of-the-ring.png"></media>
+        <media mid="9" filename="two-towers.png"></media>
+        <media mid="10" filename="return-of-the-king.png"></media>
+    </media_resources>
+    <books>
+        <book>
+            <bid>1</bid>
+            <title>Casino Royale</title>
+            <body><![CDATA[M,
+      the Head of the British Secret Service,
+      assigns James Bond, 007,
+      to play against and bankrupt Le Chiffre,
+      the paymaster for a SMERSH-controlled trade union,
+      in a high-stakes baccarat game at the Royale-les-Eaux casino in northern France.]]></body>
+            <body_format>1</body_format>
+            <attributes>author:1|category:1</attributes>
+            <media>1</media>
+            <user>3</user>
+            <created_on>2015-04-02 21:00:00</created_on>
+            <alias>casino-royale</alias>
+        </book>
+        <book>
+            <bid>2</bid>
+            <title>Live and Let Die</title>
+            <body><![CDATA[<p>The British Secret Service agent James Bond is sent by his superior, M, to New York City to investigate "Mr Big", real name Buonaparte Ignace Gallia.</p>]]></body>
+            <body_format>2</body_format>
+            <attributes>author:1|category:1</attributes>
+            <media>2</media>
+            <user>3</user>
+            <created_on>2015-05-24 16:30:00</created_on>
+            <alias>live-and-let-die</alias>
+        </book>
+        <book>
+            <bid>3</bid>
+            <title>Moonraker</title>
+            <body><![CDATA[<p>The British Secret Service agent James Bond is asked by his superior, M, to join him at M's club, Blades.</p>]]></body>
+            <body_format>2</body_format>
+            <attributes>author:1|category:1</attributes>
+            <media>3</media>
+            <user>3</user>
+            <created_on>2015-06-01 17:25:00</created_on>
+            <alias>moonraker</alias>
+        </book>
+        <book>
+            <bid>4</bid>
+            <title>Diamonds Are Forever</title>
+            <body><![CDATA[<p>The British Secret Service agent James Bond is sent on an assignment by his superior, M.</p>]]></body>
+            <body_format>2</body_format>
+            <attributes>author:1|category:1</attributes>
+            <media>4</media>
+            <user>3</user>
+            <created_on>2015-06-14 09:45:00</created_on>
+            <alias>diamonds-are-forever</alias>
+        </book>
+        <book>
+            <bid>5</bid>
+            <title>The Bourne Identity</title>
+            <body><![CDATA[<p>The preface of the novel consists of two real-life newspaper articles from 1975 about terrorist Ilich Ramírez Sánchez, known as "Carlos the Jackal."</p>]]></body>
+            <body_format>2</body_format>
+            <attributes>author:2|category:1</attributes>
+            <media>5</media>
+            <user>1</user>
+            <created_on>2015-06-15 12:00:00</created_on>
+            <alias>the-bourne-identity</alias>
+        </book>
+        <book>
+            <bid>6</bid>
+            <title>The Bourne Supremacy</title>
+            <body><![CDATA[<p>The story of The Bourne Supremacy is set during the British negotiated handover of Hong Kong to the People's Republic of China on the expiration of its ninety-nine-year lease on the New Territories.</p>]]></body>
+            <body_format>2</body_format>
+            <attributes>author:2|category:1</attributes>
+            <media>6</media>
+            <user>1</user>
+            <created_on>2015-06-25 14:45:00</created_on>
+            <alias>the-bourne-supremacy</alias>
+        </book>
+        <book>
+            <bid>7</bid>
+            <title>The Bourne Ultimatum</title>
+            <body><![CDATA[<p>The novel follows David Webb, alias Jason Bourne, as he works to find his old enemy, Carlos the Jackal, who is trying to kill him.</p>]]></body>
+            <body_format>2</body_format>
+            <attributes>author:2|category:1</attributes>
+            <media>7</media>
+            <user>1</user>
+            <created_on>2015-07-07 16:15:00</created_on>
+            <alias>the-bourne-ultimatum</alias>
+        </book>
+        <book>
+            <bid>8</bid>
+            <title>The Fellowship of the Ring</title>
+            <body><![CDATA[<p>Thousands of years before the events of the novel, the Dark Lord Sauron had forged the One Ring to rule the other Rings of Power and corrupt those who wear them: the leaders of Men, Elves and Dwarves.</p>]]></body>
+            <body_format>2</body_format>
+            <attributes>author:3|category:2,3</attributes>
+            <media>8</media>
+            <user>2</user>
+            <created_on>2015-07-14 18:30:00</created_on>
+        </book>
+        <book>
+            <bid>9</bid>
+            <title>The Two Towers</title>
+            <body><![CDATA[<p>Orcs sent by Saruman and Sauron kill Boromir and kidnap Merry and Pippin. After agonizing over which pair of hobbits to follow, Aragorn, Gimli and Legolas pursue the orcs bearing Merry and Pippin to Saruman.</p>]]></body>
+            <body_format>2</body_format>
+            <attributes>author:3|category:2,3</attributes>
+            <media>9</media>
+            <user>2</user>
+            <created_on>2015-07-18 20:45:00</created_on>
+        </book>
+        <book>
+            <bid>10</bid>
+            <title>The Return of the King</title>
+            <body><![CDATA[<p>Sauron unleashes a heavy assault upon Gondor. Gandalf arrives at Minas Tirith to alert Denethor of the impending attack.</p>]]></body>
+            <body_format>2</body_format>
+            <attributes>author:3|category:2,3</attributes>
+            <media>10</media>
+            <user>2</user>
+            <created_on>2015-07-28 09:15:00</created_on>
+        </book>
+    </books>
+</books>
