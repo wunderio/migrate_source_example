@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_source_example_db
+    - taxonomy
+id: migrate_source_example_db_category
+migration_tags: null
+label: Categories
+source:
+  plugin: migrate_source_example_db_taxonomy_attribute
+  attribute_type: attribute_category
+  constants:
+    path_prefix: category
+    slash: /
+process:
+  vid:
+    plugin: default_value
+    default_value: category
+  name: name
+  path:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: machine_name
+    -
+      plugin: concat
+      delimiter: null
+      source:
+        - constants/slash
+        - constants/path_prefix
+        - constants/slash
+        - machine_name
+destination:
+  plugin: 'entity:taxonomy_term'
+template: null
+migration_dependencies: {  }
+migration_group: migrate_source_example_db
