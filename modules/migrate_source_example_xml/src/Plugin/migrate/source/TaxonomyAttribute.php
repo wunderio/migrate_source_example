@@ -73,7 +73,18 @@ class TaxonomyAttribute extends XmlBase {
    * {@inheritdoc}
    */
   public function count() {
-    return 1;
+    $class = $this->getIteratorClassName();
+    /** @var MigrateExampleXmlIterator $iterator */
+    $iterator = new $class($this);
+    $iterator->rewind();
+
+    $count = 0;
+    while ($iterator->valid()) {
+      $count++;
+      $iterator->next();
+    }
+
+    return $count;
   }
 
 }
