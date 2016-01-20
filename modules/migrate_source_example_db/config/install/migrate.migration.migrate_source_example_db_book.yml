@@ -3,9 +3,9 @@ status: true
 dependencies:
 config:
    - migrate.migration.migrate_source_example_db_author
-   - migrate.migration.migrate_source_example_db_category
+   # - migrate.migration.migrate_source_example_db_category
    # - migrate.migration.migrate_source_example_db_image
-   # - migrate.migration.migrate_source_example_db_user
+   - migrate.migration.migrate_source_example_db_user
 module:
     - migrate_source_example_db
     - node
@@ -18,22 +18,22 @@ process:
   type:
     plugin: default_value
     default_value: book
-  # uid:
-  #   plugin: migration
-  #   migration: migrate_source_example_db_user
-  #   source: user
-  title:
-    body/value: body
-    body/format: body_format
+  uid:
+    plugin: migration
+    migration: migrate_source_example_db_user
+    source: user
+  title: title
+  body/value: body
+  body/format: body_format
   field_author:
     plugin: migration
     migration: migrate_source_example_db_author
-    source: author
+    source: attributes
   field_category:
     -
       plugin: explode
       delimiter: ','
-      source: category
+      source: attributes
     -
       plugin: walk
       process:
@@ -48,17 +48,17 @@ process:
     format: U
     source: created
   changed: '@created'
-  path:
-    -
-      plugin: skip_on_empty
-      method: process
-      source: alias
-    -
-      plugin: concat
-      delimiter: null
-      source:
-        - constants/slash
-        - alias
+  # path:
+  #   -
+  #     plugin: skip_on_empty
+  #     method: process
+  #     source: alias
+  #   -
+  #     plugin: concat
+  #     delimiter: null
+  #     source:
+  #       - constants/slash
+  #       - alias
 destination:
   plugin: 'entity:node'
 template: null
