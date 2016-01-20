@@ -8,6 +8,7 @@
 namespace Drupal\migrate_source_example_db\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\migrate\source\SqlBase;
+use Drupal\migrate\Row;
 
 /**
  * Extract files from database.
@@ -54,7 +55,6 @@ class Files extends SqlBase {
    */
   public function prepareRow(Row $row) {
     parent::prepareRow($row);
-
     // Get filename property value.
     $filename = $row->getSourceProperty('filename');
     // Prepare base path.
