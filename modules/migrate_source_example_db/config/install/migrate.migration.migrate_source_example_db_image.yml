@@ -4,14 +4,14 @@ dependencies:
   module:
     - migrate_source_example_db
     - file
-id: migrate_source_example_db_files
+id: migrate_source_example_db_image
 migration_tags: null
-label: Files
+label: Image
 source:
-  plugin: migrate_source_example_db_files
+  plugin: migrate_source_example_db_image
   source_base_path: source/images
   constants:
-    file_scheme: 'public://pictures/2016-01/'
+    file_scheme: 'public://'
 process:
   filename: filename
   uri:

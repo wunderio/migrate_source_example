@@ -2,23 +2,22 @@
 
 /**
  * @file
- * Contains \Drupal\migrate_source_example_db\Plugin\migrate\source\Files.
+ * Contains \Drupal\migrate_source_example_db\Plugin\migrate\source\Image.
  */
 
 namespace Drupal\migrate_source_example_db\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\migrate\source\SqlBase;
-use Drupal\migrate\Row;
 
 /**
  * Extract files from database.
  *
  * @MigrateSource(
- *   id = "migrate_source_example_db_files"
+ *   id = "migrate_source_example_db_image"
  * )
  */
 
-class Files extends SqlBase {
+class Image extends SqlBase {
 
   /**
    * {@inheritdoc}
@@ -32,8 +31,8 @@ class Files extends SqlBase {
    * {@inheritdoc}
    */
   public function fields() {
-    $fields['fid'] = $this->t('Fid');
-    $fields['filename'] = $this->t('Filename');
+    $fields['fid'] = $this->t('File ID');
+    $fields['filename'] = $this->t('File name');
     return $fields;
   }
 
