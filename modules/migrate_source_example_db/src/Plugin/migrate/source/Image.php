@@ -17,7 +17,6 @@ use Drupal\migrate\Row;
  *   id = "migrate_source_example_db_image"
  * )
  */
-
 class Image extends SqlBase {
 
   /**
@@ -37,7 +36,6 @@ class Image extends SqlBase {
     return $fields;
   }
 
-
   /**
    * {@inheritdoc}
    */
@@ -50,7 +48,7 @@ class Image extends SqlBase {
     );
   }
 
-    /**
+  /**
    * {@inheritdoc}
    */
   public function prepareRow(Row $row) {
