@@ -33,30 +33,26 @@ process:
       delimiter: ','
       source: attributes
     -
+      plugin: filter_migrated_source_values
+      migration: migrate_source_example_db_author
+    -
       plugin: walk
       process:
-        -
-          plugin: skip_on_empty_migration_destination
-          method: process
-          migration: migrate_source_example_db_author
-        -
-          plugin: migration
-          migration: migrate_source_example_db_author
+        plugin: migration
+        migration: migrate_source_example_db_author
   field_category:
     -
       plugin: explode
       delimiter: ','
       source: attributes
     -
+      plugin: filter_migrated_source_values
+      migration: migrate_source_example_db_category
+    -
       plugin: walk
       process:
-        -
-          plugin: skip_on_empty_migration_destination
-          method: process
-          migration: migrate_source_example_db_category
-        -
-          plugin: migration
-          migration: migrate_source_example_db_category
+        plugin: migration
+        migration: migrate_source_example_db_category
   field_cover:
     plugin: migration
     migration: migrate_source_example_db_image

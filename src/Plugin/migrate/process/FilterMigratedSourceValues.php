@@ -2,30 +2,30 @@
 
 /**
  * @file
- * Contains \Drupal\migrate_source_example\Plugin\migrate\process\SkipOnEmptyMigrationDestination.
+ * Contains \Drupal\migrate_source_example\Plugin\migrate\process\FilterMigratedSourceValues.
  */
 
 namespace Drupal\migrate_source_example\Plugin\migrate\process;
 
-use Drupal\migrate\MigrateSkipProcessException;
-use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\MigrateException;
+use Drupal\migrate\Plugin\MigratePluginManager;
+use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
-use Drupal\migrate\MigrateSkipRowException;
 use Drupal\migrate\Entity\MigrationInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\migrate\Plugin\MigratePluginManager;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * If the source evaluates to empty, we skip processing or the whole row.
+ * Filter only migrated source values in given migration.
  *
  * @MigrateProcessPlugin(
- *   id = "skip_on_empty_migration_destination"
+ *   id = "filter_migrated_source_values",
+ *   handle_multiples = TRUE
  * )
  */
-class SkipOnEmptyMigrationDestination extends ProcessPluginBase implements ContainerFactoryPluginInterface {
+class FilterMigratedSourceValues extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
   /**
    * The entity storage manager.
@@ -38,8 +38,12 @@ class SkipOnEmptyMigrationDestination extends ProcessPluginBase implements Conta
    * {@inheritdoc}
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, EntityStorageInterface $storage, MigratePluginManager $process_plugin_manager) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    if (empty($configuration['migration']) || !is_string($configuration['migration'])) {
+      throw new MigrateException('Migration is not defined or is not a string.');
+    }
+
     $this->migrationStorage = $storage;
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
 
   /**
@@ -59,39 +63,38 @@ class SkipOnEmptyMigrationDestination extends ProcessPluginBase implements Conta
   /**
    * {@inheritdoc}
    */
-  public function row($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    if (!$this->destinationIdExists($value, $migrate_executable, $row, $destination_property)) {
-      throw new MigrateSkipRowException();
-    }
-    return $value;
-  }
+  public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
+    $scalar = FALSE;
 
-  /**
-   * {@inheritdoc}
-   */
-  public function process($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    if (!$this->destinationIdExists($value, $migrate_executable, $row, $destination_property)) {
-      throw new MigrateSkipProcessException();
+    if (!is_array($value)) {
+      $value = [$value];
+      $scalar = TRUE;
     }
+
+    foreach ($value as $key => $value_item) {
+      // Unset the element in $value if it's not migrated in given migration.
+      if (!$this->destinationIdExists($value_item, $this->configuration['migration'])) {
+        unset($value[$key]);
+      }
+    }
+
+    if ($scalar) {
+      $value = reset($value);
+    }
+
     return $value;
   }
 
   /**
    * Returns TRUE if destination value exists for provided migrations.
    *
-   * @param $value
-   * @param \Drupal\migrate\MigrateExecutableInterface $migrate_executable
-   * @param \Drupal\migrate\Row $row
-   * @param $destination_property
+   * @param array $value
+   * @param $migration_name
    *
    * @return bool
    */
-  protected function destinationIdExists($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {$migration_ids = $this->configuration['migration'];
-    if (!is_array($migration_ids)) {
-      $migration_ids = array($migration_ids);
-    }
-
-    $migrations = $this->migrationStorage->loadMultiple($migration_ids);
+  protected function destinationIdExists($value, $migration_name) {
+    $migrations = $this->migrationStorage->loadMultiple([$migration_name]);
     /** @var MigrationInterface $migration */
     foreach ($migrations as $migration_id => $migration) {
       // If destination ID is found, return TRUE.
