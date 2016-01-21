@@ -64,4 +64,10 @@ process:
 destination:
   plugin: 'entity:node'
 template: null
+migration_dependencies:
+  required:
+    - migrate_source_example_db_user
+    - migrate_source_example_db_author
+    - migrate_source_example_db_category
+    - migrate_source_example_db_image
 migration_group: migrate_source_example_db
