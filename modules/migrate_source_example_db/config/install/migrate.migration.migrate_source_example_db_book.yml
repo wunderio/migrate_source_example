@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-     - migrate.migration.migrate_source_example_db_author
-     - migrate.migration.migrate_source_example_db_category
-     - migrate.migration.migrate_source_example_db_image
-     - migrate.migration.migrate_source_example_db_user
+    - migrate.migration.migrate_source_example_db_author
+    - migrate.migration.migrate_source_example_db_category
+    - migrate.migration.migrate_source_example_db_image
+    - migrate.migration.migrate_source_example_db_user
   module:
-      - migrate_source_example_db
-      - node
+    - migrate_source_example_db
+    - node
 id: migrate_source_example_db_book
 migration_tags: null
 label: Books
