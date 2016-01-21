@@ -307,7 +307,7 @@ function migrate_source_example_db_data_books() {
       the paymaster for a SMERSH-controlled trade union,
       in a high-stakes baccarat game at the Royale-les-Eaux casino in northern France.', '1', 1, '1, 4', 3, '2015-04-02 21:00:00', 'casino-royale'),
     array(2, 'Live and Let Die', '<p>The British Secret Service agent James Bond is sent by his superior, M, to New York City to investigate "Mr Big", real name Buonaparte Ignace Gallia.</p>', '2', 2, '1, 4', 3, '2015-05-24 16:30:00', 'live-and-let-die'),
-    array(3, 'Moonraker', "<p>The British Secret Service agent James Bond is asked by his superior, M, to join him at M's club, Blades.</p>", '2', 2, '1, 4', 3, '2015-06-01 17:25:00', 'moonraker'),
+    array(3, 'Moonraker', "<p>The British Secret Service agent James Bond is asked by his superior, M, to join him at M's club, Blades.</p>", '2', 3, '1, 4', 3, '2015-06-01 17:25:00', 'moonraker'),
     array(4, 'Diamonds Are Forever', "<p>The British Secret Service agent James Bond is sent on an assignment by his superior, M.</p>", '2', 4, '1, 4', 3, '2015-06-14 09:45:00', 'diamonds-are-forever'),
     array(5, 'The Bourne Identity', '<p>The preface of the novel consists of two real-life newspaper articles from 1975 about terrorist Ilich Ramírez Sánchez, known as "Carlos the Jackal."</p>', '2', 5, '2, 4', 1, '2015-06-15 12:00:00', 'the-bourne-identity'),
     array(6, 'The Bourne Supremacy', "<p>The story of The Bourne Supremacy is set during the British negotiated handover of Hong Kong to the People's Republic of China on the expiration of its ninety-nine-year lease on the New Territories.</p>", '2', 6, '2, 4', 1, '2015-06-25 14:45:00', 'the-bourne-supremacy'),
