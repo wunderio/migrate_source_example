@@ -24,7 +24,7 @@ class Book extends SqlBase {
    */
   public function query() {
     return $this->select('migrate_source_example_db_books', 'b')
-      ->fields('b', array('bid', 'title',  'body', 'body_format', 'image', 'attributes', 'user', 'created'));
+      ->fields('b', array('bid', 'title',  'body', 'body_format', 'image', 'attributes', 'user', 'created', 'alias'));
   }
 
   /**
@@ -39,7 +39,7 @@ class Book extends SqlBase {
     $fields['attributes'] = $this->t('Attributes');
     $fields['user'] = $this->t('User');
     $fields['created'] = $this->t('Created');
-    // $fields['alias'] = $this->t('Alias');
+    $fields['alias'] = $this->t('Alias');
     return $fields;
   }
 
