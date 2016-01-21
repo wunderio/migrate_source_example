@@ -3,8 +3,8 @@ status: true
 dependencies:
 config:
    - migrate.migration.migrate_source_example_db_author
-   # - migrate.migration.migrate_source_example_db_category
-   # - migrate.migration.migrate_source_example_db_image
+   - migrate.migration.migrate_source_example_db_category
+   - migrate.migration.migrate_source_example_db_image
    - migrate.migration.migrate_source_example_db_user
 module:
     - migrate_source_example_db
@@ -39,26 +39,26 @@ process:
       process:
         plugin: migration
         migration: migrate_source_example_db_category
-  #field_cover:
-   # plugin: migration
-    #migration: migrate_source_example_db_image
-    #source: image
+  field_cover:
+    plugin: migration
+    migration: migrate_source_example_db_image
+    source: image
   created:
     plugin: format_date
     format: U
     source: created
   changed: '@created'
-  # path:
-  #   -
-  #     plugin: skip_on_empty
-  #     method: process
-  #     source: alias
-  #   -
-  #     plugin: concat
-  #     delimiter: null
-  #     source:
-  #       - constants/slash
-  #       - alias
+  path:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: alias
+    -
+      plugin: concat
+      delimiter: null
+      source:
+        - constants/slash
+        - alias
 destination:
   plugin: 'entity:node'
 template: null
