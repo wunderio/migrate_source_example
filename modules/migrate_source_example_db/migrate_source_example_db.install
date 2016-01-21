@@ -30,6 +30,19 @@ function migrate_source_example_db_install() {
 }
 
 /**
+ * Implements hook_uninstall().
+ */
+function migrate_source_example_db_uninstall() {
+  // Remove the migration group manually.
+  // @todo: Add dependency to the module in migration group configuration file,
+  // so that migration group configuration file is remove when module is being
+  // uninstalled.
+  Drupal::configFactory()
+        ->getEditable('migrate_plus.migration_group.migrate_source_example_db')
+        ->delete();
+}
+
+/**
  * Defines schema for migrate_source_example_db_users table.
  *
  * Defines migrate_source_example_db_users table schema with uid (unique),

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book_attributes>
+    <!-- authors -->
+    <attribute aid="1" type="attribute_authors" machine_name="ian-fleming">Ian Fleming</attribute>
+    <attribute aid="2" type="attribute_authors" machine_name="robert-ludlum">Robert Ludlum</attribute>
+    <attribute aid="3" type="attribute_authors" machine_name="jrr-tolkien">John Ronald Reuel Tolkien</attribute>
+    <!-- categories -->
+    <attribute aid="1" type="attribute_category" machine_name="spy-stories">Spy Stories</attribute>
+    <attribute aid="2" type="attribute_category" machine_name="fantasy">Fantasy</attribute>
+    <attribute aid="3" type="attribute_category" machine_name="fiction">Fiction</attribute>
+</book_attributes>
