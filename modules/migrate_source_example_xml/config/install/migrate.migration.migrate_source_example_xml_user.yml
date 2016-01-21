@@ -13,7 +13,7 @@ source:
   id_query: @id
   fields:
     text(): name
-    @id: Role and User id
+    @id: User id
     @email: User email
     @roles: User roles
   keys:
@@ -21,6 +21,7 @@ source:
 process:
   name:
     plugin: dedupe_entity
+    field: name
     entity_type: user
     source: text()
   roles:
