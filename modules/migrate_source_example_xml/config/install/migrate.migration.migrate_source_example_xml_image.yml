@@ -1,0 +1,34 @@
+langcode: en
+status: true
+id: migrate_source_example_xml_image
+label: Image migration from xml file
+migration_group: migrate_source_example_xml
+dependencies:
+  module:
+    - migrate_source_xml
+    - file
+source:
+  plugin: migration_source_example_xml_image
+  urls:
+    - source/books.xml
+  element_query: /books/media_resources/media
+  constants:
+    file_scheme: 'public://'
+  id_query: @mid
+  fields:
+    @mid: Image ID
+    @filename: Image Filename
+  keys:
+    - @mid
+process:
+  filename: @@filename
+  uri:
+    plugin: concat
+    delimiter: ''
+    source:
+      - constants/file_scheme
+      - @@filename
+destination:
+  plugin: 'entity:file'
+  destination_path_property: uri
+  source_path_property: full_path
