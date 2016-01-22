@@ -9,7 +9,7 @@ source:
   plugin: migration_source_example_xml_user
   urls:
     - source/users.xml
-  element_query: /users/users/user
+  element_query: /users/user
   id_query: @id
   fields:
     text(): name
