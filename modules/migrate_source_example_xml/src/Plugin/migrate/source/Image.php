@@ -94,8 +94,9 @@ class Image extends XmlBase {
    */
   public function prepareRow(Row $row) {
     parent::prepareRow($row);
+
     // Get filename property value.
-    $filename = $row->getSourceProperty('filename');
+    $filename = $row->getSourceProperty('@filename');
     // Prepare base path.
     $base_path = trim($this->configuration['source_base_path'], '/');
     // Set "full_path" property to point to the full path of the image.
