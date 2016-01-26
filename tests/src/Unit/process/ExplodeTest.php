@@ -15,6 +15,8 @@ namespace Drupal\Tests\migrate_source_example\Unit\process;
    * Tests the Explode process plugin.
    *
    * @group migrate_source_example
+   *
+   * @coversDefaultClass Drupal\migrate_source_example\Plugin\migrate\process\Explode
    */
   class ExplodeTest extends UnitTestCase {
 
@@ -44,14 +46,12 @@ namespace Drupal\Tests\migrate_source_example\Unit\process;
    */
   public function setUp() {
     parent::setUp();
-
     $this->pluginId = 'explode';
     $this->pluginDefinition = [];
     $this->plugin = $this->getMock('\Drupal\migrate\Entity\MigrationInterface');
   }
 
-
-  public function aadditionProvider()
+  public function additionProvider()
     {
         return array(
           array(',', '1,2,3,4,5', ['1','2','3','4','5']),
@@ -67,17 +67,19 @@ namespace Drupal\Tests\migrate_source_example\Unit\process;
   /**
    * Tests Explode with valid data.
    *
-   * @dataProvider aadditionProvider
+   * @dataProvider additionProvider
    *
-   * @covers Drupal\migrate_source_example\Plugin\migrate\process\Explode::transform
+   * @covers ::transform
    */
   public function testExplodeWithValidData($delimiter, $provided, $expected) {
     $configuration = [
       'delimiter' => $delimiter
     ];
+
     $migrate_executable = $this->getMockBuilder('Drupal\migrate\MigrateExecutable')
                      ->disableOriginalConstructor()
                      ->getMock();
+
     $row = new Row(array(), array());
     $explode = new Explode($configuration, $this->pluginId, $this->pluginDefinition, $this->plugin);
     $this->assertSame($explode->transform($provided, $migrate_executable, $row, 'test'), $expected);
@@ -88,18 +90,19 @@ namespace Drupal\Tests\migrate_source_example\Unit\process;
    *
    * @test
    *
-   * @covers Drupal\migrate_source_example\Plugin\migrate\process\Explode::transform
+   * @covers ::transform
    *
    */
   public function testExplodeWithInvalidData() {
     $configuration = [
       'delimiter' => ","
     ];
+
     $migrate_executable = $this->getMockBuilder('Drupal\migrate\MigrateExecutable')
                      ->disableOriginalConstructor()
                      ->getMock();
-    $row = new Row(array(), array());
 
+    $row = new Row(array(), array());
     $value = 'lol/bob';
     $expected = ['lol/bob'];
     $explode = new Explode($configuration, $this->pluginId, $this->pluginDefinition, $this->plugin);
