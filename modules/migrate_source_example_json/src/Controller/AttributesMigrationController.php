@@ -8,6 +8,8 @@
 namespace Drupal\migrate_source_example_json\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Drupal\Component\Utility\String;
 
 /**
  * Class AttributesMigrationController.
@@ -17,11 +19,10 @@ use Drupal\Core\Controller\ControllerBase;
 class AttributesMigrationController extends ControllerBase {
 
   public function attributesContent() {
-    $build = array();
-    $build = array(
-      '#type' => 'markup',
-      '#markup' => t('Attributes'),
-    );
-     return $build;
+
+    $path = drupal_get_path('module', 'migrate_source_example_json');
+    $attributes_file_content = file_get_contents($path.'/'.'source/attributes.json');
+
+    return new JsonResponse($attributes_file_content);
   }
 }

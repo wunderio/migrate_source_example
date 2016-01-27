@@ -8,6 +8,8 @@
 namespace Drupal\migrate_source_example_json\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Drupal\Component\Utility\String;
 
 /**
  * Class ImageMigrationController.
@@ -17,11 +19,10 @@ use Drupal\Core\Controller\ControllerBase;
 class ImageMigrationController extends ControllerBase {
 
   public function imageContent() {
-    $build = array();
-    $build = array(
-      '#type' => 'markup',
-      '#markup' => t('Images'),
-    );
-     return $build;
+
+    $path = drupal_get_path('module', 'migrate_source_example_json');
+    $images_file_content = file_get_contents($path.'/'.'source/images.json');
+
+    return new JsonResponse($images_file_content);
   }
 }

@@ -8,6 +8,8 @@
 namespace Drupal\migrate_source_example_json\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Drupal\Component\Utility\String;
 
 /**
  * Class UserMigrationController.
@@ -17,11 +19,10 @@ use Drupal\Core\Controller\ControllerBase;
 class UserMigrationController extends ControllerBase {
 
   public function userContent() {
-    $build = array();
-    $build = array(
-      '#type' => 'markup',
-      '#markup' => t('Users'),
-    );
-     return $build;
+
+    $path = drupal_get_path('module', 'migrate_source_example_json');
+    $users_file_content = file_get_contents($path.'/'.'source/users.json');
+
+    return new JsonResponse($users_file_content);
   }
 }
