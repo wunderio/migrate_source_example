@@ -10,6 +10,7 @@ namespace Drupal\migrate_source_example_json\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Drupal\Component\Utility\String;
+use Drupal\rest;
 
 /**
  * Class BooksMigrationController.
@@ -23,6 +24,6 @@ class BooksMigrationController extends ControllerBase {
     $path = drupal_get_path('module', 'migrate_source_example_json');
     $books_file_content = file_get_contents($path.'/'.'source/books.json');
 
-    return new JsonResponse($books_file_content);
+    return new JsonResponse( json_decode($books_file_content) );
   }
 }
