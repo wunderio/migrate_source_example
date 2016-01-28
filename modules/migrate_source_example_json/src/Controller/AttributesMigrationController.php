@@ -23,6 +23,6 @@ class AttributesMigrationController extends ControllerBase {
     $path = drupal_get_path('module', 'migrate_source_example_json');
     $attributes_file_content = file_get_contents($path.'/'.'source/attributes.json');
 
-    return new JsonResponse($attributes_file_content);
+    return new JsonResponse( json_decode($attributes_file_content) );
   }
 }

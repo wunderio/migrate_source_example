@@ -10,6 +10,7 @@ namespace Drupal\migrate_source_example_json\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Drupal\Component\Utility\String;
+use Drupal\rest;
 
 /**
  * Class BooksMigrationController.

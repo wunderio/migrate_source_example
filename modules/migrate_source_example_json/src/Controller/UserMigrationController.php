@@ -23,6 +23,6 @@ class UserMigrationController extends ControllerBase {
     $path = drupal_get_path('module', 'migrate_source_example_json');
     $users_file_content = file_get_contents($path.'/'.'source/users.json');
 
-    return new JsonResponse($users_file_content);
+    return new JsonResponse( json_decode($users_file_content) );
   }
 }

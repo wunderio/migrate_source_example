@@ -23,6 +23,6 @@ class ImageMigrationController extends ControllerBase {
     $path = drupal_get_path('module', 'migrate_source_example_json');
     $images_file_content = file_get_contents($path.'/'.'source/images.json');
 
-    return new JsonResponse($images_file_content);
+    return new JsonResponse( json_decode($images_file_content) );
   }
 }
