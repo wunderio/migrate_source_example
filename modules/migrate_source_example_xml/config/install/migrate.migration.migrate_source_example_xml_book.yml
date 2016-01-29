@@ -82,18 +82,39 @@ process:
       plugin: extract
       number: 1
     -
+      plugin: explode
+      delimiter: ','
+    -
+      plugin: filter_migrated_source_values
+      migration: migrate_source_example_xml_author
+    -
       plugin: migration
       migration: migrate_source_example_xml_author
-  # 'field_category/target_id':
-  #   -
-  #     plugin: default_value
-  #     default_value: 1
-  #   -
-  #     plugin: filter_migrated_source_values
-  #     migration: migrate_source_example_xml_category
-  #   -
-  #     plugin: migration
-  #     migration: migrate_source_example_xml_category
+  field_category:
+    -
+      plugin: explode
+      delimiter: '|'
+      source: attributes
+    -
+      plugin: extract
+      number: 1
+    -
+      plugin: explode
+      delimiter: ':'
+    -
+      plugin: extract
+      number: 1
+    -
+      plugin: explode
+      delimiter: ','
+    -
+      plugin: filter_migrated_source_values
+      migration: migrate_source_example_xml_category
+    -
+      plugin: walk
+      process:
+        plugin: migration
+        migration: migrate_source_example_xml_category
   'field_cover/target_id':
     plugin: migration
     migration: migrate_source_example_xml_image
