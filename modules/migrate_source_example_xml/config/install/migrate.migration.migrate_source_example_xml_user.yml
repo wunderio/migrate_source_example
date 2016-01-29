@@ -6,7 +6,7 @@ dependencies:
     - migrate_source_xml
     - user
 source:
-  plugin: migration_source_example_xml_user
+  plugin: migrate_source_example_xml_user
   urls:
     - source/users.xml
   element_query: /users/user

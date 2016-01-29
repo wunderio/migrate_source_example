@@ -1,0 +1,127 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - migrate.migration.migrate_source_example_xml_author
+    - migrate.migration.migrate_source_example_xml_category
+    - migrate.migration.migrate_source_example_xml_image
+    - migrate.migration.migrate_source_example_xml_user
+  module:
+    - migrate_source_example_xml
+    - node
+id: migrate_source_example_xml_book
+migration_tags: null
+label: Books
+source:
+  plugin: migrate_source_example_xml_book
+  # This specifies which XML files provide the data.
+  urls:
+    - source/books.xml
+  # This specifies which XML nodes are to be iterated on.
+  element_query: /books/books/book
+  # This specifies which XML node element defines the identificator of the source row.
+  id_query: bid
+  # This specifies the fields on the source row.
+  iterator_class: \Drupal\migrate_source_xml\Plugin\migrate\source\MigrateXmlIterator
+  fields:
+    bid:
+      xpath: 'bid'
+      description: 'Book ID'
+    title:
+      xpath: 'title'
+      description: 'Title'
+    body:
+      xpath: 'body'
+      description: 'Body'
+    body_format:
+      xpath: 'body_format'
+      description: 'Body Format'
+    attributes:
+      xpath: 'attributes'
+      description: 'Categories'
+    media:
+      xpath: 'media'
+      description: 'Image ID'
+    user:
+      xpath: 'user'
+      description: 'User ID'
+    created_on:
+      xpath: 'created_on'
+      description: 'Created'
+    alias:
+      xpath: 'alias'
+      description: 'Alias'
+  # This specifies the keys which allow uniquely identify the source row.
+  keys:
+    - bid
+  constants:
+    slash: /
+process:
+  type:
+    plugin: default_value
+    default_value: book
+  uid:
+    plugin: migration
+    migration: migrate_source_example_xml_user
+    source: user
+  title: title
+  body/value: body
+  'field_body/format': 'body_format'
+  field_author:
+    -
+      plugin: explode
+      delimiter: '|'
+      source: attributes
+    -
+      plugin: extract
+      number: 0
+    -
+      plugin: explode
+      delimiter: ':'
+    -
+      plugin: extract
+      number: 1
+    -
+      plugin: migration
+      migration: migrate_source_example_xml_author
+  # 'field_category/target_id':
+  #   -
+  #     plugin: default_value
+  #     default_value: 1
+  #   -
+  #     plugin: filter_migrated_source_values
+  #     migration: migrate_source_example_xml_category
+  #   -
+  #     plugin: migration
+  #     migration: migrate_source_example_xml_category
+  'field_cover/target_id':
+    plugin: migration
+    migration: migrate_source_example_xml_image
+    source: 'media'
+  created:
+    plugin: format_date
+    format: U
+    source: created_on
+  changed: '@created'
+  path:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: alias
+    -
+      plugin: concat
+      delimiter: null
+      source:
+        - constants/slash
+        - alias
+
+destination:
+  plugin: 'entity:node'
+template: null
+migration_dependencies:
+  required:
+    - migrate_source_example_xml_user
+    - migrate_source_example_xml_author
+    - migrate_source_example_xml_category
+    - migrate_source_example_xml_image
+migration_group: migrate_source_example_xml
