@@ -14,15 +14,10 @@ migration_tags: null
 label: Books
 source:
   plugin: migrate_source_example_xml_book
-  # This specifies which XML files provide the data.
   urls:
     - source/books.xml
-  # This specifies which XML nodes are to be iterated on.
   element_query: /books/books/book
-  # This specifies which XML node element defines the identificator of the source row.
   id_query: bid
-  # This specifies the fields on the source row.
-  iterator_class: \Drupal\migrate_source_xml\Plugin\migrate\source\MigrateXmlIterator
   fields:
     bid:
       xpath: 'bid'
@@ -66,7 +61,12 @@ process:
     source: user
   title: title
   body/value: body
-  'field_body/format': 'body_format'
+  body/format:
+    plugin: static_map
+    source: body_format
+    map:
+      1: plain_text
+      2: basic_html
   field_author:
     -
       plugin: explode
@@ -74,13 +74,13 @@ process:
       source: attributes
     -
       plugin: extract
-      number: 0
+      key: 0
     -
       plugin: explode
       delimiter: ':'
     -
       plugin: extract
-      number: 1
+      key: 1
     -
       plugin: explode
       delimiter: ','
@@ -97,13 +97,13 @@ process:
       source: attributes
     -
       plugin: extract
-      number: 1
+      key: 1
     -
       plugin: explode
       delimiter: ':'
     -
       plugin: extract
-      number: 1
+      key: 1
     -
       plugin: explode
       delimiter: ','
@@ -115,10 +115,10 @@ process:
       process:
         plugin: migration
         migration: migrate_source_example_xml_category
-  'field_cover/target_id':
+  field_cover:
     plugin: migration
     migration: migrate_source_example_xml_image
-    source: 'media'
+    source: media
   created:
     plugin: format_date
     format: U
@@ -135,7 +135,6 @@ process:
       source:
         - constants/slash
         - alias
-
 destination:
   plugin: 'entity:node'
 template: null
