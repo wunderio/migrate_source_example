@@ -19,21 +19,12 @@ source:
   element_query: /books/books/book
   id_query: bid
   fields:
-    bid:
-      xpath: 'bid'
-      description: 'Book ID'
-    title:
-      xpath: 'title'
-      description: 'Title'
-    body:
-      xpath: 'body'
-      description: 'Body'
-    body_format:
-      xpath: 'body_format'
-      description: 'Body Format'
-    attributes:
-      xpath: 'attributes'
-      description: 'Categories'
+    bid: Book ID
+    title: Title
+    body: Body
+    body_format: Body Format
+    attributes: Author and Categories
+    # Below the alternative way to define field location is used, i.e., using explicit "xpath" declaration.
     media:
       xpath: 'media'
       description: 'Image ID'
