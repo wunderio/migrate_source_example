@@ -15,7 +15,7 @@ use Drupal\migrate\Row;
 /**
  *
  * @MigrateSource(
- *   id = "migration_source_example_xml_image"
+ *   id = "migrate_source_example_xml_image"
  * )
  */
 class Image extends XmlBase {

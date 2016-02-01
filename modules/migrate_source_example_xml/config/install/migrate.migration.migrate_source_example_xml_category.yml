@@ -25,7 +25,6 @@ source:
   # This specifies the keys which allow uniquely identify the source row.
   keys:
     - @aid
-    - @type
   constants:
     path_prefix: category
     slash: /

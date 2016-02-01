@@ -8,7 +8,7 @@ dependencies:
     - migrate_source_xml
     - file
 source:
-  plugin: migration_source_example_xml_image
+  plugin: migrate_source_example_xml_image
   source_base_path: source/images
   urls:
     - source/books.xml
