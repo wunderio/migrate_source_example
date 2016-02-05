@@ -1,0 +1,113 @@
+{
+    "books": [{
+        "id": 1,
+        "title": "Casino Royale",
+        "body": "M, the Head of the British Secret Service, assigns James Bond, 007, to play against and bankrupt Le Chiffre,the paymaster for a SMERSH - controlled trade union, in a high - stakes baccarat game at the Royale - les - Eaux casino in northern France.",
+        "body_format": "1",
+        "image": "1",
+        "author": "1",
+        "category": "4",
+        "uid": "3",
+        "created": "2015-04-02 21:00:00",
+        "alias": "casino-royale"
+    }, {
+        "id": 2,
+        "title": "Live and Let Die",
+        "body": "<p>The British Secret Service agent James Bond is sent by his superior, M, to New York City to investigate Mr Big, real name Buonaparte Ignace Gallia.</p>",
+        "body_format": "2",
+        "image": "2",
+        "author": "1",
+        "category": "4",
+        "uid": "3",
+        "created": "2015-05-24 16:30:00",
+        "alias": "live-and-let-die"
+    }, {
+        "id": 3,
+        "title": "Moonraker",
+        "body": "<p>The British Secret Service agent James Bond is asked by his superior, M, to join him at M's club, Blades.</p>",
+        "body_format": "2",
+        "image": "3",
+        "author": "1",
+        "category": "4",
+        "uid": "3",
+        "created": "2015-06-01 17:25:00",
+        "alias": "moonraker"
+    }, {
+        "id": 4,
+        "title": "Diamonds Are Forever",
+        "body": "<p>The British Secret Service agent James Bond is sent on an assignment by his superior, M.</p>",
+        "body_format": "2",
+        "image": "4",
+        "author": "1",
+        "category": "4",
+        "uid": "3",
+        "created": "2015-06-14 09:45:00",
+        "alias": "diamonds-are-forever"
+    }, {
+        "id": 5,
+        "title": "The Bourne Identity",
+        "body": "<p>The preface of the novel consists of two real-life newspaper articles from 1975 about terrorist Ilich Ramírez Sánchez, known as Carlos the Jackal.</p>",
+        "body_format": "2",
+        "image": "5",
+        "author": "2",
+        "category": "4",
+        "uid": "1",
+        "created": "2015-06-15 12:00:00",
+        "alias": "the-bourne-identity"
+    }, {
+        "id": 6,
+        "title": "The Bourne Supremacy",
+        "body": "<p>The story of The Bourne Supremacy is set during the British negotiated handover of Hong Kong to the People's Republic of China on the expiration of its ninety-nine-year lease on the New Territories.</p>",
+        "body_format": "2",
+        "image": "6",
+        "author": "2",
+        "category": "4",
+        "uid": "1",
+        "created": "2015-06-25 14:45:00",
+        "alias": "the-bourne-supremacy"
+    }, {
+        "id": 7,
+        "title": "The Bourne Ultimatum",
+        "body": "<p>The novel follows David Webb, alias Jason Bourne, as he works to find his old enemy, Carlos the Jackal, who is trying to kill him.</p>",
+        "body_format": "2",
+        "image": "7",
+        "author": "2",
+        "category": "4",
+        "uid": "1",
+        "created": "2015-07-07 16:15:00",
+        "alias": "the-bourne-ultimatum"
+    }, {
+        "id": 8,
+        "title": "The Fellowship of the Ring",
+        "body": "<p>Thousands of years before the events of the novel, the Dark Lord Sauron had forged the One Ring to rule the other Rings of Power and corrupt those who wear them: the leaders of Men, Elves and Dwarves.</p>",
+        "body_format": "2",
+        "image": "8",
+        "author": "3",
+        "category": "5,6",
+        "uid": "2",
+        "created": "2015-07-14 18:30:00",
+        "alias": ""
+    }, {
+        "id": 9,
+        "title": "The Two Towers",
+        "body": "<p>Orcs sent by Saruman and Sauron kill Boromir and kidnap Merry and Pippin. After agonizing over which pair of hobbits to follow, Aragorn, Gimli and Legolas pursue the orcs bearing Merry and Pippin to Saruman.</p>",
+        "body_format": "2",
+        "image": "9",
+        "author": "3",
+        "category": "5,6",
+        "uid": "2",
+        "created": "2015-07-18 20:45:00",
+        "alias": ""
+    }, {
+        "id": 10,
+        "title": "The Return of the King",
+        "body": "<p>Sauron unleashes a heavy assault upon Gondor. Gandalf arrives at Minas Tirith to alert Denethor of the impending attack.</p>",
+        "body_format": "2",
+        "image": "10",
+        "author": "3",
+        "category": "5,6",
+        "uid": "2",
+        "created": "2015-07-28 09:15:00",
+        "alias": ""
+    }]
+}
