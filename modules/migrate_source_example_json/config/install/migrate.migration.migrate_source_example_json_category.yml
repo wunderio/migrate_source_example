@@ -9,7 +9,7 @@ migration_tags: null
 label: Categories
 source:
   plugin: json_source
-  path: 'http://local.drupal8/json/attributes'
+  path: 'base://json/attributes'
   headers:
     Accept: 'application/json'
   identifier: id
