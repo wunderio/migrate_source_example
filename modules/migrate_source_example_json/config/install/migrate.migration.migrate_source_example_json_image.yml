@@ -9,7 +9,7 @@ migration_tags: null
 label: Images
 source:
   plugin: json_source_image
-  path: 'http://migrate.dev/json/images'
+  path: '/json/images'
   source_base_path: source/images
   headers:
     Accept: 'application/json'

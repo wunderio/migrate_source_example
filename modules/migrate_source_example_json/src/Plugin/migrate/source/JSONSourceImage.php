@@ -22,7 +22,7 @@ use Drupal\migrate\Row;
  */
 class JSONSourceImage extends SourcePluginBase {
 
-  /**
+    /**
    * The path to the JSON source.
    *
    * @var string
@@ -83,7 +83,12 @@ class JSONSourceImage extends SourcePluginBase {
       'fields',
       'identifier',
     );
-
+    
+    // if no external path is given, it is local path.
+    if (strpos($configuration['path'], "http") === FALSE) {
+        $url_assembler = \Drupal::service("unrouted_url_assembler");
+        $configuration['path'] = $url_assembler->assemble('base:'.$configuration['path'], array('absolute' => TRUE));
+    }
     // Store the configuration data.
     foreach ($config_fields as $config_field) {
       if (isset($configuration[$config_field])) {
