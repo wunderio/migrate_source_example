@@ -8,8 +8,8 @@ id: migrate_source_example_json_user
 migration_tags: null
 label: Users
 source:
-  plugin: json_source
-  path: 'http://migrate.dev/json/users'
+  plugin: migrate_source_example_json
+  path: '/json/users'
   headers:
     Accept: 'application/json'
   identifier: id
