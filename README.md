@@ -27,3 +27,9 @@ Currently features migrations from following sources:
 ## Data source
 
 CSV file content is synced from a [Google Spreadsheet](https://goo.gl/Iq2Tk6).
+
+## JSON Data source
+
+1. Target json source path in yml configuration either with external path like 'http://example.com/json/path' or local path '/json/path'
+2. Run drush mi migrate_source_example_json_category --uri=[SITE_BASE_URL]. "--uri" parameter is crucial if migration is run by drush, because
+   this is only way to tell Drupal base path that can be used to locate json source.
