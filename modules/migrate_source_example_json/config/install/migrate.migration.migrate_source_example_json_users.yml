@@ -1,0 +1,37 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_source_example_json
+    - user
+id: migrate_source_example_json_user
+migration_tags: null
+label: Users
+source:
+  plugin: json_source
+  path: 'http://migrate.dev/json/users'
+  headers:
+    Accept: 'application/json'
+  identifier: id
+  identifierDepth: 1
+  fields:
+    id: User ID
+    name: Name
+    roles: User Roles
+    email: User email
+process:
+  name: name
+  roles:
+      plugin: explode
+      delimiter: ','
+      source: roles
+  mail: email
+  init: email
+  status:
+    plugin: default_value
+    default_value: 1
+destination:
+  plugin: 'entity:user'
+template: null
+migration_dependencies: {  }
+migration_group: migrate_source_example_json

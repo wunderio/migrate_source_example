@@ -8,8 +8,13 @@ id: migrate_source_example_json_category
 migration_tags: null
 label: Categories
 source:
+<<<<<<< HEAD
   plugin: json_source
   path: 'http://local.drupal8/json/attributes'
+=======
+  plugin: migrate_source_example_json
+  path: '/json/attributes'
+>>>>>>> 8e81602... Working example of local source paths for JSON migrations.
   headers:
     Accept: 'application/json'
   identifier: id
