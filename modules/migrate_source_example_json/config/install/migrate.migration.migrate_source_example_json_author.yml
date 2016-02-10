@@ -4,9 +4,9 @@ dependencies:
   module:
     - migrate_source_example_json
     - taxonomy
-id: migrate_source_example_json_category
+id: migrate_source_example_json_author
 migration_tags: null
-label: Categories
+label: Authors
 source:
   plugin: migrate_source_example_json
   path: '/json/attributes'
@@ -14,7 +14,7 @@ source:
     Accept: 'application/json'
   identifier: id
   identifierDepth: 0
-  root_element: 'category'
+  root_element: 'author'
   readerClass: 'Drupal\migrate_source_example_json\Plugin\migrate\ExampleJSONReader'
   
   fields:
@@ -27,7 +27,7 @@ source:
 process:
   vid:
     plugin: default_value
-    default_value: category
+    default_value: author
   name: name
   path:
     -
