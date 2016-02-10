@@ -1,6 +1,6 @@
 # Migrate source example
 
-`migrate_source_example` is a module that contains a set of sub-modules that provide content migrations from different 
+`migrate_source_example` is a module that contains a set of sub-modules that provide content migrations from different
 sources.
 
 Currently features migrations from following sources:
@@ -18,7 +18,11 @@ Currently features migrations from following sources:
 ### Installation of CSV migration example module
 1. Download `migrate_source_csv` contrib module into `modules/contrib/migrate_source_csv` (see [instructions](https://www.drupal.org/project/migrate_source_csv/git-instructions)).
 1. Enable `migrate_source_example_csv` module (`drush en migrate_source_example_csv`).
-  
+
+### Installation of XML migration example module
+1. Download `migrate_source_xml` contrib module into `modules/contrib/migrate_source_xml` (see [instructions](https://www.drupal.org/project/migrate_source_xml/git-instructions)).
+1. Enable `migrate_source_example_xml` module (`drush en migrate_source_example_xml`).
+
 ## Usage
 
 1. Run `drush ms` to see all migrations.

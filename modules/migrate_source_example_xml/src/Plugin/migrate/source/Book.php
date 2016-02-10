@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
-* Contains \Drupal\migrate_source_example_xml\Plugin\migrate\source\User.
+* Contains \Drupal\migrate_source_example_xml\Plugin\migrate\source\Book.
  */
 namespace Drupal\migrate_source_example_xml\Plugin\migrate\source;
 
@@ -14,10 +14,10 @@ use Drupal\migrate_source_xml\Plugin\migrate\source\MigrateXmlReader;
 /**
  *
  * @MigrateSource(
- *   id = "migrate_source_example_xml_user"
+ *   id = "migrate_source_example_xml_book"
  * )
  */
-class User extends XmlBase {
+class Book extends XmlBase {
 
   /**
    * {@inheritdoc}
