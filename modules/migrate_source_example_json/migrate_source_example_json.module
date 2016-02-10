@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains migrate_source_example_json.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function migrate_source_example_json_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the migrate_source_example_json module.
+    case 'help.page.migrate_source_example_json':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Example module that provides content migration from JSON files.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
