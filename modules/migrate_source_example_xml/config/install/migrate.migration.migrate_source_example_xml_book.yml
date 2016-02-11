@@ -13,7 +13,7 @@ id: migrate_source_example_xml_book
 migration_tags: null
 label: Books
 source:
-  plugin: migrate_source_example_xml_book
+  plugin: migrate_source_example_xml
   urls:
     - source/books.xml
   element_query: /books/books/book

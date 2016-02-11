@@ -8,7 +8,7 @@ id: migrate_source_example_xml_category
 migration_tags: null
 label: Categories
 source:
-  plugin: migrate_source_example_xml_taxonomy_attribute
+  plugin: migrate_source_example_xml
   # This specifies which XML files provide the data.
   urls:
     - source/attributes.xml

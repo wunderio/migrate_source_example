@@ -1,23 +1,23 @@
 <?php
+
 /**
  * @file
-* Contains \Drupal\migrate_source_example_xml\Plugin\migrate\source\User.
+ * Contains \Drupal\migrate_source_example_xml\Plugin\migrate\source\MigrateSourceExampleXML.
  */
 namespace Drupal\migrate_source_example_xml\Plugin\migrate\source;
 
 
 use Drupal\migrate\Entity\MigrationInterface;
 use Drupal\migrate_source_xml\Plugin\migrate\source\XmlBase;
-use Drupal\migrate_source_xml\Plugin\migrate\source\MigrateXmlReader;
 
 
 /**
  *
  * @MigrateSource(
- *   id = "migrate_source_example_xml_user"
+ *   id = "migrate_source_example_xml"
  * )
  */
-class User extends XmlBase {
+class MigrateSourceExampleXML extends XmlBase {
 
   /**
    * {@inheritdoc}
