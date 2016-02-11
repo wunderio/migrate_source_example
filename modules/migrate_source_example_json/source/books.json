@@ -6,7 +6,7 @@
         "body_format": "1",
         "image": "1",
         "author": "1",
-        "category": "4",
+        "category": "1",
         "uid": "3",
         "created": "2015-04-02 21:00:00",
         "alias": "casino-royale"
@@ -17,7 +17,7 @@
         "body_format": "2",
         "image": "2",
         "author": "1",
-        "category": "4",
+        "category": "1",
         "uid": "3",
         "created": "2015-05-24 16:30:00",
         "alias": "live-and-let-die"
@@ -28,7 +28,7 @@
         "body_format": "2",
         "image": "3",
         "author": "1",
-        "category": "4",
+        "category": "1",
         "uid": "3",
         "created": "2015-06-01 17:25:00",
         "alias": "moonraker"
@@ -39,7 +39,7 @@
         "body_format": "2",
         "image": "4",
         "author": "1",
-        "category": "4",
+        "category": "1",
         "uid": "3",
         "created": "2015-06-14 09:45:00",
         "alias": "diamonds-are-forever"
@@ -50,7 +50,7 @@
         "body_format": "2",
         "image": "5",
         "author": "2",
-        "category": "4",
+        "category": "1",
         "uid": "1",
         "created": "2015-06-15 12:00:00",
         "alias": "the-bourne-identity"
@@ -61,7 +61,7 @@
         "body_format": "2",
         "image": "6",
         "author": "2",
-        "category": "4",
+        "category": "1",
         "uid": "1",
         "created": "2015-06-25 14:45:00",
         "alias": "the-bourne-supremacy"
@@ -72,7 +72,7 @@
         "body_format": "2",
         "image": "7",
         "author": "2",
-        "category": "4",
+        "category": "1",
         "uid": "1",
         "created": "2015-07-07 16:15:00",
         "alias": "the-bourne-ultimatum"
@@ -83,7 +83,7 @@
         "body_format": "2",
         "image": "8",
         "author": "3",
-        "category": "5,6",
+        "category": "2,3",
         "uid": "2",
         "created": "2015-07-14 18:30:00",
         "alias": ""
@@ -94,7 +94,7 @@
         "body_format": "2",
         "image": "9",
         "author": "3",
-        "category": "5,6",
+        "category": "2,3",
         "uid": "2",
         "created": "2015-07-18 20:45:00",
         "alias": ""
@@ -105,7 +105,7 @@
         "body_format": "2",
         "image": "10",
         "author": "3",
-        "category": "5,6",
+        "category": "2,3",
         "uid": "2",
         "created": "2015-07-28 09:15:00",
         "alias": ""
