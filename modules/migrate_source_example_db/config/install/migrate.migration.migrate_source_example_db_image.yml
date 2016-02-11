@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_source_example_db
+    - file
+id: migrate_source_example_db_image
+migration_tags: null
+label: Image
+source:
+  plugin: migrate_source_example_db_image
+  source_base_path: source/images
+  constants:
+    file_scheme: 'public://'
+process:
+  filename: filename
+  uri:
+    plugin: concat
+    delimiter: ''
+    source:
+      - constants/file_scheme
+      - filename
+destination:
+  plugin: 'entity:file'
+  destination_path_property: uri
+  source_path_property: full_path
+migration_group: migrate_source_example_db

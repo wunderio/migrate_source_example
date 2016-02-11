@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_source_example
+    - file
+id: migrate_source_example_csv_image
+migration_tags: null
+label: Image
+source:
+  plugin: migrate_source_example_csv_image
+  source_base_path: source/images
+  path: image.csv
+  header_row_count: 1
+  keys:
+    - id
+  constants:
+    file_scheme: 'public://'
+process:
+  filename: filename
+  uri:
+    plugin: concat
+    delimiter: ''
+    source:
+      - constants/file_scheme
+      - filename
+destination:
+  plugin: 'entity:file'
+  destination_path_property: uri
+  source_path_property: full_path
+template: null
+migration_dependencies: {  }
+migration_group: migrate_source_example_csv

@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains migrate_source_example_xml.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function migrate_source_example_xml_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the migrate_source_example_xml module.
+    case 'help.page.migrate_source_example_xml':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Example module that provides content migration from XML files') . '</p>';
+      return $output;
+
+    default:
+  }
+}

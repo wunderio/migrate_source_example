@@ -1,0 +1,53 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_source_example_xml
+    - taxonomy
+id: migrate_source_example_xml_category
+migration_tags: null
+label: Categories
+source:
+  plugin: migrate_source_example_xml
+  # This specifies which XML files provide the data.
+  urls:
+    - source/attributes.xml
+  # This specifies which XML nodes are to be iterated on.
+  element_query: /book_attributes/attribute[@type="attribute_category"]
+  # This specifies which XML node element defines the identificator of the source row.
+  id_query: @aid
+  # This specifies the fields on the source row.
+  fields:
+    text(): Name
+    @aid: Attribute ID
+    @type: Attribute type
+    @machine_name: Attribute machine name
+  # This specifies the keys which allow uniquely identify the source row.
+  keys:
+    - @aid
+  constants:
+    path_prefix: category
+    slash: /
+process:
+  vid:
+    plugin: default_value
+    default_value: category
+  name: text()
+  path:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: @@machine_name
+    -
+      plugin: concat
+      delimiter: null
+      source:
+        - constants/slash
+        - constants/path_prefix
+        - constants/slash
+        - @@machine_name
+destination:
+  plugin: 'entity:taxonomy_term'
+template: null
+migration_dependencies: {  }
+migration_group: migrate_source_example_xml

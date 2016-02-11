@@ -1,0 +1,5 @@
+name: Migrate source example setup
+type: module
+description: Provides default configuration for migration example modules.
+core: 8.x
+package: Migration
