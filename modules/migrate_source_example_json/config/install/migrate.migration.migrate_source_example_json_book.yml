@@ -72,7 +72,7 @@ process:
     -
       plugin: explode
       delimiter: ','
-      source: attributes
+      source: category
     -
       plugin: filter_migrated_source_values
       migration: migrate_source_example_json_category
