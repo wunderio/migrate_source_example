@@ -15,6 +15,9 @@ Currently features migrations from following sources:
 4. Download `migrate_plus` contrib module into `modules/contrib/migrate_plus` (see [instructions](https://www.drupal.org/project/migrate_plus/git-instructions)).
 5. Enable `migrate_source_example` module (`drush en migrate_source_example`).
 
+### Installation of DB migration example module
+1. Enable `migrate_source_example_db` module (`drush en migrate_source_example_db`).
+
 ### Installation of CSV migration example module
 1. Download `migrate_source_csv` contrib module into `modules/contrib/migrate_source_csv` (see [instructions](https://www.drupal.org/project/migrate_source_csv/git-instructions)).
 1. Enable `migrate_source_example_csv` module (`drush en migrate_source_example_csv`).
