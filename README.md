@@ -4,8 +4,10 @@
 sources.
 
 Currently features migrations from following sources:
-1. CSV files;
-2. External (non-Drupal) database tables.
+
+1. External (non-Drupal) database tables.
+2. CSV files;
+3. XML files.
 
 ## Installation
 
