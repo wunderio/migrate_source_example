@@ -3,7 +3,7 @@ label: User migration from xml file
 migration_group: migrate_source_example_xml
 dependencies:
   module:
-    - migrate_source_xml
+    - migrate_source_example_xml
     - user
 source:
   plugin: migrate_source_example_xml

@@ -5,7 +5,7 @@ migration_tags: null
 label: Image migration from xml file
 dependencies:
   module:
-    - migrate_source_xml
+    - migrate_source_example_xml
     - file
 source:
   plugin: migrate_source_example_xml_image

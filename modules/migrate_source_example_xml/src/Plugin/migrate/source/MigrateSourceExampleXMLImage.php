@@ -1,15 +1,13 @@
 <?php
 /**
  * @file
-* Contains \Drupal\migrate_source_example_xml\Plugin\migrate\source\Image.
+* Contains \Drupal\migrate_source_example_xml\Plugin\migrate\source\MigrateSourceExampleXMLImage.
  */
 namespace Drupal\migrate_source_example_xml\Plugin\migrate\source;
-
 
 use Drupal\migrate\Entity\MigrationInterface;
 use Drupal\migrate_source_xml\Plugin\migrate\source\XmlBase;
 use Drupal\migrate\Row;
-
 
 /**
  *
@@ -17,7 +15,7 @@ use Drupal\migrate\Row;
  *   id = "migrate_source_example_xml_image"
  * )
  */
-class Image extends MigrateSourceExampleXML {
+class MigrateSourceExampleXMLImage extends MigrateSourceExampleXML {
 
   /**
    * {@inheritdoc}
