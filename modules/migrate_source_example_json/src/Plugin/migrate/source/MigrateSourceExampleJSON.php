@@ -90,6 +90,7 @@ class MigrateSourceExampleJSON extends SourcePluginBase {
         $url_assembler = \Drupal::service("unrouted_url_assembler");
         $configuration['path'] = $url_assembler->assemble('base:'.$configuration['path'], array('absolute' => TRUE));
     }
+
     // Store the configuration data.
     foreach ($config_fields as $config_field) {
       if (isset($configuration[$config_field])) {
