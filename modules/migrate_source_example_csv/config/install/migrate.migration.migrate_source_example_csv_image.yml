@@ -2,8 +2,8 @@ langcode: en
 status: true
 dependencies:
   module:
-    - migrate_source_example
     - file
+    - migrate_source_example_csv
 id: migrate_source_example_csv_image
 migration_tags: null
 label: Image

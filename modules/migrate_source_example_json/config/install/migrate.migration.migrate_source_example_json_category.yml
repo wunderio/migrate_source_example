@@ -9,18 +9,18 @@ migration_tags: null
 label: Categories
 source:
   plugin: migrate_source_example_json
-  path: '/json/attributes'
+  path: /json/attributes
   headers:
-    Accept: 'application/json'
+    Accept: application/json
   identifier: id
   identifierDepth: 0
-  root_element: 'category'
+  root_element: category
   constants:
     slash: /
   fields:
     name: Name
-    id: Attribute ID
-    alias: Attribute alias
+    id: 'Attribute ID'
+    alias: 'Attribute alias'
 process:
   vid:
     plugin: default_value

@@ -9,22 +9,22 @@ migration_tags: null
 label: Users
 source:
   plugin: migrate_source_example_json
-  path: '/json/users'
+  path: /json/users
   headers:
-    Accept: 'application/json'
+    Accept: application/json
   identifier: id
   identifierDepth: 1
   fields:
-    id: User ID
+    id: 'User ID'
     name: Name
-    roles: User Roles
-    email: User email
+    roles: 'User roles'
+    email: 'User email'
 process:
   name: name
   roles:
-      plugin: explode
-      delimiter: ','
-      source: roles
+    plugin: explode
+    delimiter: ','
+    source: roles
   mail: email
   init: email
   status:

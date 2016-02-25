@@ -2,8 +2,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - migrate.migration.migrate_source_example_json_category
     - migrate.migration.migrate_source_example_json_author
+    - migrate.migration.migrate_source_example_json_category
     - migrate.migration.migrate_source_example_json_image
     - migrate.migration.migrate_source_example_json_user
   module:
@@ -14,22 +14,22 @@ migration_tags: null
 label: Books
 source:
   plugin: migrate_source_example_json
-  path: '/json/books'
+  path: /json/books
   headers:
-    Accept: 'application/json'
+    Accept: application/json
   identifier: id
   identifierDepth: 1
   constants:
     slash: /
   fields:
-    id: Book id
+    id: 'Book ID'
     title: Title
     body: Body
-    body_format: Body Format
+    body_format: 'Body format'
     image: Image
     author: Author
     category: Category
-    uid: User ID
+    uid: 'User ID'
     created: Created
     alias: Alias
 process:

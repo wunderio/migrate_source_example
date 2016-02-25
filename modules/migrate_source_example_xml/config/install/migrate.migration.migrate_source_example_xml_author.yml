@@ -13,18 +13,18 @@ source:
   urls:
     - source/attributes.xml
   # This specifies which XML nodes are to be iterated on.
-  element_query: /book_attributes/attribute[@type="attribute_authors"]
+  element_query: '/book_attributes/attribute[@type="attribute_authors"]'
   # This specifies which XML node element defines the identificator of the source row.
-  id_query: @aid
+  id_query: '@aid'
   # This specifies the fields on the source row.
   fields:
     text(): Name
-    @aid: Attribute ID
-    @type: Attribute type
-    @machine_name: Attribute machine name
+    '@aid': 'Attribute ID'
+    '@type': 'Attribute type'
+    '@machine_name': 'Attribute machine name'
   # This specifies the keys which allow uniquely identify the source row.
   keys:
-    - @aid
+    - '@aid'
   constants:
     path_prefix: author
     slash: /
@@ -37,7 +37,7 @@ process:
     -
       plugin: skip_on_empty
       method: process
-      source: @@machine_name
+      source: '@@machine_name'
     -
       plugin: concat
       delimiter: null
@@ -45,7 +45,7 @@ process:
         - constants/slash
         - constants/path_prefix
         - constants/slash
-        - @@machine_name
+        - '@@machine_name'
 destination:
   plugin: 'entity:taxonomy_term'
 template: null

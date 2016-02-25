@@ -1,23 +1,25 @@
-id: migrate_source_example_xml_user
-label: User migration from xml file
-migration_group: migrate_source_example_xml
+langcode: en
+status: true
 dependencies:
   module:
-    - migrate_source_xml
+    - migrate_source_example_xml
     - user
+id: migrate_source_example_xml_user
+migration_tags: null
+label: 'User migration from xml file'
 source:
   plugin: migrate_source_example_xml_user
   urls:
     - source/users.xml
   element_query: /users/user
-  id_query: @id
+  id_query: '@id'
   fields:
     text(): name
-    @id: User id
-    @email: User email
-    @roles: User roles
+    '@id': 'User id'
+    '@email': 'User email'
+    '@roles': 'User roles'
   keys:
-    - @id
+    - '@id'
 process:
   name:
     plugin: dedupe_entity
@@ -28,7 +30,7 @@ process:
     -
       plugin: explode
       delimiter: ':'
-      source: @@roles
+      source: '@@roles'
     -
       plugin: walk
       process:
@@ -36,10 +38,13 @@ process:
         map:
           1: administrator
           2: editor
-  mail: @@email
-  init: @@email
+  mail: '@@email'
+  init: '@@email'
   status:
     plugin: default_value
     default_value: 1
 destination:
   plugin: 'entity:user'
+template: null
+migration_dependencies: {  }
+migration_group: migrate_source_example_xml
