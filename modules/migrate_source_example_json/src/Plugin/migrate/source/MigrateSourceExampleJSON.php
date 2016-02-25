@@ -11,8 +11,7 @@ use Drupal\migrate\Annotation\MigrateSource;
 use Drupal\migrate\Entity\MigrationInterface;
 use Drupal\migrate\MigrateException;
 use Drupal\migrate\Plugin\migrate\source\SourcePluginBase;
-
-use Drupal\Core\Url;
+use Drupal\migrate_source_json\Plugin\migrate\JSONReaderInterface;
 
 /**
  * A source class for JSON files.
@@ -26,49 +25,49 @@ class MigrateSourceExampleJSON extends SourcePluginBase {
   /**
    * The path to the JSON source.
    *
-   * @var string
+   * @var string $path
    */
   protected $path = '';
 
   /**
    * The request headers.
    *
-   * @var array
+   * @var array $headers
    */
   protected $headers = [];
 
   /**
    * An array of source fields.
    *
-   * @var array
+   * @var array $fields
    */
   protected $fields = [];
 
   /**
    * The field name that is a unique identifier.
    *
-   * @var string
+   * @var string $identifier
    */
   protected $identifier = '';
 
   /**
    * The reader class to read the JSON source file.
    *
-   * @var string
+   * @var string $readerClass
    */
   protected $readerClass = '';
 
   /**
    * The JSON reader.
    *
-   * @var resource
+   * @var JSONReaderInterface $reader
    */
   protected $reader;
 
   /**
    * The client class to create the HttpClient.
    *
-   * @var string
+   * @var string $clientClass
    */
   protected $clientClass = '';
 
@@ -84,11 +83,11 @@ class MigrateSourceExampleJSON extends SourcePluginBase {
       'fields',
       'identifier',
     );
-    
-    // if no external path is given, it is local path.
-    if (strpos($configuration['path'], "http") === FALSE) {
-        $url_assembler = \Drupal::service("unrouted_url_assembler");
-        $configuration['path'] = $url_assembler->assemble('base:'.$configuration['path'], array('absolute' => TRUE));
+
+    // If no external path is given, it is local path.
+    if (strpos($configuration['path'], 'http') === FALSE) {
+        $url_assembler = \Drupal::service('unrouted_url_assembler');
+        $configuration['path'] = $url_assembler->assemble('base:' . $configuration['path'], array('absolute' => TRUE));
     }
 
     // Store the configuration data.
@@ -97,16 +96,15 @@ class MigrateSourceExampleJSON extends SourcePluginBase {
         $this->{$config_field} = $configuration[$config_field];
       }
       else {
-        // Throw Exception
-        throw new MigrateException('The source configuration must include ' . $config_field . '.');
+        throw new MigrateException(sprintf('The source configuration must include "%s" configuration item.', $config_field));
       }
     }
 
-    // Allow custom reader and client classes to be passed in as configuration settings.
-    $this->clientClass = !isset($configuration['clientClass']) ? '\Drupal\migrate_source_json\Plugin\migrate\JSONClient' : $configuration['clientClass'];
-    $this->readerClass = !isset($configuration['readerClass']) ? '\Drupal\migrate_source_json\Plugin\migrate\JSONReader' : $configuration['readerClass'];
+    // Set client and reader classes.
+    $this->clientClass = 'Drupal\migrate_source_json\Plugin\migrate\JSONClient';
+    $this->readerClass = 'Drupal\migrate_source_example_json\Plugin\migrate\MigrateExampleJSONReader';
 
-    // Create the JSON reader that will process the request, and pass it configuration.
+    // Create the JSON reader that will process the request and pass it configuration.
     $this->reader = new $this->readerClass($configuration);
   }
 

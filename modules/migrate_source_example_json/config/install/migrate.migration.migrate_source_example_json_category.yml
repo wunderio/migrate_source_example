@@ -15,15 +15,12 @@ source:
   identifier: id
   identifierDepth: 0
   root_element: 'category'
-  readerClass: 'Drupal\migrate_source_example_json\Plugin\migrate\ExampleJSONReader'
-  
+  constants:
+    slash: /
   fields:
     name: Name
     id: Attribute ID
     alias: Attribute alias
-
-  constants:
-    slash: /
 process:
   vid:
     plugin: default_value

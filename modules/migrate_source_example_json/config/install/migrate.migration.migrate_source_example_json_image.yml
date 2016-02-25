@@ -8,18 +8,18 @@ id: migrate_source_example_json_image
 migration_tags: null
 label: Images
 source:
-  plugin: json_source_image
+  plugin: migrate_source_example_json_image
   path: '/json/images'
   source_base_path: source/images
   headers:
     Accept: 'application/json'
   identifier: id
   identifierDepth: 1
-  fields:
-    id: Image ID 
-    filename: Image name
   constants:
     file_scheme: 'public://'
+  fields:
+    id: Image ID
+    filename: Image name
 process:
   filename: filename
   uri:
