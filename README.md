@@ -22,17 +22,30 @@ Currently features migrations from following sources:
 
 ### Installation of CSV migration example module
 1. Download `migrate_source_csv` contrib module into `modules/contrib/migrate_source_csv` (see [instructions](https://www.drupal.org/project/migrate_source_csv/git-instructions)).
-1. Enable `migrate_source_example_csv` module (`drush en migrate_source_example_csv`).
+2. Enable `migrate_source_example_csv` module (`drush en migrate_source_example_csv`).
 
 ### Installation of XML migration example module
 1. Download `migrate_source_xml` contrib module into `modules/contrib/migrate_source_xml` (see [instructions](https://www.drupal.org/project/migrate_source_xml/git-instructions)).
-1. Enable `migrate_source_example_xml` module (`drush en migrate_source_example_xml`).
+2. Enable `migrate_source_example_xml` module (`drush en migrate_source_example_xml`).
+
+### Installation of JSON migration example module
+1. Download `migrate_source_json` contrib module into `modules/contrib/migrate_source_json` (see [instructions](https://www.drupal.org/project/migrate_source_json/git-instructions)).
+2. Enable `migrate_source_example_json` module (`drush en migrate_source_example_json`).
 
 ## Usage
 
 1. Run `drush ms` to see all migrations.
 2. Run `drush mi --group=[GROUP]` to import content from specific example group.
 
+## Special usage of JSON migration example
+
+JSON migration source plugin requires an absolute URL of a JSON resource to be set in migration .yml file due to
+an assumption that JSON resources are remote. It means that for JSON migration to work, a base url of the site
+needs to be provided to migration system.
+
+Run `drush mi --group=migrate_source_example_json --uri=[BASE_URL]`, where `[BASE_URL]` is an absolute path to your
+site, to import content from example JSON resources.
+
 ## Data source
 
-CSV file content is synced from a [Google Spreadsheet](https://goo.gl/Iq2Tk6).
+Example content is synced with a [Google Spreadsheet](https://goo.gl/Iq2Tk6).

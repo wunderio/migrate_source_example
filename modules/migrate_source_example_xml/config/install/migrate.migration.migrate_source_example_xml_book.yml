@@ -19,24 +19,24 @@ source:
   element_query: /books/books/book
   id_query: bid
   fields:
-    bid: Book ID
+    bid: 'Book ID'
     title: Title
     body: Body
-    body_format: Body Format
-    attributes: Author and Categories
+    body_format: 'Body Format'
+    attributes: 'Author and Categories'
     # Below the alternative way to define field location is used, i.e., using explicit "xpath" declaration.
     media:
-      xpath: 'media'
+      xpath: media
       description: 'Image ID'
     user:
-      xpath: 'user'
+      xpath: user
       description: 'User ID'
     created_on:
-      xpath: 'created_on'
-      description: 'Created'
+      xpath: created_on
+      description: Created
     alias:
-      xpath: 'alias'
-      description: 'Alias'
+      xpath: alias
+      description: Alias
   # This specifies the keys which allow uniquely identify the source row.
   keys:
     - bid

@@ -1,0 +1,29 @@
+usercontent.page:
+  path: '/json/users'
+  defaults:
+    _controller: '\Drupal\migrate_source_example_json\Controller\UserMigrationController::userContent'
+  requirements:
+    _permission: 'access content'
+
+imagecontent.page:
+  path: '/json/images'
+  defaults:
+    _controller: '\Drupal\migrate_source_example_json\Controller\ImageMigrationController::imageContent'
+  requirements:
+    _permission: 'access content'
+
+attributescontent.page:
+  path: '/json/attributes'
+  defaults:
+    _controller: '\Drupal\migrate_source_example_json\Controller\AttributesMigrationController::attributesContent'
+  requirements:
+    _permission: 'access content'
+
+bookscontent.page:
+  path: '/json/books'
+  defaults:
+    _controller: '\Drupal\migrate_source_example_json\Controller\BooksMigrationController::booksContent'
+  requirements:
+    _permission: 'access content'
+
+

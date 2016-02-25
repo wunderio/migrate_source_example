@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Nifs",
+      "roles": "administrator,editor",
+      "email": "nifs@nifs.com"
+    },
+    {
+      "id": 2,
+      "name": "Nufs",
+      "roles": "editor",
+      "email": "nufs@nufs.com"
+    },
+    {
+      "id": 3,
+      "name": "Nafs",
+      "roles": "editor",
+      "email": "nafs@nafs.com"
+    }
+  ]
+}
