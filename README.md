@@ -3,11 +3,12 @@
 `migrate_source_example` is a module that contains a set of sub-modules that provide content migrations from different
 sources.
 
-Currently features migrations from following sources:
+Currently the project features migrations from following sources:
 
 1. External (non-Drupal) database tables.
 2. CSV files;
-3. XML files.
+3. XML files;
+4. JSON resources.
 
 ## Installation
 
@@ -44,7 +45,7 @@ an assumption that JSON resources are remote. It means that for JSON migration t
 needs to be provided to migration system.
 
 Run `drush mi --group=migrate_source_example_json --uri=[BASE_URL]`, where `[BASE_URL]` is an absolute path to your
-site, to import content from example JSON resources.
+site.
 
 ## Data source
 
