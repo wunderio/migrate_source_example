@@ -2,20 +2,24 @@ langcode: en
 status: true
 dependencies:
   module:
+    - migrate_source_example_json
     - file
-    - migrate_source_example_csv
-id: migrate_source_example_csv_image
+id: migrate_source_example_json_image
 migration_tags: null
-label: Image
+label: Images
 source:
-  plugin: migrate_source_example_csv_image
+  plugin: migrate_source_example_json_image
+  path: '/json/images'
   source_base_path: source/images
-  path: image.csv
-  header_row_count: 1
-  keys:
-    - id
+  headers:
+    Accept: 'application/json'
+  identifier: id
+  identifierDepth: 1
   constants:
     file_scheme: 'public://'
+  fields:
+    id: Image ID
+    filename: Image name
 process:
   filename: filename
   uri:
@@ -30,4 +34,4 @@ destination:
   source_path_property: full_path
 template: null
 migration_dependencies: {  }
-migration_group: migrate_source_example_csv
+migration_group: migrate_source_example_json

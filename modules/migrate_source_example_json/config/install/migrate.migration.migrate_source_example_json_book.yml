@@ -1,0 +1,97 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - migrate.migration.migrate_source_example_json_category
+    - migrate.migration.migrate_source_example_json_author
+    - migrate.migration.migrate_source_example_json_image
+    - migrate.migration.migrate_source_example_json_user
+  module:
+    - migrate_source_example_json
+    - node
+id: migrate_source_example_json_book
+migration_tags: null
+label: Books
+source:
+  plugin: migrate_source_example_json
+  path: '/json/books'
+  headers:
+    Accept: 'application/json'
+  identifier: id
+  identifierDepth: 1
+  constants:
+    slash: /
+  fields:
+    id: Book id
+    title: Title
+    body: Body
+    body_format: Body Format
+    image: Image
+    author: Author
+    category: Category
+    uid: User ID
+    created: Created
+    alias: Alias
+process:
+  type:
+    plugin: default_value
+    default_value: book
+  title: title
+  body/value: body
+  body/format:
+    plugin: static_map
+    source: body_format
+    map:
+      1: plain_text
+      2: basic_html
+  created:
+    plugin: format_date
+    format: U
+    source: created
+  changed: '@created'
+  uid:
+    plugin: migration
+    migration: migrate_source_example_json_user
+    source: uid
+  field_cover:
+    plugin: migration
+    migration: migrate_source_example_json_image
+    source: image
+  path:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: alias
+    -
+      plugin: concat
+      delimiter: null
+      source:
+        - constants/slash
+        - alias
+  field_category:
+    -
+      plugin: explode
+      delimiter: ','
+      source: category
+    -
+      plugin: filter_migrated_source_values
+      migration: migrate_source_example_json_category
+    -
+      plugin: walk
+      process:
+        plugin: migration
+        migration: migrate_source_example_json_category
+  field_author:
+    plugin: migration
+    migration: migrate_source_example_json_author
+    source: author
+destination:
+  plugin: 'entity:node'
+template: null
+migration_dependencies:
+  required:
+    - migrate_source_example_json_category
+    - migrate_source_example_json_author
+    - migrate_source_example_json_image
+    - migrate_source_example_json_user
+migration_group: migrate_source_example_json

@@ -26,7 +26,12 @@ process:
     source: user
   title: title
   body/value: body
-  body/format: body_format
+  body/format:
+    plugin: static_map
+    source: body_format
+    map:
+      1: plain_text
+      2: basic_html
   field_author:
     -
       plugin: explode
