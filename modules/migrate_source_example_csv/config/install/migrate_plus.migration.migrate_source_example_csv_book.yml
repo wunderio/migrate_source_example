@@ -2,15 +2,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - migrate.migration.migrate_source_example_csv_author
-    - migrate.migration.migrate_source_example_csv_category
-    - migrate.migration.migrate_source_example_csv_image
-    - migrate.migration.migrate_source_example_csv_user
+    - migrate_plus.migration.migrate_source_example_csv_author
+    - migrate_plus.migration.migrate_source_example_csv_category
+    - migrate_plus.migration.migrate_source_example_csv_image
+    - migrate_plus.migration.migrate_source_example_csv_user
   module:
     - migrate_source_example_csv
     - node
 id: migrate_source_example_csv_book
 migration_tags: null
+migration_group: migrate_source_example_csv
 label: Books
 source:
   plugin: migrate_source_example_csv
@@ -67,11 +68,9 @@ process:
         - alias
 destination:
   plugin: 'entity:node'
-template: null
 migration_dependencies:
   required:
     - migrate_source_example_csv_user
     - migrate_source_example_csv_author
     - migrate_source_example_csv_category
     - migrate_source_example_csv_image
-migration_group: migrate_source_example_csv

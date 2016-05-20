@@ -4,12 +4,13 @@ dependencies:
   module:
     - migrate_source_example_csv
     - taxonomy
-id: migrate_source_example_csv_category
+id: migrate_source_example_csv_author
 migration_tags: null
-label: Categories
+migration_group: migrate_source_example_csv
+label: Authors
 source:
   plugin: migrate_source_example_csv
-  path: category.csv
+  path: author.csv
   header_row_count: 1
   keys:
     - id
@@ -18,7 +19,7 @@ source:
 process:
   vid:
     plugin: default_value
-    default_value: category
+    default_value: author
   name: name
   path:
     -
@@ -33,6 +34,4 @@ process:
         - alias
 destination:
   plugin: 'entity:taxonomy_term'
-template: null
 migration_dependencies: {  }
-migration_group: migrate_source_example_csv

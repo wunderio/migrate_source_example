@@ -6,6 +6,7 @@ dependencies:
     - user
 id: migrate_source_example_csv_user
 migration_tags: null
+migration_group: migrate_source_example_csv
 label: Users
 source:
   plugin: migrate_source_example_csv
@@ -32,6 +33,4 @@ process:
       source: roles
 destination:
   plugin: 'entity:user'
-template: null
 migration_dependencies: {  }
-migration_group: migrate_source_example_csv

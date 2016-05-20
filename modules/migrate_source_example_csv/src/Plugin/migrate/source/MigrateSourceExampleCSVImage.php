@@ -7,7 +7,7 @@
 
 namespace Drupal\migrate_source_example_csv\Plugin\migrate\source;
 
-use Drupal\migrate\Entity\MigrationInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\MigrateException;
 use Drupal\migrate\Row;
 
