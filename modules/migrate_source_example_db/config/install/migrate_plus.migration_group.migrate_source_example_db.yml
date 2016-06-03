@@ -1,6 +1,8 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - migrate_source_example_db
 id: migrate_source_example_db
 label: 'Example migration from a dababase.'
 description: 'A few example migrations from custom (e.g., external) database tables.'
