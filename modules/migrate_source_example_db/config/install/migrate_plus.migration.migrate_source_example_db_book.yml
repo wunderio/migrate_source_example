@@ -2,15 +2,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - migrate.migration.migrate_source_example_db_author
-    - migrate.migration.migrate_source_example_db_category
-    - migrate.migration.migrate_source_example_db_image
-    - migrate.migration.migrate_source_example_db_user
+    - migrate_plus.migration.migrate_source_example_db_author
+    - migrate_plus.migration.migrate_source_example_db_category
+    - migrate_plus.migration.migrate_source_example_db_image
+    - migrate_plus.migration.migrate_source_example_db_user
   module:
     - migrate_source_example_db
     - node
 id: migrate_source_example_db_book
 migration_tags: null
+migration_group: migrate_source_example_db
 label: Books
 source:
   plugin: migrate_source_example_db_book
@@ -80,11 +81,9 @@ process:
         - alias
 destination:
   plugin: 'entity:node'
-template: null
 migration_dependencies:
   required:
     - migrate_source_example_db_user
     - migrate_source_example_db_author
     - migrate_source_example_db_category
     - migrate_source_example_db_image
-migration_group: migrate_source_example_db

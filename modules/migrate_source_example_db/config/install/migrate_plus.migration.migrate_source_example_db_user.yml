@@ -6,6 +6,7 @@ dependencies:
     - user
 id: migrate_source_example_db_user
 migration_tags: null
+migration_group: migrate_source_example_db
 label: Users
 source:
   plugin: migrate_source_example_db_user
@@ -34,6 +35,4 @@ process:
     default_value: 1
 destination:
   plugin: 'entity:user'
-template: null
 migration_dependencies: {  }
-migration_group: migrate_source_example_db

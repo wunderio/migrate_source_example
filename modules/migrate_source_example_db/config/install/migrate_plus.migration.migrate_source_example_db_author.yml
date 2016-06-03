@@ -4,19 +4,20 @@ dependencies:
   module:
     - migrate_source_example_db
     - taxonomy
-id: migrate_source_example_db_category
+id: migrate_source_example_db_author
 migration_tags: null
-label: Categories
+migration_group: migrate_source_example_db
+label: Authors
 source:
   plugin: migrate_source_example_db_taxonomy_attribute
-  attribute_type: attribute_category
+  attribute_type: attribute_authors
   constants:
-    path_prefix: category
+    path_prefix: author
     slash: /
 process:
   vid:
     plugin: default_value
-    default_value: category
+    default_value: author
   name: name
   path:
     -
@@ -33,6 +34,4 @@ process:
         - machine_name
 destination:
   plugin: 'entity:taxonomy_term'
-template: null
 migration_dependencies: {  }
-migration_group: migrate_source_example_db

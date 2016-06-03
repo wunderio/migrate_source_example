@@ -9,11 +9,10 @@ namespace Drupal\migrate_source_example\Plugin\migrate\process;
 
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\MigrateException;
-use Drupal\migrate\Plugin\MigratePluginManager;
+use Drupal\migrate\Plugin\MigrationPluginManagerInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
-use Drupal\migrate\Entity\MigrationInterface;
-use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -28,21 +27,21 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class FilterMigratedSourceValues extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The entity storage manager.
+   * The migration plugin manager.
    *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
+   * @var \Drupal\migrate\Plugin\MigrationPluginManagerInterface $migrationPluginManager
    */
-  protected $migrationStorage;
+  protected $migrationPluginManager;
 
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, EntityStorageInterface $storage, MigratePluginManager $process_plugin_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, MigrationPluginManagerInterface $migration_plugin_manager) {
     if (empty($configuration['migration']) || !is_string($configuration['migration'])) {
       throw new MigrateException('Migration is not defined or is not a string.');
     }
 
-    $this->migrationStorage = $storage;
+    $this->migrationPluginManager = $migration_plugin_manager;
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
 
@@ -55,8 +54,7 @@ class FilterMigratedSourceValues extends ProcessPluginBase implements ContainerF
       $plugin_id,
       $plugin_definition,
       $migration,
-      $container->get('entity.manager')->getStorage('migration'),
-      $container->get('plugin.manager.migrate.process')
+      $container->get('plugin.manager.migration')
     );
   }
 
@@ -70,6 +68,9 @@ class FilterMigratedSourceValues extends ProcessPluginBase implements ContainerF
       $value = [$value];
       $scalar = TRUE;
     }
+
+    // Trim values.
+    $value = array_map('trim', $value);
 
     foreach ($value as $key => $value_item) {
       // Unset the element in $value if it's not migrated in given migration.
@@ -94,13 +95,12 @@ class FilterMigratedSourceValues extends ProcessPluginBase implements ContainerF
    * @return bool
    */
   protected function destinationIdExists($value, $migration_name) {
-    $migrations = $this->migrationStorage->loadMultiple([$migration_name]);
-    /** @var MigrationInterface $migration */
-    foreach ($migrations as $migration_id => $migration) {
-      // If destination ID is found, return TRUE.
-      if ($destination_ids = $migration->getIdMap()->lookupDestinationID([$value])) {
-        return TRUE;
-      }
+    /** @var \Drupal\migrate\Plugin\MigrationInterface $migration */
+    $migration = $this->migrationPluginManager->createInstance($migration_name);
+
+    // If destination ID is found, return TRUE.
+    if ($destination_ids = $migration->getIdMap()->lookupDestinationID([$value])) {
+      return TRUE;
     }
 
     return FALSE;
