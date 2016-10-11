@@ -22,12 +22,10 @@ process:
       delimiter: ', '
       source: roles
     -
-      plugin: walk
-      process:
-        plugin: static_map
-        map:
-          1: administrator
-          2: editor
+      plugin: static_map
+      map:
+        1: administrator
+        2: editor
   mail: email
   init: email
   status:

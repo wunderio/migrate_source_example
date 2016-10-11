@@ -42,10 +42,8 @@ process:
       delimiter: ','
       source: category
     -
-      plugin: walk
-      process:
-        plugin: migration
-        migration: migrate_source_example_csv_category
+      plugin: migration
+      migration: migrate_source_example_csv_category
   field_cover:
     plugin: migration
     migration: migrate_source_example_csv_image
