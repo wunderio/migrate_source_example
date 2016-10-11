@@ -33,7 +33,10 @@ class MigrateSourceExampleCSV extends CSV {
     $csv_module_path = drupal_get_path('module', 'migrate_source_example_csv');
 
     $configuration['path'] = $csv_module_path . '/source/' . $configuration['path'];
-    $configuration['constants']['source_base_path'] = $base_module_path . '/source/images';
+
+    if (!empty($configuration['constants']['source_base_path'])) {
+      $configuration['constants']['source_base_path'] = $base_module_path . '/' . $configuration['constants']['source_base_path'];
+    }
 
     parent::__construct($configuration, $plugin_id, $plugin_definition, $migration);
   }

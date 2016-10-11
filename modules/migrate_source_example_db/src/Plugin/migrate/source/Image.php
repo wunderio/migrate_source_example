@@ -21,9 +21,15 @@ use Drupal\migrate\Row;
  */
 class Image extends SqlBase {
 
+  /**
+   * {@inheritdoc}
+   */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, StateInterface $state) {
     $base_module_path = drupal_get_path('module', 'migrate_source_example');
-    $configuration['constants']['source_base_path'] = $base_module_path . '/' . $configuration['constants']['source_base_path'];
+
+    if (!empty($configuration['constants']['source_base_path'])) {
+      $configuration['constants']['source_base_path'] = $base_module_path . '/' . $configuration['constants']['source_base_path'];
+    }
 
     parent::__construct($configuration, $plugin_id, $plugin_definition, $migration, $state);
   }
