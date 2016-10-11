@@ -7,14 +7,12 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://packagist.drupal-composer.org"
+            "url": "https://packages.drupal.org/8"
         }
     ],
     "require": {
-        "drupal/migrate_source_csv": "8.1.*@dev",
-        "drupal/migrate_source_xml": "8.1.*@dev",
-        "drupal/migrate_plus": "8.1.0-beta1",
-        "drupal/migrate_tools": "8.1.0-beta1",
-        "drupal/migrate_source_json": "8.1.*@dev"
+        "drupal/migrate_source_csv": "2.x-dev",
+        "drupal/migrate_plus": "2.x-dev",
+        "drupal/migrate_tools": "2.x-dev"
     }
 }
