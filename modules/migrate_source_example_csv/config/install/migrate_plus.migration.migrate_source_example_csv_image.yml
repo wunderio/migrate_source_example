@@ -9,24 +9,37 @@ migration_tags: null
 migration_group: migrate_source_example_csv
 label: Image
 source:
-  plugin: migrate_source_example_csv_image
-  source_base_path: source/images
+  plugin: migrate_source_example_csv
   path: image.csv
   header_row_count: 1
   keys:
     - id
   constants:
-    file_scheme: 'public://'
+    source_base_path: 'source/images'
+    destination_base_path: 'public://'
 process:
-  filename: filename
-  uri:
+  # Prepare full path of the source.
+  source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/source_base_path
+        - filename
+    -
+      plugin: urlencode
+  # Prepare full path of the destination.
+  destination_full_path:
     plugin: concat
-    delimiter: ''
+    delimiter: /
     source:
-      - constants/file_scheme
+      - constants/destination_base_path
       - filename
+  uri:
+    plugin: file_copy
+    source:
+      - '@source_full_path'
+      - '@destination_full_path'
 destination:
   plugin: 'entity:file'
-  destination_path_property: uri
-  source_path_property: full_path
 migration_dependencies: {  }
