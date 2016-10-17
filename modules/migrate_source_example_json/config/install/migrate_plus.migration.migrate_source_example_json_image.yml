@@ -6,32 +6,52 @@ dependencies:
     - file
 id: migrate_source_example_json_image
 migration_tags: null
+migration_group: migrate_source_example_json
 label: Images
 source:
-  plugin: migrate_source_example_json_image
-  path: '/json/images'
-  source_base_path: source/images
-  headers:
-    Accept: 'application/json'
-  identifier: id
-  identifierDepth: 1
+  plugin: migrate_source_example_url_image
+  data_fetcher_plugin: http
+  data_parser_plugin: json
+  urls: /json/images
+  item_selector: images
+  ids:
+    image_id:
+      type: integer
   constants:
-    file_scheme: 'public://'
+    source_base_path: 'source/images'
+    destination_base_path: 'public://'
   fields:
-    id: Image ID
-    filename: Image name
+    -
+      name: image_id
+      label: 'ID of the image'
+      selector: id
+    -
+      name: image_filename
+      label: 'Filename of the image'
+      selector: filename
 process:
-  filename: filename
-  uri:
+  # Prepare full path of the source.
+  source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/source_base_path
+        - image_filename
+    -
+      plugin: urlencode
+  # Prepare full path of the destination.
+  destination_full_path:
     plugin: concat
-    delimiter: ''
+    delimiter: /
     source:
-      - constants/file_scheme
-      - filename
+      - constants/destination_base_path
+      - image_filename
+  uri:
+    plugin: file_copy
+    source:
+      - '@source_full_path'
+      - '@destination_full_path'
 destination:
   plugin: 'entity:file'
-  destination_path_property: uri
-  source_path_property: full_path
-template: null
 migration_dependencies: {  }
-migration_group: migrate_source_example_json

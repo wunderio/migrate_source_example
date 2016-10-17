@@ -6,32 +6,47 @@ dependencies:
     - user
 id: migrate_source_example_json_user
 migration_tags: null
+migration_group: migrate_source_example_json
 label: Users
 source:
-  plugin: migrate_source_example_json
-  path: '/json/users'
-  headers:
-    Accept: 'application/json'
-  identifier: id
-  identifierDepth: 1
+  plugin: migrate_source_example_url
+  data_fetcher_plugin: http
+  data_parser_plugin: json
+  urls: /json/users
+  item_selector: users
+  ids:
+    user_id:
+      type: integer
+  constants:
+    slash: '/'
   fields:
-    id: User ID
-    name: Name
-    roles: User Roles
-    email: User email
+    -
+      name: user_id
+      label: 'ID of the user'
+      selector: id
+    -
+      name: user_name
+      label: 'Name of the user'
+      selector: name
+    -
+      name: user_roles
+      label: 'Roles of the user'
+      selector: roles
+    -
+      name: user_email
+      label: 'Email of the user'
+      selector: email
 process:
-  name: name
+  name: user_name
   roles:
       plugin: explode
       delimiter: ','
-      source: roles
-  mail: email
-  init: email
+      source: user_roles
+  mail: user_email
+  init: user_email
   status:
     plugin: default_value
     default_value: 1
 destination:
   plugin: 'entity:user'
-template: null
 migration_dependencies: {  }
-migration_group: migrate_source_example_json

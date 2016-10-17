@@ -8,4 +8,3 @@ dependencies:
   - migrate_source_example_setup
   - migrate_plus
   - migrate_tools
-  - migrate_source_json

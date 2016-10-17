@@ -6,35 +6,45 @@ dependencies:
     - taxonomy
 id: migrate_source_example_json_author
 migration_tags: null
+migration_group: migrate_source_example_json
 label: Authors
 source:
-  plugin: migrate_source_example_json
-  path: '/json/attributes'
-  headers:
-    Accept: 'application/json'
-  identifier: id
-  identifierDepth: 0
-  root_element: 'author'
+  plugin: migrate_source_example_url
+  data_fetcher_plugin: http
+  data_parser_plugin: json
+  urls: /json/attributes
+  item_selector: author
+  ids:
+    author_id:
+      type: integer
   constants:
-    slash: /
+    slash: '/'
   fields:
-    name: Name
-    id: Attribute ID
-    alias: Attribute alias
+    -
+      name: author_id
+      label: 'ID of the author'
+      selector: id
+    -
+      name: author_name
+      label: 'Name of the author'
+      selector: name
+    -
+      name: author_alias
+      label: 'Alias of the author'
+      selector: alias
 process:
   vid:
     plugin: default_value
     default_value: author
-  name: name
+  name: author_name
   path:
     -
       plugin: concat
       delimiter: null
       source:
+        # Slash needs to be prefixed for the path.
         - constants/slash
-        - alias
+        - author_alias
 destination:
   plugin: 'entity:taxonomy_term'
-template: null
 migration_dependencies: {  }
-migration_group: migrate_source_example_json
