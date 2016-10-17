@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_source_example_csv
+id: migrate_source_example_csv
+label: 'Example migration from CSV files.'
+description: 'A few example migrations from CSV files.'
+source_type: 'CSV files'
+module: null
+shared_configuration:
+  source:
+    key: default
