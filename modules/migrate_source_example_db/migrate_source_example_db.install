@@ -27,6 +27,7 @@ function migrate_source_example_db_install() {
   migrate_source_example_db_data_attributes();
   migrate_source_example_db_data_files();
   migrate_source_example_db_data_books();
+  \Drupal::entityDefinitionUpdateManager()->applyUpdates();
 }
 
 /**
