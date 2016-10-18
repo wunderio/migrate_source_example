@@ -22,7 +22,6 @@ process:
     plugin: default_value
     default_value: book
   langcode: langcode
-  field_book_id: bid
   nid:
     -
       plugin: skip_on_empty

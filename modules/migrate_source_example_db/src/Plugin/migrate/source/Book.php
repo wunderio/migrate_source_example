@@ -53,21 +53,38 @@ class Book extends SqlBase {
     return array(
       'id' => array(
         'type' => 'integer',
-        'alias' => 'b',
+      ),
+      // Store book ID in map to have a reference for translations.
+      // See self::prepareRow()
+      'bid' => array(
+        'type' => 'integer',
       ),
     );
   }
 
-  function prepareRow(Row $row){
-    $query = \Drupal::database()->select('node__field_book_id', 'fbi');
-    $query->addField('fbi', 'entity_id');
-    $query->condition('fbi.field_book_id_value', $row->getSourceProperty('bid'));
-    $id = $query->execute()->fetchField();
-    if(empty($id)){
-      return parent::prepareRow($row);
+  /**
+   * Attaches "nid" property to a row if row "bid" points to a
+   *
+   * @param \Drupal\migrate\Row $row
+   *
+   * @return bool
+   * @throws \Exception
+   */
+  function prepareRow(Row $row) {
+    static $destinationNidIndex;
+
+    // Get the index of "nid" field for destination on the migration map.
+    if (!isset($destinationNidIndex)) {
+      $ids = $this->migration->getDestinationPlugin()->getIds();
+      $destinationNidIndex = array_search('nid', array_keys($ids));
     }
 
-    $row->setSourceProperty('nid', $id);
+    // Check the map if other translation has been imported. Query is done by
+    // "bid" key which is mapped for this source.
+    if ($destination = $this->idMap->lookupDestinationIds(['bid' => $row->getSourceProperty('bid')])) {
+      $destination = reset($destination);
+      $row->setSourceProperty('nid', $destination[$destinationNidIndex]);
+    }
 
     return parent::prepareRow($row);
   }
