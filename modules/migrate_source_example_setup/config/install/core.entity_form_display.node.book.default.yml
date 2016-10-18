@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.book.field_author
     - field.field.node.book.field_category
     - field.field.node.book.field_cover
+    - image.style.thumbnail
     - node.type.book
   module:
     - image
@@ -52,6 +53,11 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+  langcode:
+    type: language_select
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
     weight: 30

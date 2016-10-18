@@ -8,6 +8,7 @@
 namespace Drupal\migrate_source_example_db\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\migrate\source\SqlBase;
+use Drupal\migrate\Row;
 
 /**
  * Extract users from database.
@@ -24,7 +25,7 @@ class Book extends SqlBase {
    */
   public function query() {
     return $this->select('migrate_source_example_db_books', 'b')
-      ->fields('b', array('bid', 'title',  'body', 'body_format', 'image', 'attributes', 'user', 'created', 'alias'));
+      ->fields('b', array('id', 'bid', 'langcode', 'title',  'body', 'body_format', 'image', 'attributes', 'user', 'created', 'alias'));
   }
 
   /**
@@ -32,6 +33,7 @@ class Book extends SqlBase {
    */
   public function fields() {
     $fields['bid'] = $this->t('Bid');
+    $fields['langcode'] = $this->t('Langcode');
     $fields['title'] = $this->t('Title');
     $fields['body'] = $this->t('Body');
     $fields['body_format'] = $this->t('Body format');
@@ -49,11 +51,25 @@ class Book extends SqlBase {
    */
   public function getIds() {
     return array(
-      'bid' => array(
+      'id' => array(
         'type' => 'integer',
         'alias' => 'b',
       ),
     );
+  }
+
+  function prepareRow(Row $row){
+    $query = \Drupal::database()->select('node__field_book_id', 'fbi');
+    $query->addField('fbi', 'entity_id');
+    $query->condition('fbi.field_book_id_value', $row->getSourceProperty('bid'));
+    $id = $query->execute()->fetchField();
+    if(empty($id)){
+      return parent::prepareRow($row);
+    }
+
+    $row->setSourceProperty('nid', $id);
+
+    return parent::prepareRow($row);
   }
 
 }

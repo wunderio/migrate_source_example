@@ -156,7 +156,7 @@ function migrate_source_example_db_schema_files() {
 /**
  * Defines schema for migrate_source_example_db_books table.
  *
- * Defines migrate_source_example_db_books table schema with bid (unique),
+ * Defines migrate_source_example_db_books table schema with id (unique), bid, langcode,
  * title, body, body_format, image, attributes, user, created and alias fields.
  *
  * @return array
@@ -164,10 +164,21 @@ function migrate_source_example_db_schema_files() {
 function migrate_source_example_db_schema_books() {
   return array(
     'fields' => array(
+      'id' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Entry ID',
+      ),
       'bid' => array(
         'type' => 'int',
         'not null' => TRUE,
         'description' => 'Book ID',
+      ),
+      'langcode' => array(
+        'type' => 'varchar',
+        'length' => 5,
+        'not null' => TRUE,
+        'description' => 'Langcode',
       ),
       'title' => array(
         'type' => 'varchar',
@@ -216,7 +227,7 @@ function migrate_source_example_db_schema_books() {
       ),
     ),
     'unique keys' => array(
-      'fid' => array('bid'),
+      'fid' => array('id'),
     ),
   );
 }
@@ -295,26 +306,27 @@ function migrate_source_example_db_data_files() {
  * Create content for migrate_source_example_db_books table.
  */
 function migrate_source_example_db_data_books() {
-  $fields = array('bid', 'title', 'body', 'body_format', 'image', 'attributes', 'user', 'created', 'alias');
+  $fields = array('id', 'bid', 'langcode', 'title', 'body', 'body_format', 'image', 'attributes', 'user', 'created', 'alias');
   $query = Database::getConnection()->insert('migrate_source_example_db_books')
     ->fields($fields);
 
   $data = array(
-    array(1, 'Casino Royale', 'M,
+    array(1, 1, 'en', 'Casino Royale', 'M,
       the Head of the British Secret Service,
       assigns James Bond, 007,
       to play against and bankrupt Le Chiffre,
       the paymaster for a SMERSH-controlled trade union,
       in a high-stakes baccarat game at the Royale-les-Eaux casino in northern France.', '1', 1, '1, 4', 3, '2015-04-02 21:00:00', 'casino-royale'),
-    array(2, 'Live and Let Die', '<p>The British Secret Service agent James Bond is sent by his superior, M, to New York City to investigate "Mr Big", real name Buonaparte Ignace Gallia.</p>', '2', 2, '1, 4', 3, '2015-05-24 16:30:00', 'live-and-let-die'),
-    array(3, 'Moonraker', "<p>The British Secret Service agent James Bond is asked by his superior, M, to join him at M's club, Blades.</p>", '2', 3, '1, 4', 3, '2015-06-01 17:25:00', 'moonraker'),
-    array(4, 'Diamonds Are Forever', "<p>The British Secret Service agent James Bond is sent on an assignment by his superior, M.</p>", '2', 4, '1, 4', 3, '2015-06-14 09:45:00', 'diamonds-are-forever'),
-    array(5, 'The Bourne Identity', '<p>The preface of the novel consists of two real-life newspaper articles from 1975 about terrorist Ilich Ramírez Sánchez, known as "Carlos the Jackal."</p>', '2', 5, '2, 4', 1, '2015-06-15 12:00:00', 'the-bourne-identity'),
-    array(6, 'The Bourne Supremacy', "<p>The story of The Bourne Supremacy is set during the British negotiated handover of Hong Kong to the People's Republic of China on the expiration of its ninety-nine-year lease on the New Territories.</p>", '2', 6, '2, 4', 1, '2015-06-25 14:45:00', 'the-bourne-supremacy'),
-    array(7, 'The Bourne Ultimatum', "<p>The novel follows David Webb, alias Jason Bourne, as he works to find his old enemy, Carlos the Jackal, who is trying to kill him.</p>", '2', 7, '2, 4', 1, '2015-07-07 16:15:00', 'the-bourne-ultimatum'),
-    array(8, 'The Fellowship of the Ring', "<p>Thousands of years before the events of the novel, the Dark Lord Sauron had forged the One Ring to rule the other Rings of Power and corrupt those who wear them: the leaders of Men, Elves and Dwarves.</p>", '2', 8, '3, 5, 6', 2, '2015-07-14 18:30:00', ''),
-    array(9, 'The Two Towers', "<p>Orcs sent by Saruman and Sauron kill Boromir and kidnap Merry and Pippin. After agonizing over which pair of hobbits to follow, Aragorn, Gimli and Legolas pursue the orcs bearing Merry and Pippin to Saruman.</p>", '2', 9, '3, 5 ,6', 2, '2015-07-18 20:45:00', ''),
-    array(10, 'The Return of the King', "<p>Sauron unleashes a heavy assault upon Gondor. Gandalf arrives at Minas Tirith to alert Denethor of the impending attack.</p>", '2', 10, '3, 5, 6', 2, '2015-07-28 09:15:00', ''),
+    array(2, 2, 'en', 'Live and Let Die', '<p>The British Secret Service agent James Bond is sent by his superior, M, to New York City to investigate "Mr Big", real name Buonaparte Ignace Gallia.</p>', '2', 2, '1, 4', 3, '2015-05-24 16:30:00', 'live-and-let-die'),
+    array(3, 3, 'en', 'Moonraker', "<p>The British Secret Service agent James Bond is asked by his superior, M, to join him at M's club, Blades.</p>", '2', 3, '1, 4', 3, '2015-06-01 17:25:00', 'moonraker'),
+    array(4, 4, 'en', 'Diamonds Are Forever', "<p>The British Secret Service agent James Bond is sent on an assignment by his superior, M.</p>", '2', 4, '1, 4', 3, '2015-06-14 09:45:00', 'diamonds-are-forever'),
+    array(5, 5, 'en', 'The Bourne Identity', '<p>The preface of the novel consists of two real-life newspaper articles from 1975 about terrorist Ilich Ramírez Sánchez, known as "Carlos the Jackal."</p>', '2', 5, '2, 4', 1, '2015-06-15 12:00:00', 'the-bourne-identity'),
+    array(6, 6, 'en', 'The Bourne Supremacy', "<p>The story of The Bourne Supremacy is set during the British negotiated handover of Hong Kong to the People's Republic of China on the expiration of its ninety-nine-year lease on the New Territories.</p>", '2', 6, '2, 4', 1, '2015-06-25 14:45:00', 'the-bourne-supremacy'),
+    array(7, 7, 'en', 'The Bourne Ultimatum', "<p>The novel follows David Webb, alias Jason Bourne, as he works to find his old enemy, Carlos the Jackal, who is trying to kill him.</p>", '2', 7, '2, 4', 1, '2015-07-07 16:15:00', 'the-bourne-ultimatum'),
+    array(8, 8, 'en', 'The Fellowship of the Ring', "<p>Thousands of years before the events of the novel, the Dark Lord Sauron had forged the One Ring to rule the other Rings of Power and corrupt those who wear them: the leaders of Men, Elves and Dwarves.</p>", '2', 8, '3, 5, 6', 2, '2015-07-14 18:30:00', ''),
+    array(9, 9, 'en', 'The Two Towers', "<p>Orcs sent by Saruman and Sauron kill Boromir and kidnap Merry and Pippin. After agonizing over which pair of hobbits to follow, Aragorn, Gimli and Legolas pursue the orcs bearing Merry and Pippin to Saruman.</p>", '2', 9, '3, 5 ,6', 2, '2015-07-18 20:45:00', ''),
+    array(10, 10, 'en', 'The Return of the King', "<p>Sauron unleashes a heavy assault upon Gondor. Gandalf arrives at Minas Tirith to alert Denethor of the impending attack.</p>", '2', 10, '3, 5, 6', 2, '2015-07-28 09:15:00', ''),
+    array(11, 9, 'lv', 'Divi torņi', "<p>Tiklīdz gredzens atgriezīsies pie tā kaldinātāja, Tumsas pavēlnieka Saurona, tas iegūs spēku paverdzināt visu pasauli.</p>", '2', 9, '3, 5 ,6', 2, '2015-07-18 20:45:00', ''),
   );
 
   foreach ($data as $row) {

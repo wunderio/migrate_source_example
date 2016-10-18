@@ -3,17 +3,17 @@ status: true
 dependencies:
   config:
     - node.type.book
-id: node.book.promote
-field_name: promote
+id: node.book.status
+field_name: status
 entity_type: node
 bundle: book
-label: 'Promoted to front page'
-description: ''
+label: 'Publishing status'
+description: 'A boolean indicating whether the node is published.'
 required: false
 translatable: false
 default_value:
   -
-    value: 0
+    value: 1
 default_value_callback: ''
 settings:
   on_label: 'On'

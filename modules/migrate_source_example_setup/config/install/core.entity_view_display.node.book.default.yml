@@ -45,4 +45,5 @@ content:
     third_party_settings: {  }
     type: image
 hidden:
+  langcode: true
   links: true

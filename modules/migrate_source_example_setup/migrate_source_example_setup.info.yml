@@ -3,3 +3,6 @@ type: module
 description: Provides default configuration for migration example modules.
 core: 8.x
 package: Migration
+dependencies:
+  - language
+  - content_translation

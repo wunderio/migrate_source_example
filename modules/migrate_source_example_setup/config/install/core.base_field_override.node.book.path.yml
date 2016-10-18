@@ -3,19 +3,17 @@ status: true
 dependencies:
   config:
     - node.type.book
-id: node.book.promote
-field_name: promote
+  module:
+    - path
+id: node.book.path
+field_name: path
 entity_type: node
 bundle: book
-label: 'Promoted to front page'
+label: 'URL alias'
 description: ''
 required: false
 translatable: false
-default_value:
-  -
-    value: 0
+default_value: {  }
 default_value_callback: ''
-settings:
-  on_label: 'On'
-  off_label: 'Off'
-field_type: boolean
+settings: {  }
+field_type: path

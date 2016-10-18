@@ -21,6 +21,13 @@ process:
   type:
     plugin: default_value
     default_value: book
+  langcode: langcode
+  field_book_id: bid
+  nid:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: nid
   uid:
     plugin: migration
     migration: migrate_source_example_db_user
@@ -77,6 +84,7 @@ process:
         - alias
 destination:
   plugin: 'entity:node'
+  translations: true
 migration_dependencies:
   required:
     - migrate_source_example_db_user
