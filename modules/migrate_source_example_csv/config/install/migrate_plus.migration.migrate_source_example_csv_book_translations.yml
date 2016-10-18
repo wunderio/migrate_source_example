@@ -9,19 +9,20 @@ dependencies:
   module:
     - migrate_source_example_csv
     - node
-id: migrate_source_example_csv_book
+id: migrate_source_example_csv_book_translations
 migration_tags: null
 migration_group: migrate_source_example_csv
-label: Books
+label: Books (translations)
 source:
   plugin: migrate_source_example_csv
-  path: book.csv
+  path: book_translations.csv
   header_row_count: 1
   keys:
     - id
   constants:
     slash: /
 process:
+  nid: id
   type:
     plugin: default_value
     default_value: book
@@ -32,9 +33,7 @@ process:
   title: title
   body/value: body
   body/format: body_format
-  langcode:
-    plugin: default_value
-    default_value: en
+  langcode: language
   field_author:
     plugin: migration
     migration: migrate_source_example_csv_author
@@ -69,9 +68,11 @@ process:
         - alias
 destination:
   plugin: 'entity:node'
+  translations: true
 migration_dependencies:
   required:
     - migrate_source_example_csv_user
     - migrate_source_example_csv_author
     - migrate_source_example_csv_category
     - migrate_source_example_csv_image
+    - migrate_source_example_csv_book
