@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file migrate_source_example_setup.install
+ */
+
+use Drupal\Core\Entity\EntityStorageException;
+
+/**
+ * Implements hook_install().
+ */
+function migrate_source_example_setup_install() {
+  try {
+    \Drupal::entityDefinitionUpdateManager()->applyUpdates();
+  }
+  catch (EntityStorageException $e) {
+     watchdog_exception('migrate_source_example_setup', $e);
+  }
+}
