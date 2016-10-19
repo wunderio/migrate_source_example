@@ -11,8 +11,8 @@
         }
     ],
     "require": {
-        "drupal/migrate_source_csv": "^2@.0-rc2",
-        "drupal/migrate_plus": "^3.0-beta1",
-        "drupal/migrate_tools": "^3.0-beta1"
+        "drupal/migrate_source_csv": "^2.0.0-rc2",
+        "drupal/migrate_plus": "^3.0.0-beta1",
+        "drupal/migrate_tools": "^3.0.0-beta1"
     }
 }
