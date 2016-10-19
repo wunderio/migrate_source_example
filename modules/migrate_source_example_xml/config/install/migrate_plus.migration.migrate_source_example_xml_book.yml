@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - migrate.migration.migrate_source_example_xml_author
-    - migrate.migration.migrate_source_example_xml_category
-    - migrate.migration.migrate_source_example_xml_image
-    - migrate.migration.migrate_source_example_xml_user
+    - migrate_plus.migration.migrate_source_example_xml_author
+    - migrate_plus.migration.migrate_source_example_xml_category
+    - migrate_plus.migration.migrate_source_example_xml_image
+    - migrate_plus.migration.migrate_source_example_xml_user
   module:
     - migrate_source_example_xml
     - node

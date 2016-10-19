@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate_source_example_xml
+id: migrate_source_example_xml
+label: 'Example migration from XML files.'
+description: 'A few example migrations from XML files.'
+source_type: 'XML files'
+module: null
+shared_configuration:
+  # Specifying 'source' here means that this configuration will be merged into
+  # the 'source' configuration of each migration.
+  source:
+    # A better practice for real-world migrations would be to add a database
+    # connection to your external database in settings.php and reference its
+    # key here.
+    key: default
