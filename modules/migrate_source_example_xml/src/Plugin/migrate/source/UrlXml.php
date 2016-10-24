@@ -1,21 +1,22 @@
 <?php
 
-namespace Drupal\migrate_source_example\Plugin\migrate\source;
+namespace Drupal\migrate_source_example_xml\Plugin\migrate\source;
 
 use Drupal\migrate\MigrateException;
+use Drupal\migrate_source_example\Plugin\migrate\source\Url as MigrateSourceExampleUrl;
 use Drupal\migrate\Plugin\MigrationInterface;
 
 /**
- * A source class for Url resources that deal with images.
+ * A source class for XML files.
  *
  * @MigrateSource(
- *   id = "migrate_source_example_url_image"
+ *   id = "migrate_source_example_url_xml"
  * )
  */
-class UrlImage extends Url {
+class UrlXml extends MigrateSourceExampleUrl {
 
   /**
-   * UrlImage constructor.
+   * UrlXml constructor.
    *
    * @param array $configuration
    * @param string $plugin_id
@@ -25,11 +26,6 @@ class UrlImage extends Url {
    * @throws MigrateException
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration) {
-    // Image migrations need absolute location of the image storage.
-    if (!empty($configuration['constants']['source_base_path'])) {
-      $configuration['constants']['source_base_path'] = drupal_get_path('module', 'migrate_source_example') . '/' . $configuration['constants']['source_base_path'];
-    }
-
     // Add migration provider.
     $configuration['provider'] = 'migrate_source_example_xml';
 

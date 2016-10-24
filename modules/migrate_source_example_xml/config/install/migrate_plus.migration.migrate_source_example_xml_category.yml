@@ -8,36 +8,41 @@ id: migrate_source_example_xml_category
 migration_tags: null
 label: Categories
 source:
-  plugin: migrate_source_example_xml
-  # This specifies which XML files provide the data.
+  plugin: migrate_source_example_url_xml
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
   urls:
     - source/attributes.xml
-  # This specifies which XML nodes are to be iterated on.
-  element_query: '/book_attributes/attribute[@type="attribute_category"]'
-  # This specifies which XML node element defines the identificator of the source row.
-  id_query: '@aid'
-  # This specifies the fields on the source row.
-  fields:
-    text(): Name
-    '@aid': 'Attribute ID'
-    '@type': 'Attribute type'
-    '@machine_name': 'Attribute machine name'
-  # This specifies the keys which allow uniquely identify the source row.
-  keys:
-    - '@aid'
+  item_selector: '/book_attributes/attribute[@type="attribute_category"]'
+  ids:
+    category_id:
+      type: integer
   constants:
     path_prefix: category
-    slash: /
+    slash: '/'
+  fields:
+    -
+      name: category_id
+      label: 'ID of the category'
+      selector: '@aid'
+    -
+      name: category_name
+      label: 'Name of the category'
+      selector: 'text()'
+    -
+      name: category_alias
+      label: 'Alias of the category'
+      selector: '@machine_name'
 process:
   vid:
     plugin: default_value
     default_value: category
-  name: text()
+  name: category_name
   path:
     -
       plugin: skip_on_empty
       method: process
-      source: '@@machine_name'
+      source: category_alias
     -
       plugin: concat
       delimiter: null
@@ -45,7 +50,7 @@ process:
         - constants/slash
         - constants/path_prefix
         - constants/slash
-        - '@@machine_name'
+        - category_alias
 destination:
   plugin: 'entity:taxonomy_term'
 template: null

@@ -8,38 +8,50 @@ id: migrate_source_example_xml_user
 migration_tags: null
 label: 'User migration from xml file'
 source:
-  plugin: migrate_source_example_xml
+  plugin: migrate_source_example_url_xml
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
   urls:
     - source/users.xml
-  element_query: /users/user
-  id_query: '@id'
+  item_selector: '/users/user'
+  ids:
+    user_id:
+      type: integer
   fields:
-    text(): name
-    '@id': 'User id'
-    '@email': 'User email'
-    '@roles': 'User roles'
-  keys:
-    - '@id'
+    -
+      name: user_id
+      label: 'ID of the user'
+      selector: '@id'
+    -
+      name: user_name
+      label: 'Name of the user'
+      selector: 'text()'
+    -
+      name: user_email
+      label: 'Email of the user'
+      selector: '@email'
+    -
+      name: user_roles
+      label: 'Roles of the user'
+      selector: '@roles'
 process:
   name:
     plugin: dedupe_entity
     field: name
     entity_type: user
-    source: text()
+    source: user_name
   roles:
     -
       plugin: explode
       delimiter: ':'
-      source: '@@roles'
+      source: user_roles
     -
-      plugin: walk
-      process:
-        plugin: static_map
-        map:
-          1: administrator
-          2: editor
-  mail: '@@email'
-  init: '@@email'
+      plugin: static_map
+      map:
+        1: administrator
+        2: editor
+  mail: user_email
+  init: user_email
   status:
     plugin: default_value
     default_value: 1

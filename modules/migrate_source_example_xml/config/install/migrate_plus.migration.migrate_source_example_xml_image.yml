@@ -8,31 +8,52 @@ id: migrate_source_example_xml_image
 migration_tags: null
 label: 'Image migration from xml file'
 source:
-  plugin: migrate_source_example_xml_image
-  source_base_path: source/images
+  plugin: migrate_source_example_url_image
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
   urls:
     - source/books.xml
-  element_query: /books/media_resources/media
-  id_query: '@mid'
-  fields:
-    '@mid': 'Image ID'
-    '@filename': 'Image Filename'
-  keys:
-    - '@mid'
+  item_selector: '/books/media_resources/media'
+  ids:
+    image_id:
+      type: integer
   constants:
-    file_scheme: 'public://'
+    source_base_path: 'source/images'
+    destination_base_path: 'public://'
+  fields:
+    -
+      name: image_id
+      label: 'ID of the image'
+      selector: '@mid'
+    -
+      name: image_filename
+      label: 'Filename of the image'
+      selector: '@filename'
 process:
-  filename: '@@filename'
-  uri:
+  # Prepare full path of the source.
+  source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/source_base_path
+        - image_filename
+    -
+      plugin: urlencode
+  # Prepare full path of the destination.
+  destination_full_path:
     plugin: concat
-    delimiter: ''
+    delimiter: /
     source:
-      - constants/file_scheme
-      - '@@filename'
+      - constants/destination_base_path
+      - image_filename
+  uri:
+    plugin: file_copy
+    source:
+      - '@source_full_path'
+      - '@destination_full_path'
 destination:
   plugin: 'entity:file'
-  destination_path_property: uri
-  source_path_property: full_path
 template: null
 migration_dependencies: {  }
 migration_group: migrate_source_example_xml

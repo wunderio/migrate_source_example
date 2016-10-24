@@ -13,35 +13,58 @@ id: migrate_source_example_xml_book
 migration_tags: null
 label: Books
 source:
-  plugin: migrate_source_example_xml
+  plugin: migrate_source_example_url_xml
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
   urls:
     - source/books.xml
-  element_query: /books/books/book
-  id_query: bid
-  fields:
-    bid: 'Book ID'
-    title: Title
-    body: Body
-    body_format: 'Body Format'
-    attributes: 'Author and Categories'
-    # Below the alternative way to define field location is used, i.e., using explicit "xpath" declaration.
-    media:
-      xpath: media
-      description: 'Image ID'
-    user:
-      xpath: user
-      description: 'User ID'
-    created_on:
-      xpath: created_on
-      description: Created
-    alias:
-      xpath: alias
-      description: Alias
-  # This specifies the keys which allow uniquely identify the source row.
-  keys:
-    - bid
+  item_selector: '/books/books/book'
+  ids:
+    book_id:
+      type: integer
   constants:
-    slash: /
+    slash: '/'
+  fields:
+    -
+      name: book_id
+      label: 'ID of the book'
+      selector: bid
+    -
+      name: book_title
+      label: 'Title of the book'
+      selector: title
+    -
+      name: book_body
+      label: 'Body of the book'
+      selector: body
+    -
+      name: book_body_format
+      label: 'Format of the body'
+      selector: body_format
+    -
+      name: book_image
+      label: 'Image of the book'
+      selector: image
+    -
+      name: book_attributes
+      label: 'Authors and categories of the book'
+      selector: attributes
+    -
+      name: book_images
+      label: 'Images of the book'
+      selector: media
+    -
+      name: book_user_id
+      label: 'System creator of the book'
+      selector: user
+    -
+      name: book_created
+      label: 'Time created'
+      selector: created_on
+    -
+      name: book_alias
+      label: 'Alias of the book'
+      selector: alias
 process:
   type:
     plugin: default_value
@@ -49,12 +72,12 @@ process:
   uid:
     plugin: migration
     migration: migrate_source_example_xml_user
-    source: user
-  title: title
-  body/value: body
+    source: book_user_id
+  title: book_title
+  body/value: book_body
   body/format:
     plugin: static_map
-    source: body_format
+    source: book_body_format
     map:
       1: plain_text
       2: basic_html
@@ -62,16 +85,16 @@ process:
     -
       plugin: explode
       delimiter: '|'
-      source: attributes
+      source: book_attributes
     -
       plugin: extract
-      key: 0
+      index: 0
     -
       plugin: explode
       delimiter: ':'
     -
       plugin: extract
-      key: 1
+      index: 1
     -
       plugin: explode
       delimiter: ','
@@ -85,16 +108,16 @@ process:
     -
       plugin: explode
       delimiter: '|'
-      source: attributes
+      source: book_attributes
     -
       plugin: extract
-      key: 1
+      index: 1
     -
       plugin: explode
       delimiter: ':'
     -
       plugin: extract
-      key: 1
+      index: 1
     -
       plugin: explode
       delimiter: ','
@@ -102,24 +125,22 @@ process:
       plugin: filter_migrated_source_values
       migration: migrate_source_example_xml_category
     -
-      plugin: walk
-      process:
-        plugin: migration
-        migration: migrate_source_example_xml_category
+      plugin: migration
+      migration: migrate_source_example_xml_category
   field_cover:
     plugin: migration
     migration: migrate_source_example_xml_image
-    source: media
+    source: book_images
   created:
     plugin: format_date
     format: U
-    source: created_on
+    source: book_created
   changed: '@created'
   path:
     -
       plugin: skip_on_empty
       method: process
-      source: alias
+      source: book_alias
     -
       plugin: concat
       delimiter: null

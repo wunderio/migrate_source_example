@@ -37,14 +37,28 @@ class Url extends MigratePlusSourceUrl {
       $configuration['urls'] = [$configuration['urls']];
     }
 
-    // Source URLs can be defined as relative. In that case current website's
-    // base path is attached to it.
-    $urlAssembler = \Drupal::service('unrouted_url_assembler');
-    foreach ($configuration['urls'] as &$url) {
-      if (!UrlHelper::isExternal($url)) {
-        $url = $urlAssembler->assemble('base:' . $url, array('absolute' => TRUE));
+    // If source is served via HTTP, point the URLs to the webroot of the site.
+    if ($configuration['data_fetcher_plugin'] == 'http') {
+      // Source URLs can be defined as relative. In that case current website's
+      // base path is attached to it.
+      $urlAssembler = \Drupal::service('unrouted_url_assembler');
+
+      foreach ($configuration['urls'] as &$url) {
+        if (!UrlHelper::isExternal($url)) {
+          $url = $urlAssembler->assemble('base:' . $url, array('absolute' => TRUE));
+        }
       }
     }
+    // If source is in files, point the URLs to absolute file path.
+    elseif ($configuration['data_fetcher_plugin'] == 'file') {
+      $fileSystem = \Drupal::service('file_system');
+
+      foreach ($configuration['urls'] as &$url) {
+        $module_path = !empty($configuration['provider']) ? drupal_get_path('module', $configuration['provider']) : '';
+        $url = 'file://' . $fileSystem->realpath($module_path . '/' . $url);
+      }
+    }
+
 
     parent::__construct($configuration, $plugin_id, $plugin_definition, $migration);
   }
