@@ -26,8 +26,7 @@ Currently the project features migrations from following sources:
 2. Enable `migrate_source_example_csv` module (`drush en migrate_source_example_csv`).
 
 ### Installation of XML migration example module
-1. Download `migrate_source_xml` contrib module into `modules/contrib/migrate_source_xml` (see [instructions](https://www.drupal.org/project/migrate_source_xml/git-instructions)).
-2. Enable `migrate_source_example_xml` module (`drush en migrate_source_example_xml`).
+1. Enable `migrate_source_example_xml` module (`drush en migrate_source_example_xml`).
 
 ### Installation of JSON migration example module
 1. Enable `migrate_source_example_json` module (`drush en migrate_source_example_json`).
