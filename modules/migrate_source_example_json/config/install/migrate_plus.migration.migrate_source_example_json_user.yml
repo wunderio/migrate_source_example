@@ -37,7 +37,11 @@ source:
       label: 'Email of the user'
       selector: email
 process:
-  name: user_name
+  name:
+      plugin: dedupe_entity
+      field: name
+      entity_type: user
+      source: user_name
   roles:
       plugin: explode
       delimiter: ','
