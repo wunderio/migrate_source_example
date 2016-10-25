@@ -56,7 +56,8 @@ class CSV extends MigrateSourceCSV {
   }
 
   /**
-   * Attaches "nid" property to a row if row "bid" points to a
+   * Attaches "nid" property to row's destination to match the ID of content
+   * source.
    *
    * @param \Drupal\migrate\Row $row
    *

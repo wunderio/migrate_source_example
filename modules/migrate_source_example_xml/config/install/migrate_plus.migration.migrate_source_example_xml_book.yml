@@ -88,15 +88,11 @@ process:
       source: book_attributes
     -
       plugin: extract
-      index: 0
+      index:
+        - 0
     -
-      plugin: explode
-      delimiter: ':'
-    -
-      plugin: extract
-      index: 1
-    -
-      plugin: explode
+      plugin: extract_attribute_values
+      prefix: 'author:'
       delimiter: ','
     -
       plugin: filter_migrated_source_values
@@ -111,15 +107,11 @@ process:
       source: book_attributes
     -
       plugin: extract
-      index: 1
+      index:
+        - 1
     -
-      plugin: explode
-      delimiter: ':'
-    -
-      plugin: extract
-      index: 1
-    -
-      plugin: explode
+      plugin: extract_attribute_values
+      prefix: 'category:'
       delimiter: ','
     -
       plugin: filter_migrated_source_values
@@ -146,7 +138,7 @@ process:
       delimiter: null
       source:
         - constants/slash
-        - alias
+        - book_alias
 destination:
   plugin: 'entity:node'
 template: null
