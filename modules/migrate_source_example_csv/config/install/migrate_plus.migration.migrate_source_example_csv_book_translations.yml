@@ -22,7 +22,6 @@ source:
   constants:
     slash: /
 process:
-  nid: id
   type:
     plugin: default_value
     default_value: book
