@@ -1,5 +1,0 @@
-services:
-  migrate_source_example.url_alias_event_subscriber:
-    class: Drupal\migrate_source_example\EventSubscriber\MigrateSourceExampleUrlAliasSubscriber
-    tags:
-      - { name: event_subscriber }
