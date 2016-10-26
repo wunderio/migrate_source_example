@@ -12,14 +12,12 @@ source:
   plugin: migrate_source_example_spreadsheet
   file: data.xlsx
   worksheet: 'Users'
-  origin: A1
+  origin: A2
   header_row: 1
   columns:
-    - id
     - name
     - roles
     - email
-  row_index_column: id
   keys:
     id:
       type: integer
