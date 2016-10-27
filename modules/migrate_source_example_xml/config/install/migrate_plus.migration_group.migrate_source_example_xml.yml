@@ -3,6 +3,9 @@ status: true
 dependencies:
   module:
     - migrate_source_example_xml
+  enforced:
+    module:
+      - migrate_source_example_xml
 id: migrate_source_example_xml
 label: 'Example migration from XML files.'
 description: 'A few example migrations from XML files.'

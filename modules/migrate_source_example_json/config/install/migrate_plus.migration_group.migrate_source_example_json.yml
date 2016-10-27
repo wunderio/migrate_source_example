@@ -3,6 +3,9 @@ status: true
 dependencies:
   module:
     - migrate_source_example_json
+  enforced:
+    module:
+      - migrate_source_example_json
 id: migrate_source_example_json
 label: 'Example migration from a JSON resource.'
 description: 'A few example migrations from a JSON resource.'
