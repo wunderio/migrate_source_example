@@ -31,6 +31,10 @@ Currently the project features migrations from following sources:
 ### Installation of JSON migration example module
 1. Enable `migrate_source_example_json` module (`drush en migrate_source_example_json`).
 
+### Installation of spreadsheet migration example module
+1. Download `migrate_drush` contrib module into `modules/contrib/migrate_drush` (see [instructions](https://www.drupal.org/project/migrate_drush/git-instructions)).
+2. Enable `migrate_source_example_spreadsheet` module (`drush en migrate_source_example_spreadsheet`).
+
 ## Usage
 
 1. Run `drush ms` to see all migrations.
@@ -44,6 +48,20 @@ needs to be provided to migration system.
 
 Run `drush mi --group=migrate_source_example_json --uri=[BASE_URL]`, where `[BASE_URL]` is an absolute path to your
 site.
+
+## Special usage of spreadsheet migration example
+
+Spreadsheet migrations are created as plugin migrations, therefore they cannot be interacted with using commands
+provided by `migrate_tools` modules. `migrate_drush` provides `migrate_drush_run` drush command, which can import
+or rollback each migration individually one-by-one.
+
+Run the following commands to import data:
+
+1. `drush migrate_drush_run migrate_source_example_spreadsheet_user --method=import` to import users;
+
+Run the following commands to rollback data:
+
+1. `drush migrate_drush_run migrate_source_example_spreadsheet_user --method=rollback` to rollback user migration;
 
 ## Data source
 
