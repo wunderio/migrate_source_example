@@ -28,7 +28,7 @@ process:
       method: process
       source: nid
   uid:
-    plugin: migration
+    plugin: migration_lookup
     migration: migrate_source_example_db_user
     source: user
   title: title
@@ -40,29 +40,19 @@ process:
       1: plain_text
       2: basic_html
   field_author:
-    -
-      plugin: explode
-      delimiter: ','
-      source: attributes
-    -
-      plugin: filter_migrated_source_values
-      migration: migrate_source_example_db_author
-    -
-      plugin: migration
-      migration: migrate_source_example_db_author
+    plugin: migration_lookup
+    migration: migrate_source_example_db_author
+    source: author
   field_category:
     -
       plugin: explode
-      delimiter: ','
-      source: attributes
+      delimiter: ', '
+      source: category
     -
-      plugin: filter_migrated_source_values
-      migration: migrate_source_example_db_category
-    -
-      plugin: migration
+      plugin: migration_lookup
       migration: migrate_source_example_db_category
   field_cover:
-    plugin: migration
+    plugin: migration_lookup
     migration: migrate_source_example_db_image
     source: image
   created:
