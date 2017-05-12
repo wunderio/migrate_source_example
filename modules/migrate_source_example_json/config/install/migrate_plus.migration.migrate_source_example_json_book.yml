@@ -107,9 +107,6 @@ process:
       delimiter: ','
       source: book_category
     -
-      plugin: filter_migrated_source_values
-      migration: migrate_source_example_json_category
-    -
       plugin: migration
       migration: migrate_source_example_json_category
   field_author:
