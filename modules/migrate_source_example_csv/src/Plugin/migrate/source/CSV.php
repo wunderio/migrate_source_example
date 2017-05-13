@@ -81,7 +81,7 @@ class CSV extends MigrateSourceCSV {
 
     if (!empty($destinationConfiguration[$migrationId]['translations'])) {
       if (!isset($bookMigration)) {
-        $bookMigration = \Drupal::service('plugin.manager.config_entity_migration')->createInstance('migrate_source_example_csv_book');
+        $bookMigration = \Drupal::service('plugin.manager.migration')->createInstance('migrate_source_example_csv_book');
       }
 
       // Get the index of "nid" field for destination on the migration map.
